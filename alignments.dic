@@ -1,0 +1,177 @@
+#################
+## Alignments
+#################
+
+; Version 1.0 4 Oct 2016
+; JH/BV
+
+
+
+##############################
+## MA_ALIGNMENT             ##
+##############################
+
+save_ma_alignment
+    _category.description
+;              Data items in the MA_ALIGNMENT category record details about
+               the relationship of homologous sequences to the target sequence
+			   alignments can be fully gapped or partial with the corresponding 
+			   from, -to annotations. Further details are stored in data items
+			   MA_ALIGNMENT_SEGMENT, MA_TEMPLATE and MA_TEMPLATE_ATOM_SITE
+			   
+;
+    _category.id                  ma_alignment
+    _category.mandatory_code      no
+    _category_key.name          'ma_alignment.id'
+    loop_
+    _category_group.id           ?
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+;Example
+  loop_
+	ma_alignment.ordinal_id
+	ma_alignment.id
+	ma_alignment.template_ordinal_id
+	ma_alignment.from
+	ma_alignment.to
+	ma_alignment.target_sequence
+
+	save_
+
+0 0 0 1 100 >Target\nGAMGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKASLPGVKKALGKYGPADVEDTT
+0 0 1 30 90 >Target\nGAMGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKASLPGVKKALGKYGPADVEDTT
+
+;
+
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_alignment
+     save_
+
+
+##############################
+## MA_ALIGNMENT_SEGMENT     ##
+##############################
+save_ma_alignment_segment
+    _category.description
+;              Data items in the MA_ALIGNMENT_SEGMENT category record details about
+               the relationship of homologous sequences to the target sequence
+			   alignments can be fully gapped or partial with the corresponding 
+			   from, -to annotations. Further details are stored in data items
+			   MA_TEMPLATE and MA_TEMPLATE_ATOM_SITE
+			   
+;
+    _category.id                  ma_alignment_segment
+    _category.mandatory_code      no
+    _category_key.name          'ma_alignment_segment.id'
+    loop_
+    _category_group.id           ?
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+;Example
+  loop_ 
+	ma_alignment_segment.ordinal_id
+	ma_alignment_segment.id
+	ma_alignment_segment.sequence
+	ma_alignment_segment.template_ordinal_id  ;opt else .
+	ma_alignment_segment.target_from     ;opt else .
+	ma_alignment_segment.target_to	     ;opt else .
+	ma_alignment_segment.template_from   ;opt else .
+	ma_alignment_segment.template_to	 ;opt else .
+	save_
+
+0 0 >segment\nGAMGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKASLPGVKKALGKYGPADVEDTT
+0 1 >5dqs.1.B\n--MGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKASLPGVKKALGKYGPADVEDTT
+0 1 . 2 22 >5dqs.1.B\nMGFGDLKSPAGLQVLNDYLA
+0 1 >5dqs.1.B\n--MGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKASLPGVKKALGKYGPADVEDTT
+0 2 >2oac.1.A\n----------PGHLKPFETLLSQNQGGKAFIVGDQISFADYNLLDLLLIHQVLAPGCLDNFPLLSAYVARLSARPKIKAFLSS-----------------
+0 2 . 10 83 >2oac.1.A\nPGHLKPFETLLSQNQGGKAFIVGDQISFADYNLLDLLLIHQVLAPGCLDNFPLLSAYVARLSARPKIKAFLSS
+0 2 1 10 83 >2oac.1.A\nPGHLKPFETLLSQNQGGKAFIVGDQISFADYNLLDLLLIHQVLAPGCLDNFPLLSAYVARLSARPKIKAFLSS
+
+;
+
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_alignment_segment
+     save_
+
+	 
+##############################
+## MA_TEMPLATE              ##
+##############################
+save_ma_template
+    _category.description
+;           Data items in the MA_TEMPLATE category record details about 
+			templates used in the modeling process. Atomic coordinates are 
+			stored in data items MA_TEMPLATE_ATOM_SITE.
+			   
+;
+    _category.id                  ma_template
+    _category.mandatory_code      no
+    _category_key.name          'ma_template.id'
+    loop_
+    _category_group.id           ?
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+;Example
+  loop
+	ma_template.ordinal_id
+	ma_template.id
+	ma_template.template_name
+	ma_template.biounit_id
+	ma_template.mmcif_chain_id
+	ma_template.pdb_chain_id
+	ma_template.template_atom_site_id
+	ma_template.method				;"xray"|"neutron"|"nmr"|"model"|"hiresEM"
+	ma_template.fasta_seq
+  save_
+
+0 0 5dqs 1 B B 100 xray >5dqs.1.B\n--MGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKASLPGVKKALGKYGPADVEDTT
+0 1 2oac 1 A A 101 xray >2oac.1.A\n----------PGHLKPFETLLSQNQGGKAFIVGDQISFADYNLLDLLLIHQVLAPGCLDNFPLLSAYVARLSARPKIKAFLSS-----------------
+
+;
+
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_template
+     save_
+
+	 
+##############################
+## MA_TEMPLATE_ATOM_SITE    ##
+##############################	 
+save_ma_template_atom_site
+    _category.description
+;           Data items in the MA_TEMPLATE_ATOM_SITE category record atomic 
+            coordinates used as template for a given model.
+			   
+	 
+;Example
+  loop_
+   ma_template_atom_site.ordinal_id
+   ma_template_atom_site.type_symbol
+   ma_template_atom_site.label_atom_id
+   ma_template_atom_site.label_comp_id
+   ma_template_atom_site.label_asym_id
+   ma_template_atom_site.label_seq_id
+   ma_template_atom_site.label_alt_id
+   ma_template_atom_site.Cartn_x
+   ma_template_atom_site.Cartn_y
+   ma_template_atom_site.Cartn_z
+   ma_template_atom_site.occupancy
+   ma_template_atom_site.B_iso_or_equiv
+   ma_template_atom_site.footnote_id
+   ma_template_atom_site.auth_seq_id
+   ma_template_atom_site.id
+  save_
+;
+
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_template_atom_site
+     save_	 
