@@ -1,0 +1,96 @@
+##############################
+## MA_STEP_output            ##
+##############################
+;Version 1.0 Feb 13 2017
+
+
+save_ma_step_output
+    _category.description
+;              Data items in the MA_step_output category captures the
+               output data for a given protocol_step.   
+;
+    _category.id                  ma_step_output
+    _category.mandatory_code      yes
+     loop_
+    _category_key.name          '_ma_step_output.id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+        loop_
+        _ma_step_output.ordinal_id
+        _ma_step_output.id
+        _ma_step_output.group_id
+        _ma_step_output.data_type
+        0 0 0          
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_step_output
+     save_
+
+save__ma_step_output.ordinal_id
+    _item_description.description
+;    A unique identifier for the entry.
+;
+    _item.name                  '_ma_step_output.ordinal_id'
+    _item.category_id             ma_step_output
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_step_output.id
+    _item_description.description
+;    An identifier for the dataset.
+;
+    _item.name                  '_ma_step_output.id'
+    _item.category_id             ma_step_output
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_ 
+
+save__ma_step_output.group_id
+    _item_description.description
+;    An identifier for a collection of output datasets to form a group. 
+     Allows for organization of datasets into subsets for easier reference.  
+;
+    _item.name                  '_ma_step_output.group_id'
+    _item.category_id             ma_step_output
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_step_output.data_type
+    _item_description.description
+;    The type of data held in the dataset.
+;
+    _item.name                  '_ma_step_output.data_type'
+    _item.category_id             ma_step_output
+    _item.mandatory_code          yes
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+      'coordinates'
+      'restraints'
+      'alignment'   ; MSA for coevolution methods as well as target-template alignment
+     save_ 
+
+save__ma_step_output.output_id
+    _item_description.description
+;    unique identifier linking a step_output to the resulting output of the corresponding modeling step
+     
+;
+    _item.name                  '_ma_step_output.output_id'
+    _item.category_id             ma_step_output
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
