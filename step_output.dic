@@ -30,6 +30,7 @@ save_ma_step_output
         _ma_step_output.id
         _ma_step_output.group_id
         _ma_step_output.data_type
+        _ma_step_output.output_data_id
         0 0 0          
          # ...  abbreviated ...
 ;
@@ -82,6 +83,16 @@ save__ma_step_output.data_type
       'coordinates'
       'restraints'
       'alignment'   ; MSA for coevolution methods as well as target-template alignment
+     save_ 
+
+save__ma_step_output.output_data_id
+    _item_description.description
+;    This links the step_output_id to the actual data.
+;
+    _item.name                  '_ma_step_output.output_data_id'
+    _item.category_id             ma_step_output
+    _item.mandatory_code          yes
+    _item_type.code               int
      save_ 
 
 save__ma_step_output.output_id

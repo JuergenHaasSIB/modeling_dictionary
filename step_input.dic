@@ -30,8 +30,7 @@ save_ma_step_input
         _ma_step_input.id
         _ma_step_input.group_id
         _ma_step_input.data_type
-        _ma_step_input.output_id
-		
+        _ma_step_input.data_input_id
         0 0 0          
          # ...  abbreviated ...
 ;
@@ -85,12 +84,12 @@ save__ma_step_input.data_type
       'alignment'   ; MSA for coevolution methods as well as target-template alignment
      save_ 
 
-save__ma_step_input.output_id
+save__ma_step_input.data_input_id
     _item_description.description
-;    unique identifier linking a step_input to the resulting output of the corresponding modeling step
+;    unique identifier linking the input data to the step_input of the corresponding modeling step
      
 ;
-    _item.name                  '_ma_step_input.output_id'
+    _item.name                  '_ma_step_input.data_input_id'
     _item.category_id             ma_step_input
     _item.mandatory_code          yes
     _item_type.code               int

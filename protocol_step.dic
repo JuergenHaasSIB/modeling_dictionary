@@ -4,25 +4,24 @@
 ;Version 1.0 July 7
 #ma_protocol_step
 ;Example
-	loop_
-	ma_protocol_step.ordinal_id
-	ma_protocol_step.asym_id
-	ma_protocol_step.entity_id
-	ma_protocol_step.method_type
-	ma_protocol_step.software_used
-	ma_protocol_step.step_param_id
-	ma_protocol_step.step_input_id
-	ma_protocol_step.step_output_id
-	0 A 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 1
-	1 B 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 1
-	2 C 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 1
-	3 D 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 1
+  loop_
+  ma_protocol_step.ordinal_id
+  ma_protocol_step.asym_id
+  ma_protocol_step.entity_id
+  ma_protocol_step.method_type
+  ma_protocol_step.software_used
+  ma_protocol_step.step_input_id
+  ma_protocol_step.step_output_id
+  0 A 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
+  1 B 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
+  2 C 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
+  3 D 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
 ;
 
    _pdbx_category_context.type         CONTRIBUTED
    _pdbx_category_context.category_id  ma_protocol_step
      save_
-	 
+   
 save_ma_protocol_step.asym_id 
     _item_description.description
 ;   An asym/strand identifier for the entity molecule.
@@ -36,7 +35,7 @@ save_ma_protocol_step.asym_id
     _item_linked.child_name       '_ma_protocol_step.asym_id'
     _item_linked.parent_name      '_struct_asym.id'
      save_
-	 
+   
 save_ma_protocol_step.ordinal_id 
     _item_description.description
 ;   This is a counter keeping track of the protocol steps.
@@ -47,7 +46,7 @@ save_ma_protocol_step.ordinal_id
     _item.mandatory_code          yes
     _item_type.code               int
      save_
-	 
+   
 save_ma_protocol_step.entity_id 
     _item_description.description
 ;   The entity identifier the protocol step applies to.
@@ -86,7 +85,7 @@ save_ma_protocol_step.software_used
 ;    _item_linked.child_name       '_ma_protocol_step.software_used'
 ;    _item_linked.parent_name      '_ma_method.type'
      save_
-	
+  
 save_ma_protocol_step.software_used 
     _item_description.description
 ;   The software used when applying the protocol step.
@@ -112,7 +111,7 @@ save_ma_protocol_step.step_input_id
 ;    _item_linked.child_name       '_ma_protocol_step.step_output_id'
 ;    _item_linked.parent_name      '_ma_method.ordinal_id'
      save_
-	 
+   
 save_ma_protocol_step.step_output_id 
     _item_description.description
 ;   This uniquely identifies the output of a protocol step.
@@ -126,5 +125,5 @@ save_ma_protocol_step.step_output_id
 ;    _item_linked.parent_name      '_ma_method.ordinal_id'
      save_
 
-	
-	
+  
+  
