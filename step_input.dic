@@ -28,11 +28,11 @@ save_ma_step_input
         loop_
         _ma_step_input.ordinal_id
         _ma_step_input.id
-        _ma_step_input.group_id
-        _ma_step_input.data_type
-        _ma_step_input.data_input_id
-        0 0 0          
-         # ...  abbreviated ...
+        _ma_step_input.data_group_id
+        _ma_step_input.data_id
+        0 0 0 0 
+        1 1 1 1
+       # ...  abbreviated ...  
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
@@ -70,20 +70,6 @@ save__ma_step_input.group_id
     _item_type.code               int
      save_
 
-save__ma_step_input.data_type
-    _item_description.description
-;    The type of data held in the dataset.
-;
-    _item.name                  '_ma_step_input.data_type'
-    _item.category_id             ma_step_input
-    _item.mandatory_code          yes
-    _item_type.code               line
-    loop_
-    _item_enumeration.value
-      'restraint'
-      'alignment'   ; MSA for coevolution methods as well as target-template alignment
-     save_ 
-
 save__ma_step_input.data_input_id
     _item_description.description
 ;    unique identifier linking the input data to the step_input of the corresponding modeling step
@@ -94,3 +80,4 @@ save__ma_step_input.data_input_id
     _item.mandatory_code          yes
     _item_type.code               int
      save_
+
