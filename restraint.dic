@@ -1,0 +1,106 @@
+##############################
+## MA_RESTRAINTS             ##
+##############################
+
+save_ma_restraints
+    _category.description
+;              Data items in the ma_restraints category captures the
+               details of restraints used.   
+;
+    _category.id                  ma_restraints
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ma_restraints.id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+        loop_
+        _ma_restraints.ordinal_id
+        _ma_restraints.data_id
+        _ma_restraints.restraint_id
+        _ma_restraints.restraint_group_id
+        _ma_restraints.name
+        _ma_restraints.type
+        
+ 
+         
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_restraints
+     save_
+
+
+save__ma_restraint.ordinal_id
+    _item_description.description
+;     A unique identifier for a general restraint record.
+;
+    _item.name                  '_ma_restraint.ordinal_id'
+    _item.category_id             ma_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_restraint.data_id
+    _item_description.description
+;     An identifier pointing to the _ma_step_data.id in the MA_STEP_DATA category.
+;
+    _item.name                  '_ma_restraint.data_id'
+    _item.category_id             ma_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_restraint.data_id'
+    _item_linked.parent_name    '_ma_step_data.id'
+     save_
+
+save__ma_restraint.restraint_id
+    _item_description.description
+;     An identifier pointing to the _ma_restraint.id in the MA_RESTRAINT category.
+;
+    _item.name                  '_ma_restraint.restraint_id'
+    _item.category_id             ma_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_restraint.restraint_id'
+    _item_linked.parent_name    '_ma_restraint.id'
+     save_d
+
+save__ma_restraint.group_id
+    _item_description.description
+;     An identifier to collect a group of restraints.
+;
+    _item.name                    '_ma_restraint.group_id'
+    _item.category_id             ma_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+     
+save__ma_restraint.type
+    _item_description.description
+;     An identifier to collect a group of restraints.
+;
+    _item.name                    '_ma_restraint.type'
+    _item.category_id             ma_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+     
+save__ma_restraint.name
+    _item_description.description
+;     An identifier to collect a group of restraints.
+;
+    _item.name                    '_ma_restraint.name'
+    _item.category_id             ma_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_

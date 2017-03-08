@@ -34,6 +34,7 @@ save_ma_distance_restraint
 ;
         loop_
         _ma_distance_restraint.ordinal_id
+        ADD data_id
         _ma_distance_restraint.restraint_id
         _ma_distance_restraint.restraint_group_id
         _ma_distance_restraint.entity_id_1
@@ -77,6 +78,18 @@ save__ma_distance_restraint.ordinal_id
     _item.category_id             ma_distance_restraint
     _item.mandatory_code          yes
     _item_type.code               int
+     save_
+
+save__ma_distance_restraint.data_id
+    _item_description.description
+;     An identifier pointing to the _ma_step_data.id in the MA_STEP_DATA category.
+;
+    _item.name                  '_ma_distance_restraint.data_id'
+    _item.category_id             ma_distance_restraint
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_distance_restraint.data_id'
+    _item_linked.parent_name    '_ma_step_data.id'
      save_
 
 save__ma_distance_restraint.restraint_id
@@ -306,6 +319,7 @@ save_ma_dihedral_restraint
 ;
         loop_
         _ma_dihedral_restraint.ordinal_id
+        ADD data_id linking back to step_data
         _ma_dihedral_restraint.restraint_id
         _ma_dihedral_restraint.restraint_group_id
         _ma_dihedral_restraint.entity_id_1

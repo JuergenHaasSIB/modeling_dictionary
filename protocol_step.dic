@@ -8,14 +8,26 @@
   ma_protocol_step.ordinal_id
   ma_protocol_step.asym_id
   ma_protocol_step.entity_id
-  ma_protocol_step.method_type
+  ma_protocol_step.type
   ma_protocol_step.software_used
   ma_protocol_step.step_input_id
   ma_protocol_step.step_output_id
-  0 A 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
-  1 B 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
-  2 C 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
-  3 D 1 "comparative modeling" "SWISS-MODEL SMNG" 1 1 
+   0 A 1 template_search "SWISS-MODEL SMNG" 1 1 
+   1 B 1 template_search "SWISS-MODEL SMNG" 1 1 
+   2 C 1 template_search "SWISS-MODEL SMNG" 1 1 
+   3 D 1 template_search "SWISS-MODEL SMNG" 1 1 
+   4 A 1 template_selection "SWISS-MODEL SMNG" 1 1 
+   5 B 1 template_selection "SWISS-MODEL SMNG" 1 1 
+   6 C 1 template_selection "SWISS-MODEL SMNG" 1 1 
+   7 D 1 template_selection "SWISS-MODEL SMNG" 1 1 
+   8 A 1 modeling "SWISS-MODEL SMNG" 1 1 
+   9 B 1 modeling "SWISS-MODEL SMNG" 1 1 
+  10 C 1 modeling "SWISS-MODEL SMNG" 1 1 
+  11 D 1 modeling "SWISS-MODEL SMNG" 1 1 
+  12 A 1 model_selection "SWISS-MODEL SMNG" 1 1 
+  13 B 1 model_selection "SWISS-MODEL SMNG" 1 1 
+  14 C 1 model_selection "SWISS-MODEL SMNG" 1 1 
+  15 D 1 model_selection "SWISS-MODEL SMNG" 1 1 
 ;
 
    _pdbx_category_context.type         CONTRIBUTED
@@ -60,16 +72,29 @@ save_ma_protocol_step.entity_id
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save_ma_protocol_step.method_type 
+;;save_ma_protocol_step.name 
+;;    _item_description.description
+;;;   The method type that was applied in this protocol step.
+;;;   This refers to _ma_method.type in the _ma_method category. 
+;;;
+;;    _item.name                  '_ma_protocol_step.name'
+;;    _item.category_id             ma_protocol_step
+;;    _item.mandatory_code          yes
+;;    _item_type.code               code
+;;    _item_linked.child_name       '_ma_protocol_step.name'
+;;    _item_linked.parent_name      '_ma_method.type'
+;;     save_
+
+save_ma_protocol_step.type
     _item_description.description
 ;   The method type that was applied in this protocol step.
 ;   This refers to _ma_method.type in the _ma_method category. 
 ;
-    _item.name                  '_ma_protocol_step.method_type'
+    _item.name                  '_ma_protocol_step.type'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_protocol_step.method_type'
+    _item_linked.child_name       '_ma_protocol_step.type'
     _item_linked.parent_name      '_ma_method.type'
      save_
 
