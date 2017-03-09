@@ -1,25 +1,17 @@
-# ----------------------------------------------------------------------------------------------------------------------------
-#
-#  File: ma-extension.dic
-#  Date: 28-JUN-2016
-#
-#  Draft dictionary extension for in silico models in the Model Archive.
-#
-# ----------------------------------------------------------------------------------------------------------------------------
+###################
+## MA_RESTRAINTS ##
+###################
 
-##############################
-## MA_DISTANCE_RESTRAINT    ##
-##############################
-
-save_ma_distance_restraint
+save_ma_restraints
     _category.description
-;              Data items in the MA_DISTANCE_RESTRAINT category captures the
-               details of distance restraints between atoms.   
+;              Data items in the ma_restraints category provides the
+               list of the different types of restraints used in the
+               modeling.   
 ;
-    _category.id                  ma_distance_restraint
+    _category.id                  ma_restraints
     _category.mandatory_code      no
      loop_
-    _category_key.name          '_ma_distance_restraint.id'
+    _category_key.name          '_ma_restraints.ordinal_id'
 
     loop_
     _category_group.id           'inclusive_group'
@@ -33,278 +25,373 @@ save_ma_distance_restraint
 ;
 ;
         loop_
-        _ma_distance_restraint.ordinal_id
-        _ma_distance_restraint.restraint_id
-        _ma_distance_restraint.restraint_group_id
-        _ma_distance_restraint.data_id
-        _ma_distance_restraint.entity_id_1
-        _ma_distance_restraint.asym_id_1
-        _ma_distance_restraint.seq_id_1
-        _ma_distance_restraint.comp_id_1
-        _ma_distance_restraint.atom_id_1
-        _ma_distance_restraint.entity_id_2
-        _ma_distance_restraint.asym_id_2
-        _ma_distance_restraint.seq_id_2
-        _ma_distance_restraint.comp_id_2
-        _ma_distance_restraint.atom_id_2
-        _ma_distance_restraint.distance_threshold
-        _ma_distance_restraint.uncertainty
-        _ma_distance_restraint.lower_limit
-        _ma_distance_restraint.upper_limit
+        _ma_restraints.ordinal_id
+        _ma_restraints.restraint_id
+        _ma_restraints.data_id
+        _ma_restraints.name
+        _ma_restraints.restraint_type
+        _ma_restraints.details
+        1 1 1 . "Distance restraints" .
+        2 2 2 . "Dihedral restraints" .
+        # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_restraints
+     save_
+
+save__ma_restraints.ordinal_id
+    _item_description.description
+;     A unique identifier for the entry.              
+;
+    _item.name                  '_ma_restraints.ordinal_id'
+    _item.category_id             ma_restraints
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_restraints.restraint_id
+    _item_description.description
+;     An identifier for the restraint. 
+;
+    _item.name                  '_ma_restraints.restraint_id'
+    _item.category_id             ma_restraints
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_restraints.data_id
+    _item_description.description
+;     An identifier pointing to the _ma_data.id in the MA_DATA category.
+;
+    _item.name                  '_ma_restraints.data_id'
+    _item.category_id             ma_restraints
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_restraints.data_id'
+    _item_linked.parent_name    '_ma_data.id'
+     save_
+
+save__ma_restraints.name
+    _item_description.description
+;     An author-given name for the set of restraints. 
+;
+    _item.name                    '_ma_restraints.name'
+    _item.category_id             ma_restraints
+    _item.mandatory_code          yes
+    _item_type.code               line
+     save_
+     
+save__ma_restraints.restraint_type
+    _item_description.description
+;     The type of restraint.
+;
+    _item.name                    '_ma_restraints.restraint_type'
+    _item.category_id             ma_restraints
+    _item.mandatory_code          yes
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+    'Distance restraint'
+    'Dihedral restraint'
+    'Other'
+     save_
+
+save__ma_restraints.details
+    _item_description.description
+;    Additional details regarding the restraints used in the modeling. 
+;
+    _item.name                    '_ma_restraints.details'
+    _item.category_id             ma_restraints
+    _item.mandatory_code          yes
+    _item_type.code               text
+     save_
+
+############################
+## MA_DISTANCE_RESTRAINTS ##
+############################
+
+save_ma_distance_restraints
+    _category.description
+;              Data items in the MA_DISTANCE_RESTRAINTS category captures the
+               details of distance restraints between atoms.   
+;
+    _category.id                  ma_distance_restraints
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ma_distance_restraints.id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+        loop_
+        _ma_distance_restraints.ordinal_id
+        _ma_distance_restraints.restraint_id
+        _ma_distance_restraints.group_id
+        _ma_distance_restraints.entity_id_1
+        _ma_distance_restraints.asym_id_1
+        _ma_distance_restraints.seq_id_1
+        _ma_distance_restraints.comp_id_1
+        _ma_distance_restraints.atom_id_1
+        _ma_distance_restraints.entity_id_2
+        _ma_distance_restraints.asym_id_2
+        _ma_distance_restraints.seq_id_2
+        _ma_distance_restraints.comp_id_2
+        _ma_distance_restraints.atom_id_2
+        _ma_distance_restraints.distance_threshold
+        _ma_distance_restraints.uncertainty
+        _ma_distance_restraints.lower_limit
+        _ma_distance_restraints.upper_limit
           1  1  1  3  C   17  LYS  NZ  3  C  421  GLU  OE1  3.8  0.2  .  .
-          2  2  1  3  C  206  LYS  NZ  3  C  219  ASP  OD1  3.8  0.2  .  .
-          3  3  1  3  C   38  LYS  NZ  3  C  429  GLU  OE1  3.8  0.2  .  .
-          4  4  1  3  C  400  LYS  NZ  3  C  440  GLU  OE1  3.8  0.2  .  .
-          5  5  1  3  C  400  LYS  NZ  3  C  441  GLU  OE1  3.8  0.2  .  .
-          6  6  1  3  C  400  LYS  NZ  3  C  523  ASP  OD1  3.8  0.2  .  .
-          7  7  1  3  C  735  LYS  NZ  3  C  403  ASP  OD1  3.8  0.2  .  .
-          8  8  1  3  C  735  LYS  NZ  3  C  405  GLU  OE1  3.8  0.2  .  .
-          9  9  1  3  C  865  LYS  NZ  3  C  894  GLU  OE1  3.8  0.2  .  .
-         10 10  1  3  C  865  LYS  NZ  3  C  898  ASP  OD1  3.8  0.2  .  .
-         11 11  1  4  D  103  LYS  NZ  4  D  130  ASP  OD1  3.8  0.2  .  .
-         12 12  1  4  D  103  LYS  NZ  4  D  131  GLU  OE1  3.8  0.2  .  .
+          2  1  1  3  C  206  LYS  NZ  3  C  219  ASP  OD1  3.8  0.2  .  .
+          3  1  1  3  C   38  LYS  NZ  3  C  429  GLU  OE1  3.8  0.2  .  .
+          4  1  1  3  C  400  LYS  NZ  3  C  440  GLU  OE1  3.8  0.2  .  .
+          5  1  1  3  C  400  LYS  NZ  3  C  441  GLU  OE1  3.8  0.2  .  .
+          6  1  1  3  C  400  LYS  NZ  3  C  523  ASP  OD1  3.8  0.2  .  .
+          7  1  1  3  C  735  LYS  NZ  3  C  403  ASP  OD1  3.8  0.2  .  .
+          8  1  1  3  C  735  LYS  NZ  3  C  405  GLU  OE1  3.8  0.2  .  .
+          9  1  1  3  C  865  LYS  NZ  3  C  894  GLU  OE1  3.8  0.2  .  .
+         10  1  1  3  C  865  LYS  NZ  3  C  898  ASP  OD1  3.8  0.2  .  .
+         11  1  1  4  D  103  LYS  NZ  4  D  130  ASP  OD1  3.8  0.2  .  .
+         12  1  1  4  D  103  LYS  NZ  4  D  131  GLU  OE1  3.8  0.2  .  .
          # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_distance_restraint
+   _pdbx_category_context.category_id  ma_distance_restraints
      save_
 
-save__ma_distance_restraint.ordinal_id
+save__ma_distance_restraints.ordinal_id
     _item_description.description
 ;     A unique identifier for the distance restraint record.
 ;
-    _item.name                  '_ma_distance_restraint.ordinal_id'
-    _item.category_id             ma_distance_restraint
+    _item.name                  '_ma_distance_restraints.ordinal_id'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_distance_restraint.data_id
+save__ma_distance_restraints.restraint_id
     _item_description.description
-;     An identifier pointing to the _ma_step_data.id in the MA_STEP_DATA category.
+;     An identifier pointing to the _ma_restraints.restraint_id in the MA_RESTRAINTS category.
 ;
-    _item.name                  '_ma_distance_restraint.data_id'
-    _item.category_id             ma_distance_restraint
+    _item.name                  '_ma_distance_restraints.restraint_id'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_distance_restraint.data_id'
-    _item_linked.parent_name    '_ma_step_data.id'
+    _item_linked.child_name     '_ma_distance_restraints.restraint_id'
+    _item_linked.parent_name    '_ma_restraints.restraint_id'
      save_
 
-save__ma_distance_restraint.restraint_id
+save__ma_distance_restraints.group_id
     _item_description.description
-;     An identifier pointing to the _ma_restraint.id in the MA_RESTRAINT category.
+;     A identifier to collect a group of distance restraints. 
 ;
-    _item.name                  '_ma_distance_restraint.restraint_id'
-    _item.category_id             ma_distance_restraint
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name     '_ma_distance_restraint.restraint_id'
-    _item_linked.parent_name    '_ma_restraint.id'
-     save_
-
-save__ma_distance_restraint.group_id
-    _item_description.description
-;     An identifier to collect a group of distance restraints.
-;
-    _item.name                    '_ma_distance_restraint.group_id'
-    _item.category_id             ma_distance_restraint
-    _item.mandatory_code          yes
+    _item.name                  '_ma_distance_restraints.group_id'
+    _item.category_id             ma_distance_restraints
+    _item.mandatory_code          no
     _item_type.code               int
      save_
 
-save__ma_distance_restraint.entity_id_1
+save__ma_distance_restraints.entity_id_1
     _item_description.description
 ;     The entity identifier for the first partner in the distance restraint. 
       This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
 ;
-    _item.name                    '_ma_distance_restraint.entity_id_1'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.entity_id_1'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_distance_restraint.entity_id_1'
+    _item_linked.child_name       '_ma_distance_restraints.entity_id_1'
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save__ma_distance_restraint.entity_id_2
+save__ma_distance_restraints.entity_id_2
     _item_description.description
 ;     The entity identifier for the second partner in the distance restraint. 
       This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
 ;
-    _item.name                    '_ma_distance_restraint.entity_id_2'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.entity_id_2'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_distance_restraint.entity_id_2'
+    _item_linked.child_name       '_ma_distance_restraints.entity_id_2'
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save__ma_distance_restraint.asym_id_1
+save__ma_distance_restraints.asym_id_1
     _item_description.description
 ;              An asym/strand identifier for the first partner in the distance restraint. 
                This data item is a pointer to _struct_asym.id in the
                STRUCT_ASYM category.
 ;
-    _item.name                    '_ma_distance_restraint.asym_id_1'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.asym_id_1'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_distance_restraint.asym_id_1'
+    _item_linked.child_name       '_ma_distance_restraints.asym_id_1'
     _item_linked.parent_name      '_struct_asym.id'
      save_
 
-save__ma_distance_restraint.asym_id_2
+save__ma_distance_restraints.asym_id_2
     _item_description.description
 ;          An asym/strand identifier for the second partner in the distance restraint. 
            This data item is a pointer to _struct_asym.id in the
            STRUCT_ASYM category.
 ;
-    _item.name                    '_ma_distance_restraint.asym_id_2'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.asym_id_2'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_distance_restraint.asym_id_2'
+    _item_linked.child_name       '_ma_distance_restraints.asym_id_2'
     _item_linked.parent_name      '_struct_asym.id'
      save_
 
-save__ma_distance_restraint.comp_id_1
+save__ma_distance_restraints.comp_id_1
     _item_description.description
 ;     The component identifier for the first partner in the distance restraint.
       This data item is a pointer to _entity_poly_seq.mon_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_distance_restraint.comp_id_1'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.comp_id_1'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               ucode
-    _item_linked.child_name       '_ma_distance_restraint.comp_id_1'
+    _item_linked.child_name       '_ma_distance_restraints.comp_id_1'
     _item_linked.parent_name      '_entity_poly_seq.mon_id'
      save_
 
-save__ma_distance_restraint.comp_id_2
+save__ma_distance_restraints.comp_id_2
     _item_description.description
 ;     The component identifier for the second partner in the distance restraint.
       This data item is a pointer to _entity_poly_seq.mon_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_distance_restraint.comp_id_2'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.comp_id_2'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               ucode
-    _item_linked.child_name       '_ma_distance_restraint.comp_id_2'
+    _item_linked.child_name       '_ma_distance_restraints.comp_id_2'
     _item_linked.parent_name      '_entity_poly_seq.mon_id'
      save_
 
-save__ma_distance_restraint.seq_id_1
+save__ma_distance_restraints.seq_id_1
     _item_description.description
 ;     The sequence index for the first partner in the distance restraint.
       This data item is a pointer to _entity_poly_seq.num in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_distance_restraint.seq_id_1'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.seq_id_1'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_distance_restraint.seq_id_1'
+    _item_linked.child_name       '_ma_distance_restraints.seq_id_1'
     _item_linked.parent_name      '_entity_poly_seq.num'
      save_
 
-save__ma_distance_restraint.seq_id_2
+save__ma_distance_restraints.seq_id_2
     _item_description.description
 ;     The sequence index for the second partner in the distance restraint. 
       This data item is a pointer to _entity_poly_seq.num in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_distance_restraint.seq_id_2'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.seq_id_2'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_distance_restraint.seq_id_2'
+    _item_linked.child_name       '_ma_distance_restraints.seq_id_2'
     _item_linked.parent_name      '_entity_poly_seq.num'
      save_
 
-save__ma_distance_restraint.atom_id_1
+save__ma_distance_restraints.atom_id_1
     _item_description.description
 ;     A atom identifier for the first partner in the distance restraint. 
       This data item is a pointer to _chem_comp_atom.atom_id in the
       CHEM_COMP_ATOM category.
 ;
-    _item.name                    '_ma_distance_restraint.atom_id_1'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.atom_id_1'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_distance_restraint.atom_id_1'
+    _item_linked.child_name       '_ma_distance_restraints.atom_id_1'
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_distance_restraint.atom_id_2
+save__ma_distance_restraints.atom_id_2
     _item_description.description
 ;     A atom identifier for the second partner in the distance restraint. 
       This data item is a pointer to _chem_comp_atom.atom_id in the
       CHEM_COMP_ATOM category.
 ;
-    _item.name                    '_ma_distance_restraint.atom_id_2'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.atom_id_2'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_distance_restraint.atom_id_2'
+    _item_linked.child_name       '_ma_distance_restraints.atom_id_2'
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_distance_restraint.distance_threshold
+save__ma_distance_restraints.distance_threshold
     _item_description.description
 ;     The distance threshold applied.
 ;
-    _item.name                    '_ma_distance_restraint.distance_threshold'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.distance_threshold'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          yes
     _item_type.code               float
     _item_units.code              angstroms
      save_
 
-save__ma_distance_restraint.uncertainty
+save__ma_distance_restraints.uncertainty
     _item_description.description
 ;     The uncertainty to the distance threshold.
 ;
-    _item.name                    '_ma_distance_restraint.uncertainty'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.uncertainty'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              angstroms
      save_
 
-save__ma_distance_restraint.lower_limit
+save__ma_distance_restraints.lower_limit
     _item_description.description
 ;     The lower limit of the distance threshold.
 ;
-    _item.name                    '_ma_distance_restraint.lower_limit'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.lower_limit'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              angstroms
      save_
 
-save__ma_distance_restraint.upper_limit
+save__ma_distance_restraints.upper_limit
     _item_description.description
 ;     The upper limit of the distance threshold.
 ;   
-    _item.name                    '_ma_distance_restraint.upper_limit'
-    _item.category_id             ma_distance_restraint
+    _item.name                    '_ma_distance_restraints.upper_limit'
+    _item.category_id             ma_distance_restraints
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              angstroms
      save_
 
-##############################
-## MA_DIHEDRAL_RESTRAINT    ##
-##############################
+############################
+## MA_DIHEDRAL_RESTRAINTS ##
+############################
 
-save_ma_dihedral_restraint
+save_ma_dihedral_restraints
     _category.description
-;              Data items in the MA_DIHEDRAL_RESTRAINT category captures the
+;              Data items in the MA_DIHEDRAL_RESTRAINTS category captures the
                details of dihedral restraints between atoms.   
 ;
-    _category.id                  ma_dihedral_restraint
+    _category.id                  ma_dihedral_restraints
     _category.mandatory_code      no
      loop_
-    _category_key.name          '_ma_dihedral_restraint.id'
+    _category_key.name          '_ma_dihedral_restraints.id'
 
     loop_
     _category_group.id           'inclusive_group'
@@ -318,413 +405,398 @@ save_ma_dihedral_restraint
 ;
 ;
         loop_
-        _ma_dihedral_restraint.ordinal_id
-        _ma_dihedral_restraint.restraint_id
-        _ma_dihedral_restraint.restraint_group_id
-        _ma_distance_restraint.data_id
-        _ma_dihedral_restraint.entity_id_1
-        _ma_dihedral_restraint.asym_id_1
-        _ma_dihedral_restraint.seq_id_1
-        _ma_dihedral_restraint.comp_id_1
-        _ma_dihedral_restraint.atom_id_1
-        _ma_dihedral_restraint.entity_id_2
-        _ma_dihedral_restraint.asym_id_2
-        _ma_dihedral_restraint.seq_id_2
-        _ma_dihedral_restraint.comp_id_2
-        _ma_dihedral_restraint.atom_id_2
-        _ma_dihedral_restraint.entity_id_3
-        _ma_dihedral_restraint.asym_id_3
-        _ma_dihedral_restraint.seq_id_3
-        _ma_dihedral_restraint.comp_id_3
-        _ma_dihedral_restraint.atom_id_3
-        _ma_dihedral_restraint.entity_id_4
-        _ma_dihedral_restraint.asym_id_4
-        _ma_dihedral_restraint.seq_id_4
-        _ma_dihedral_restraint.comp_id_4
-        _ma_dihedral_restraint.atom_id_4
-        _ma_dihedral_restraint.dihedral_threshold
-        _ma_dihedral_restraint.uncertainty
-        _ma_dihedral_restraint.lower_limit
-        _ma_dihedral_restraint.upper_limit
-        _ma_dihedral_restraint.name
-        1  1  1  1 A 21 ALA N  1 A 21 ALA CA  1 A 21 ALA  C  1 A 22 THR N -50.0 5.0 -60.0 -40.0  PSI
+        _ma_dihedral_restraints.ordinal_id
+        _ma_dihedral_restraints.restraint_id
+        _ma_dihedral_restraints.group_id
+        _ma_dihedral_restraints.entity_id_1
+        _ma_dihedral_restraints.asym_id_1
+        _ma_dihedral_restraints.seq_id_1
+        _ma_dihedral_restraints.comp_id_1
+        _ma_dihedral_restraints.atom_id_1
+        _ma_dihedral_restraints.entity_id_2
+        _ma_dihedral_restraints.asym_id_2
+        _ma_dihedral_restraints.seq_id_2
+        _ma_dihedral_restraints.comp_id_2
+        _ma_dihedral_restraints.atom_id_2
+        _ma_dihedral_restraints.entity_id_3
+        _ma_dihedral_restraints.asym_id_3
+        _ma_dihedral_restraints.seq_id_3
+        _ma_dihedral_restraints.comp_id_3
+        _ma_dihedral_restraints.atom_id_3
+        _ma_dihedral_restraints.entity_id_4
+        _ma_dihedral_restraints.asym_id_4
+        _ma_dihedral_restraints.seq_id_4
+        _ma_dihedral_restraints.comp_id_4
+        _ma_dihedral_restraints.atom_id_4
+        _ma_dihedral_restraints.dihedral_threshold
+        _ma_dihedral_restraints.uncertainty
+        _ma_dihedral_restraints.lower_limit
+        _ma_dihedral_restraints.upper_limit
+        _ma_dihedral_restraints.name
+        1  2  1  1 A 21 ALA N  1 A 21 ALA CA  1 A 21 ALA  C  1 A 22 THR N -50.0 5.0 -60.0 -40.0  PSI
         2  2  1  1 A 21 ALA C  1 A 22 THR  N  1 A 22 THR CA  1 A 22 THR C -50.0 8.0 -60.0 -40.0  PHI
-        3  3  1  1 A 23 LYS C  1 A 24 ASP  N  1 A 24 ASP CA  1 A 24 ASP C -50.0 5.0 -60.0 -40.0  PHI
-        4  4  2  1 A 24 ASP N  1 A 24 ASP CA  1 A 24 ASP  C  1 A 25 HIS N 105.0 5.0  90.0 120.0  PSI
-        5  5  2  1 A 15 GLY C  1 A 16 ASN  N  1 A 16 ASN CA  1 A 16 ASN C -50.0 5.0 -60.0 -40.0  PHI
-        6  6  3  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N 105.0 5.0  90.0 120.0  PSI
-        7  6  3  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N 155.0 5.0 140.0 170.0  PSI
+        3  2  1  1 A 23 LYS C  1 A 24 ASP  N  1 A 24 ASP CA  1 A 24 ASP C -50.0 5.0 -60.0 -40.0  PHI
+        4  2  1  1 A 24 ASP N  1 A 24 ASP CA  1 A 24 ASP  C  1 A 25 HIS N 105.0 5.0  90.0 120.0  PSI
+        5  2  1  1 A 15 GLY C  1 A 16 ASN  N  1 A 16 ASN CA  1 A 16 ASN C -50.0 5.0 -60.0 -40.0  PHI
+        6  2  1  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N 105.0 5.0  90.0 120.0  PSI
+        7  2  1  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N 155.0 5.0 140.0 170.0  PSI
         # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_dihedral_restraint
+   _pdbx_category_context.category_id  ma_dihedral_restraints
      save_
 
-save__ma_dihedral_restraint.ordinal_id
+save__ma_dihedral_restraints.ordinal_id
     _item_description.description
 ;     A unique identifier for the dihedral restraint record.
 ;
-    _item.name                  '_ma_dihedral_restraint.ordinal_id'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                  '_ma_dihedral_restraints.ordinal_id'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_dihedral_restraint.restraint_id
+save__ma_dihedral_restraints.restraint_id
     _item_description.description
-;     An identifier pointing to the _ma_restraint.id in the MA_RESTRAINT category.
+;     An identifier pointing to the _ma_restraints.restraint_id in the MA_RESTRAINTS category.
 ;
-    _item.name                  '_ma_dihedral_restraint.restraint_id'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                  '_ma_dihedral_restraints.restraint_id'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_dihedral_restraint.restraint_id'
-    _item_linked.parent_name    '_ma_restraint.id'
+    _item_linked.child_name     '_ma_dihedral_restraints.restraint_id'
+    _item_linked.parent_name    '_ma_restraints.restraint_id'
      save_
 
-save__ma_dihedral_restraint.group_id
+save__ma_dihedral_restraints.group_id
     _item_description.description
-;     An identifier to collect a group of dihedral restraints.
+;     A identifier to collect a group of dihedral restraints.
 ;
-    _item.name                    '_ma_dihedral_restraint.group_id'
-    _item.category_id             ma_dihedral_restraint
-    _item.mandatory_code          yes
+    _item.name                  '_ma_dihedral_restraints.group_id'
+    _item.category_id             ma_dihedral_restraints
+    _item.mandatory_code          no
     _item_type.code               int
      save_
 
-
-save__ma_dihedral_restraint.data_id
-    _item_description.description
-;     An identifier pointing to the _ma_step_data.id in the MA_STEP_DATA category.
-;
-    _item.name                  '_ma_dihedral_restraint.data_id'
-    _item.category_id             ma_dihedral_restraint
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name     '_ma_dihedral_restraint.data_id'
-    _item_linked.parent_name    '_ma_step_data.id'
-     save_
-
-
-save__ma_dihedral_restraint.entity_id_1
+save__ma_dihedral_restraints.entity_id_1
     _item_description.description
 ;     The entity identifier for the first partner in the dihedral restraint. 
       This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
 ;
-    _item.name                    '_ma_dihedral_restraint.entity_id_1'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.entity_id_1'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.entity_id_1'
+    _item_linked.child_name       '_ma_dihedral_restraints.entity_id_1'
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save__ma_dihedral_restraint.entity_id_2
+save__ma_dihedral_restraints.entity_id_2
     _item_description.description
 ;     The entity identifier for the second partner in the dihedral restraint. 
       This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
 ;
-    _item.name                    '_ma_dihedral_restraint.entity_id_2'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.entity_id_2'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.entity_id_2'
+    _item_linked.child_name       '_ma_dihedral_restraints.entity_id_2'
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save__ma_dihedral_restraint.entity_id_3
+save__ma_dihedral_restraints.entity_id_3
     _item_description.description
 ;     The entity identifier for the third partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.entity_id_3'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.entity_id_3'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.entity_id_3'
+    _item_linked.child_name       '_ma_dihedral_restraints.entity_id_3'
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save__ma_dihedral_restraint.entity_id_4
+save__ma_dihedral_restraints.entity_id_4
     _item_description.description
 ;     The entity identifier for the fourth partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.entity_id_4'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.entity_id_4'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.entity_id_4'
+    _item_linked.child_name       '_ma_dihedral_restraints.entity_id_4'
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-save__ma_dihedral_restraint.asym_id_1
+save__ma_dihedral_restraints.asym_id_1
     _item_description.description
 ;              An asym/strand identifier for the first partner in the dihedral restraint. 
                This data item is a pointer to _struct_asym.id in the
                STRUCT_ASYM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.asym_id_1'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.asym_id_1'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.asym_id_1'
+    _item_linked.child_name       '_ma_dihedral_restraints.asym_id_1'
     _item_linked.parent_name      '_struct_asym.id'
      save_
 
-save__ma_dihedral_restraint.asym_id_2
+save__ma_dihedral_restraints.asym_id_2
     _item_description.description
 ;          An asym/strand identifier for the second partner in the dihedral restraint. 
            This data item is a pointer to _struct_asym.id in the
            STRUCT_ASYM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.asym_id_2'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.asym_id_2'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.asym_id_2'
+    _item_linked.child_name       '_ma_dihedral_restraints.asym_id_2'
     _item_linked.parent_name      '_struct_asym.id'
      save_
 
-save__ma_dihedral_restraint.asym_id_3
+save__ma_dihedral_restraints.asym_id_3
     _item_description.description
 ;          An asym/strand identifier for the third partner in the dihedral restraint.
            This data item is a pointer to _struct_asym.id in the
            STRUCT_ASYM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.asym_id_3'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.asym_id_3'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.asym_id_3'
+    _item_linked.child_name       '_ma_dihedral_restraints.asym_id_3'
     _item_linked.parent_name      '_struct_asym.id'
      save_
 
-save__ma_dihedral_restraint.asym_id_4
+save__ma_dihedral_restraints.asym_id_4
     _item_description.description
 ;          An asym/strand identifier for the fourth partner in the dihedral restraint.
            This data item is a pointer to _struct_asym.id in the
            STRUCT_ASYM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.asym_id_4'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.asym_id_4'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.asym_id_4'
+    _item_linked.child_name       '_ma_dihedral_restraints.asym_id_4'
     _item_linked.parent_name      '_struct_asym.id'
      save_
 
-save__ma_dihedral_restraint.comp_id_1
+save__ma_dihedral_restraints.comp_id_1
     _item_description.description
 ;     The component identifier for the first partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.mon_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.comp_id_1'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.comp_id_1'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               ucode
-    _item_linked.child_name       '_ma_dihedral_restraint.comp_id_1'
+    _item_linked.child_name       '_ma_dihedral_restraints.comp_id_1'
     _item_linked.parent_name      '_entity_poly_seq.mon_id'
      save_
 
-save__ma_dihedral_restraint.comp_id_2
+save__ma_dihedral_restraints.comp_id_2
     _item_description.description
 ;     The component identifier for the second partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.mon_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.comp_id_2'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.comp_id_2'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               ucode
-    _item_linked.child_name       '_ma_dihedral_restraint.comp_id_2'
+    _item_linked.child_name       '_ma_dihedral_restraints.comp_id_2'
     _item_linked.parent_name      '_entity_poly_seq.mon_id'
      save_
 
-save__ma_dihedral_restraint.comp_id_3
+save__ma_dihedral_restraints.comp_id_3
     _item_description.description
 ;     The component identifier for the third partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.mon_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.comp_id_3'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.comp_id_3'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               ucode
-    _item_linked.child_name       '_ma_dihedral_restraint.comp_id_3'
+    _item_linked.child_name       '_ma_dihedral_restraints.comp_id_3'
     _item_linked.parent_name      '_entity_poly_seq.mon_id'
      save_
 
-save__ma_dihedral_restraint.comp_id_4
+save__ma_dihedral_restraints.comp_id_4
     _item_description.description
 ;     The component identifier for the fourth partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.mon_id in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.comp_id_4'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.comp_id_4'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               ucode
-    _item_linked.child_name       '_ma_dihedral_restraint.comp_id_4'
+    _item_linked.child_name       '_ma_dihedral_restraints.comp_id_4'
     _item_linked.parent_name      '_entity_poly_seq.mon_id'
      save_
 
-save__ma_dihedral_restraint.seq_id_1
+save__ma_dihedral_restraints.seq_id_1
     _item_description.description
 ;     The sequence index for the first partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.num in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.seq_id_1'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.seq_id_1'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_dihedral_restraint.seq_id_1'
+    _item_linked.child_name       '_ma_dihedral_restraints.seq_id_1'
     _item_linked.parent_name      '_entity_poly_seq.num'
      save_
 
-save__ma_dihedral_restraint.seq_id_2
+save__ma_dihedral_restraints.seq_id_2
     _item_description.description
 ;     The sequence index for the second partner in the dihedral restraint. 
       This data item is a pointer to _entity_poly_seq.num in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.seq_id_2'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.seq_id_2'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_dihedral_restraint.seq_id_2'
+    _item_linked.child_name       '_ma_dihedral_restraints.seq_id_2'
     _item_linked.parent_name      '_entity_poly_seq.num'
      save_
 
-save__ma_dihedral_restraint.seq_id_3
+save__ma_dihedral_restraints.seq_id_3
     _item_description.description
 ;     The sequence index for the third partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.num in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.seq_id_3'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.seq_id_3'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_dihedral_restraint.seq_id_3'
+    _item_linked.child_name       '_ma_dihedral_restraints.seq_id_3'
     _item_linked.parent_name      '_entity_poly_seq.num'
      save_
 
-save__ma_dihedral_restraint.seq_id_4
+save__ma_dihedral_restraints.seq_id_4
     _item_description.description
 ;     The sequence index for the fourth partner in the dihedral restraint.
       This data item is a pointer to _entity_poly_seq.num in the ENTITY_POLY_SEQ category.
 ;
-    _item.name                    '_ma_dihedral_restraint.seq_id_4'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.seq_id_4'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_dihedral_restraint.seq_id_4'
+    _item_linked.child_name       '_ma_dihedral_restraints.seq_id_4'
     _item_linked.parent_name      '_entity_poly_seq.num'
      save_
 
-save__ma_dihedral_restraint.atom_id_1
+save__ma_dihedral_restraints.atom_id_1
     _item_description.description
 ;     Atom identifier for the first partner in the dihedral restraint. 
       This data item is a pointer to _chem_comp_atom.atom_id in the
       CHEM_COMP_ATOM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.atom_id_1'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.atom_id_1'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.atom_id_1'
+    _item_linked.child_name       '_ma_dihedral_restraints.atom_id_1'
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_dihedral_restraint.atom_id_2
+save__ma_dihedral_restraints.atom_id_2
     _item_description.description
 ;     Atom identifier for the second partner in the dihedral restraint. 
       This data item is a pointer to _chem_comp_atom.atom_id in the
       CHEM_COMP_ATOM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.atom_id_2'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.atom_id_2'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.atom_id_2'
+    _item_linked.child_name       '_ma_dihedral_restraints.atom_id_2'
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_dihedral_restraint.atom_id_3
+save__ma_dihedral_restraints.atom_id_3
     _item_description.description
 ;     Atom identifier for the third partner in the dihedral restraint.
       This data item is a pointer to _chem_comp_atom.atom_id in the
       CHEM_COMP_ATOM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.atom_id_3'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.atom_id_3'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.atom_id_3'
+    _item_linked.child_name       '_ma_dihedral_restraints.atom_id_3'
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_dihedral_restraint.atom_id_4
+save__ma_dihedral_restraints.atom_id_4
     _item_description.description
 ;     Atom identifier for the fourth partner in the dihedral restraint.
       This data item is a pointer to _chem_comp_atom.atom_id in the
       CHEM_COMP_ATOM category.
 ;
-    _item.name                    '_ma_dihedral_restraint.atom_id_4'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.atom_id_4'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               code
-    _item_linked.child_name       '_ma_dihedral_restraint.atom_id_4'
+    _item_linked.child_name       '_ma_dihedral_restraints.atom_id_4'
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_dihedral_restraint.dihedral_threshold
+save__ma_dihedral_restraints.dihedral_threshold
     _item_description.description
 ;     The dihedral threshold applied.
 ;
-    _item.name                    '_ma_dihedral_restraint.dihedral_threshold'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.dihedral_threshold'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               float
     _item_units.code              degrees
      save_
 
-save__ma_dihedral_restraint.uncertainty
+save__ma_dihedral_restraints.uncertainty
     _item_description.description
 ;     The uncertainty to the dihedral threshold.
 ;
-    _item.name                    '_ma_dihedral_restraint.uncertainty'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.uncertainty'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              degrees
      save_
 
-save__ma_dihedral_restraint.lower_limit
+save__ma_dihedral_restraints.lower_limit
     _item_description.description
 ;     The lower limit of the dihedral threshold.
 ;
-    _item.name                    '_ma_dihedral_restraint.lower_limit'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.lower_limit'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              degrees
      save_
 
-save__ma_dihedral_restraint.upper_limit
+save__ma_dihedral_restraints.upper_limit
     _item_description.description
 ;     The upper limit of the dihedral threshold.
 ;   
-    _item.name                    '_ma_dihedral_restraint.upper_limit'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.upper_limit'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              degrees
      save_
 
-save__ma_dihedral_restraint.name
+save__ma_dihedral_restraints.name
     _item_description.description
 ;     The dihedral angle name, if applicable.
 ;   
-    _item.name                    '_ma_dihedral_restraint.name'
-    _item.category_id             ma_dihedral_restraint
+    _item.name                    '_ma_dihedral_restraints.name'
+    _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          no
     _item_type.code               code
     loop_

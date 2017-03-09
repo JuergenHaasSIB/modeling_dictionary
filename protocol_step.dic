@@ -1,59 +1,86 @@
 ##############################
 ## MA_PROTOCOL_STEP         ##
 ##############################
-;Version 1.0 July 7
-#ma_protocol_step
-;Example
+
+save_ma_protocol_step
+    _category.description
+;              Data items in the MA_PROTOCOL_STEP category captures the
+               details of the modeling protocol and individial steps 
+               within each protocol. 
+;
+    _category.id                  ma_protocol_step
+    _category.mandatory_code      yes
+     loop_
+    _category_key.name          '_ma_protocol_step.ordinal_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
   loop_
   ma_protocol_step.ordinal_id
+  ma_protocol_step.protocol_id
+  ma_protocol_step.step_id
   ma_protocol_step.asym_id
   ma_protocol_step.entity_id
-  ma_protocol_step.type
+  ma_protocol_step.method_type
+  ma_protocol_step.step_name
   ma_protocol_step.software_used
-  ma_protocol_step.step_input_id
-  ma_protocol_step.step_output_id
-   0 A 1 template_search "SWISS-MODEL SMNG" 1 1 
-   1 B 1 template_search "SWISS-MODEL SMNG" 1 1 
-   2 C 1 template_search "SWISS-MODEL SMNG" 1 1 
-   3 D 1 template_search "SWISS-MODEL SMNG" 1 1 
-   4 A 1 template_selection "SWISS-MODEL SMNG" 1 1 
-   5 B 1 template_selection "SWISS-MODEL SMNG" 1 1 
-   6 C 1 template_selection "SWISS-MODEL SMNG" 1 1 
-   7 D 1 template_selection "SWISS-MODEL SMNG" 1 1 
-   8 A 1 modeling "SWISS-MODEL SMNG" 1 1 
-   9 B 1 modeling "SWISS-MODEL SMNG" 1 1 
-  10 C 1 modeling "SWISS-MODEL SMNG" 1 1 
-  11 D 1 modeling "SWISS-MODEL SMNG" 1 1 
-  12 A 1 model_selection "SWISS-MODEL SMNG" 1 1 
-  13 B 1 model_selection "SWISS-MODEL SMNG" 1 1 
-  14 C 1 model_selection "SWISS-MODEL SMNG" 1 1 
-  15 D 1 model_selection "SWISS-MODEL SMNG" 1 1 
+   0 0 0 A 1 "template search" . "SWISS-MODEL SMNG" 
+   1 0 1 B 1 "template search" . "SWISS-MODEL SMNG" 
+   2 0 2 C 1 "template search" . "SWISS-MODEL SMNG" 
+   3 0 3 D 1 "template search" . "SWISS-MODEL SMNG" 
+   4 1 0 A 1 "template selection" . "SWISS-MODEL SMNG" 
+   5 1 1 B 1 "template selection" . "SWISS-MODEL SMNG" 
+   6 1 2 C 1 "template selection" . "SWISS-MODEL SMNG" 
+   7 1 3 D 1 "template selection" . "SWISS-MODEL SMNG" 
+   8 2 0 A 1 "modeling" . "SWISS-MODEL SMNG" 
+   9 2 1 B 1 "modeling" . "SWISS-MODEL SMNG" 
+  10 2 2 C 1 "modeling" . "SWISS-MODEL SMNG" 
+  11 2 3 D 1 "modeling" . "SWISS-MODEL SMNG" 
+  12 3 0 A 1 "model selection" . "SWISS-MODEL SMNG" 
+  13 3 1 B 1 "model selection" . "SWISS-MODEL SMNG" 
+  14 3 2 C 1 "model selection" . "SWISS-MODEL SMNG" 
+  15 3 3 D 1 "model selection" . "SWISS-MODEL SMNG" 
+  # ... abbreviated ... #
 ;
-
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
    _pdbx_category_context.category_id  ma_protocol_step
-     save_
-   
-save_ma_protocol_step.asym_id 
-    _item_description.description
-;   An asym/strand identifier for the entity molecule.
-    This data item is a pointer to _struct_asym.id in the
-    STRUCT_ASYM category.
-;
-    _item.name                  '_ma_protocol_step.asym_id'
-    _item.category_id             ma_protocol_step
-    _item.mandatory_code          yes
-    _item_type.code               code
-    _item_linked.child_name       '_ma_protocol_step.asym_id'
-    _item_linked.parent_name      '_struct_asym.id'
      save_
    
 save_ma_protocol_step.ordinal_id 
     _item_description.description
 ;   This is a counter keeping track of the protocol steps.
-
 ;
     _item.name                  '_ma_protocol_step.ordinal_id'
+    _item.category_id             ma_protocol_step
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save_ma_protocol_step.protocol_id
+    _item_description.description
+;   Unique identifier for the protocol.
+;
+    _item.name                  '_ma_protocol_step.protocol_id'
+    _item.category_id             ma_protocol_step
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save_ma_protocol_step.step_id
+    _item_description.description
+;   Unique identifier for the step. 
+;
+    _item.name                  '_ma_protocol_step.step_id'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
     _item_type.code               int
@@ -72,83 +99,55 @@ save_ma_protocol_step.entity_id
     _item_linked.parent_name      '_entity_poly_seq.entity_id'
      save_
 
-;;save_ma_protocol_step.name 
-;;    _item_description.description
-;;;   The method type that was applied in this protocol step.
-;;;   This refers to _ma_method.type in the _ma_method category. 
-;;;
-;;    _item.name                  '_ma_protocol_step.name'
-;;    _item.category_id             ma_protocol_step
-;;    _item.mandatory_code          yes
-;;    _item_type.code               code
-;;    _item_linked.child_name       '_ma_protocol_step.name'
-;;    _item_linked.parent_name      '_ma_method.type'
-;;     save_
+save_ma_protocol_step.asym_id
+    _item_description.description
+;   An asym/strand identifier for the entity molecule.
+    This data item is a pointer to _struct_asym.id in the
+    STRUCT_ASYM category.
+;
+    _item.name                  '_ma_protocol_step.asym_id'
+    _item.category_id             ma_protocol_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ma_protocol_step.asym_id'
+    _item_linked.parent_name      '_struct_asym.id'
+     save_
 
-save_ma_protocol_step.type
+save_ma_protocol_step.method_type
     _item_description.description
 ;   The method type that was applied in this protocol step.
-;   This refers to _ma_method.type in the _ma_method category. 
 ;
-    _item.name                  '_ma_protocol_step.type'
+    _item.name                  '_ma_protocol_step.method_type'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
-    _item_type.code               code
-    _item_linked.child_name       '_ma_protocol_step.type'
-    _item_linked.parent_name      '_ma_method.type'
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+    'template search'
+    'template selection'
+    'modeling'
+    'model selection'
+    'model refinement'
+    'other'
+     save_
+
+save_ma_protocol_step.name
+    _item_description.description
+;   A name for the protocol step.
+;
+    _item.name                  '_ma_protocol_step.name'
+    _item.category_id             ma_protocol_step
+    _item.mandatory_code          no
+    _item_type.code               line
      save_
 
 save_ma_protocol_step.software_used 
     _item_description.description
 ;   The software used when applying the protocol step.
-;   This refers to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
 ;
     _item.name                  '_ma_protocol_step.software_used'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
-    _item_type.code               code
-;    _item_linked.child_name       '_ma_protocol_step.software_used'
-;    _item_linked.parent_name      '_ma_method.type'
+    _item_type.code               line
      save_
-  
-save_ma_protocol_step.software_used 
-    _item_description.description
-;   The software used when applying the protocol step.
-;   This refers to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
-;
-    _item.name                  '_ma_protocol_step.software_used'
-    _item.category_id             ma_protocol_step
-    _item.mandatory_code          yes
-    _item_type.code               code
-;    _item_linked.child_name       '_ma_protocol_step.software_used'
-;    _item_linked.parent_name      '_ma_method.type'
-     save_
-
-save_ma_protocol_step.step_input_id 
-    _item_description.description
-;   This uniquely ties the input of a protocol step.
-;   This refers to _ma_protocol_step.ordinal_id
-;
-    _item.name                  '_ma_protocol_step.step_input_id'
-    _item.category_id             ma_protocol_step
-    _item.mandatory_code          yes
-    _item_type.code               code
-;    _item_linked.child_name       '_ma_protocol_step.step_output_id'
-;    _item_linked.parent_name      '_ma_method.ordinal_id'
-     save_
-   
-save_ma_protocol_step.step_output_id 
-    _item_description.description
-;   This uniquely identifies the output of a protocol step.
-;   This refers to _ma_protocol_step.ordinal_id
-;
-    _item.name                  '_ma_protocol_step.step_output_id'
-    _item.category_id             ma_protocol_step
-    _item.mandatory_code          yes
-    _item_type.code               code
-;    _item_linked.child_name       '_ma_protocol_step.step_input_id'
-;    _item_linked.parent_name      '_ma_method.ordinal_id'
-     save_
-
-  
-  
+ 

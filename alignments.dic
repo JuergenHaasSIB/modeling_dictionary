@@ -508,7 +508,8 @@ save__ma_target_oligomer_modeling.seq_id_end
 save_ma_alignment_details
     _category.description
 ;               Data items in the MA_ALIGNMENT_DETAILS category record
-                details of the target-template alignments used in the modeling.
+                details of the target-template alignments as well as other 
+                multiple-sequence alignments used in the modeling.
                 The actual alignments are captured in the MA_ALIGNMENT category. 
 ;
     _category.id                  ma_alignment_details
@@ -532,15 +533,16 @@ save_ma_alignment_details
     _ma_alignment_details.target_id
     _ma_alignment_details.template_id
     _ma_alignment_details.data_id
-    _ma_alignment_details.alignment_method
+    _ma_alignment_details.software_used
     _ma_alignment_details.alignment_length
+    _ma_alignment_details.alignment_type
     _ma_alignment_details.e_value
     _ma_alignment_details.sequence_identity
     _ma_alignment_details.sequence_identity_denominator
-    1 1 1 1  x 'BLAST' 128 0.1 24.0 1
-    2 1 1 2   'BLAST' 163 0.5 15.0 1 
-    3 1 1 3   'BLAST' 139 0.1 21.0 1
-    4 2 2 4   'BLAST' 385 0.5 18.0 1
+    1 1 1 1  1  'PSI-BLAST'  128 "coevolution MSA" 0.1 24.0 1
+    2 1 1 2  1  'PSI-BLAST'  163 "coevolution MSA" 0.5 15.0 1 
+    3 1 1 3  1  'PSI-BLAST'  139 "coevolution MSA" 0.1 21.0 1
+    4 2 2 4  2  'PSI-BLAST'  385 "target-template pairwise alignment" 0.5 18.0 1
     # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -598,21 +600,21 @@ save__ma_alignment_details.template_id
 save__ma_alignment_details.data_id
     _item_description.description
 ;     The data_id identifier. This data item is a pointer to
-      _ma_step_data.id in the MA_STEP_DATA category. 
+      _ma_data.id in the MA_DATA category. 
 ;
     _item.name                  '_ma_alignment_details.data_id'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          yes
     _item_type.code               int
     _item_linked.child_name     '_ma_alignment_details.data_id'
-    _item_linked.parent_name    '_ma_step_data.id'
+    _item_linked.parent_name    '_ma_data.id'
      save_
 
-save__ma_alignment_details.alignment_method
+save__ma_alignment_details.software_used
     _item_description.description
-;     The alignment method used to obtained the multiple sequence alignment.
+;     The software used to obtaine the multiple sequence alignment.
 ;
-    _item.name                  '_ma_alignment_details.alignment_method'
+    _item.name                  '_ma_alignment_details.software_used'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          no
     _item_type.code               line
@@ -620,6 +622,7 @@ save__ma_alignment_details.alignment_method
     _item_examples.case
       'PSI-BLAST'
       'CLUSTALW'
+      'HHBlits'
      save_
 
 save__ma_alignment_details.alignment_length
@@ -630,6 +633,21 @@ save__ma_alignment_details.alignment_length
     _item.category_id             ma_alignment_details
     _item.mandatory_code          no
     _item_type.code               int
+     save_
+
+save__ma_alignment_details.alignment_type
+    _item_description.description
+;     The alignment type. 
+;
+    _item.name                  '_ma_alignment_details.alignment_type'
+    _item.category_id             ma_alignment_details
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+      'target-template pairwise alignment'
+      'coevolution MSA'
+      'other'
      save_
 
 save__ma_alignment_details.e_value
@@ -703,8 +721,8 @@ save_ma_alignment
   loop_ 
   _ma_alignment.ordinal_id
   _ma_alignment.alignment_id
-    _ma_alignment.target_template_flag
-    _ma_alignment.sequence
+  _ma_alignment.target_template_flag
+  _ma_alignment.sequence
 1  1  1  
 ;
 GAMGFGDLKSPAGLQVLNDYLA----DKSYIEGYVPSQADVAVFEAVSSP------PPADLCHALRWYNHIKSYEKEKAS

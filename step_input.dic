@@ -7,7 +7,7 @@
 save_ma_step_input
     _category.description
 ;              Data items in the MA_step_input category captures the
-               input and accompanying parameters for a given protocol_step.   
+               input data for a given protocol_step.   
 ;
     _category.id                  ma_step_input
     _category.mandatory_code      yes
@@ -26,12 +26,14 @@ save_ma_step_input
 ;
 ;
         loop_
-        _ma_step_input.ordinal_id
         _ma_step_input.id
-        _ma_step_input.data_group_id
+        _ma_step_input.protocol_id
+        _ma_step_input.step_id
         _ma_step_input.data_id
-        0 0 0 0 
-        1 1 1 1
+        _ma_step_input.content_sub_type
+        0 0 0 0  "distance restraint"
+        1 0 1 0  "dihedral restraint"
+        2 0 2 1  "target-template pairwise alignment"
        # ...  abbreviated ...  
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -39,19 +41,9 @@ save_ma_step_input
    _pdbx_category_context.category_id  ma_step_input
      save_
 
-save__ma_step_input.ordinal_id
-    _item_description.description
-;    A unique identifier for the entry.
-;
-    _item.name                  '_ma_step_input.ordinal_id'
-    _item.category_id             ma_step_input
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
 save__ma_step_input.id
     _item_description.description
-;    An identifier for the dataset.
+;    A unique identifier for the entry.
 ;
     _item.name                  '_ma_step_input.id'
     _item.category_id             ma_step_input
@@ -59,25 +51,62 @@ save__ma_step_input.id
     _item_type.code               int
      save_ 
 
-save__ma_step_input.group_id
+save__ma_step_input.protocol_id
     _item_description.description
-;    An identifier for a collection of input datasets to form a group. 
-     Allows for organization of datasets into subsets for easier reference.  
+;    An identifier to the protocol. 
+     This data item is a pointer to _ma_protocol_step.protocol_id in the 
+     MA_PROTOCOL_STEP category. 
 ;
-    _item.name                  '_ma_step_input.group_id'
+    _item.name                  '_ma_step_input.protocol_id'
     _item.category_id             ma_step_input
     _item.mandatory_code          yes
     _item_type.code               int
+    _item_linked.child_name     '_ma_step_input.protocol_id'
+    _item_linked.parent_name    '_ma_protocol_step.protocol_id'
      save_
 
-save__ma_step_input.data_input_id
+save__ma_step_input.step_id
     _item_description.description
-;    unique identifier linking the input data to the step_input of the corresponding modeling step
-     
+;    An identifier to the protocol step. 
+     This data item is a pointer to _ma_protocol_step.step_id in the 
+     MA_PROTOCOL_STEP category. 
 ;
-    _item.name                  '_ma_step_input.data_input_id'
+    _item.name                  '_ma_step_input.step_id'
     _item.category_id             ma_step_input
     _item.mandatory_code          yes
     _item_type.code               int
+    _item_linked.child_name     '_ma_step_input.step_id'
+    _item_linked.parent_name    '_ma_protocol_step.step_id'
+     save_
+
+save__ma_step_input.data_id
+    _item_description.description
+;    An identifier to the input dataset.
+     This data item is a pointer to _ma_data.id in the    
+     MA_DATA category.
+;
+    _item.name                  '_ma_step_input.data_id'
+    _item.category_id             ma_step_input
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_step_input.data_id'
+    _item_linked.parent_name    '_ma_data.id'
+     save
+
+save__ma_step_input.content_sub_type
+    _item_description.description
+;    The sub-type of input content.
+;
+    _item.name                  '_ma_step_input.content_sub_type'
+    _item.category_id             ma_step_input
+    _item.mandatory_code          yes
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+    'distance restraint'
+    'dihedral restraint'
+    'target-template pairwise alignment'
+    'coevolution MSA'
+    'other'
      save_
 
