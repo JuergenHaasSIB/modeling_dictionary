@@ -32,7 +32,9 @@ save_ma_protocol_step
   ma_protocol_step.entity_id
   ma_protocol_step.method_type
   ma_protocol_step.step_name
-  ma_protocol_step.software_used
+  ma_protocol_step.software_used  score_type #avoid terms that have loaded meanings -> selection_criteria_type semi-colon separated not optimal, data ref must include criteria -> criteria table is a filter to lead derivation of the data object, can have multiple criteria by simply pointing to data object
+  score_details
+
    0 0 0 A 1 "template search" . "SWISS-MODEL SMNG" 
    1 0 1 B 1 "template search" . "SWISS-MODEL SMNG" 
    2 0 2 C 1 "template search" . "SWISS-MODEL SMNG" 
