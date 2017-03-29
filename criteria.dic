@@ -12,7 +12,7 @@ save_ma_criteria
     _category.id                  ma_criteria
     _category.mandatory_code      yes
      loop_
-    _category_key.name          '_ma_criteria.id'
+    _category_key.name          '_ma_criteria.ordinal_id'
 
     loop_
     _category_group.id           'inclusive_group'
@@ -32,9 +32,9 @@ save_ma_criteria
         ma_criteria.name
         ma_criteria.value
         #target-template alignment
-        0 1 hhblits_evalue "ranking based on hhblits evalue"  1e-100
-        1 1 hhblits_coverage "template coverage based on hhblits"  0.82
-        2 1 xray_resolution "resolution of experimentally determined structure" 2.30
+        0 1 evalue "ranking based on hhblits evalue"  1e-100
+        1 1 coverage "template coverage based on hhblits"  0.82
+        2 1 resolution "resolution of experimentally determined structure" 2.30
         3 1 rfree "free R-factor threshold" 0.21
          # ...  abbreviated ...
 ;
@@ -49,7 +49,7 @@ save_ma_criteria.ordinal_id
 ;
     _item.name                  'ma_criteria.ordinal_id'
     _item.category_id             ma-criteria
-    _item.mandatory_code          no
+    _item.mandatory_code          yes
     _item_type.code               int
      save_
      
@@ -73,6 +73,13 @@ save_ma_criteria.type
     _item.category_id             ma_criteria
     _item.mandatory_code          yes
     _item_type.code               code
+    loop_
+     _item_enumeration.value
+      'evalue'
+      'coverage'
+      'resolution'
+      'rfree'
+      'other'
      save_ 
 
 save_ma_criteria.name
@@ -82,7 +89,7 @@ save_ma_criteria.name
     _item.name                  'ma_criteria.name'
     _item.category_id             ma-criteria
     _item.mandatory_code          yes
-    _item_type.code               code
+    _item_type.code               line
      save_ 
      
 
@@ -93,9 +100,6 @@ save_ma_criteria.value
     _item.name                  'ma_criteria.value'
     _item.category_id             ma-criteria
     _item.mandatory_code          yes
-    _item_type.code               code
+    _item_type.code               float
      save_ 
-     
-     
-     
-     
+
