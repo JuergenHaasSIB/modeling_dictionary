@@ -2,8 +2,160 @@
 ## MODELING EXTENSION ##
 ########################
 
-# Version 1.0.8 Oct 2017
+# Version 1.0.9 3rd July 2018
 # JH/BV
+
+##BV: Will these definitions suffice for fragment assembly methods such as Rosetta?
+
+################
+## MA_MODEL_LIST
+################
+
+save_ma_model_list
+    _category.description
+;              Data items in the MA_MODEL_LIST category record the
+               details of the models being deposited.
+;
+    _category.id                  ma_model_list
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ma_model_list.ordinal_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_model_list.ordinal_id
+    _ma_model_list.model_id
+    _ma_model_list.model_group_id
+    _ma_model_list.model_name
+    _ma_model_list.model_group_name
+    _ma_model_list.assembly_id
+    _ma_model_list.protocol_id
+
+    1    1      1    'Best scoring model'        'cluster1'     1  1 
+    2    2      1    '2nd Best scoring model'    'cluster1'     1  1 
+    3    3      1    '3rd Best scoring model'    'cluster1'     1  1 
+    4    4      1    '4th Best scoring model'    'cluster1'     1  1 
+    5    5      1    '5th Best scoring model'    'cluster1'     1  1 
+    6    6      2    'Best scoring model'        'cluster2'     1  1 
+    7    7      2    '2nd Best scoring model'    'cluster2'     1  1 
+    8    8      2    '3rd Best scoring model'    'cluster2'     1  1 
+    9    9      2    '4th Best scoring model'    'cluster2'     1  1 
+   10   10      2    '5th Best scoring model'    'cluster2'     1  1 
+   # ...  abbreviated ... 
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_model_list
+     save_
+
+save__ma_model_list.ordinal_id
+    _item_description.description
+;     A unique identifier for the model / model group combination.
+;
+    _item.name                  '_ma_model_list.ordinal_id'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_model_list.model_id
+    _item_description.description
+;     A unique identifier for the structural model being deposited.
+;
+    _item.name                  '_ma_model_list.model_id'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.parent_name    '_ma_model_list.model_id'
+    _item_linked.child_name     '_atom_site.pdbx_PDB_model_num'
+     save_
+
+save__ma_model_list.model_group_id
+    _item_description.description
+;     An identifier to group structural models into collections or sets.
+      A cluster of models and its representative can either be grouped together 
+      or can be separate groups in the ma_model_list table. The choice between 
+      the two options should be decided based on how the modeling was carried out 
+      and how the representative was chosen. If the representative is a member of 
+      the ensemble (i.e., best scoring model), then it is recommended that the 
+      representative and the ensemble belong to the same model group. If the 
+      representative is calculated from the ensemble (i.e., centroid), then it is 
+      recommended that the representative be separated into a different group. 
+      If the models do not need to be grouped into collections, then the
+      _ma_model_list.model_group_id is the same as _ma_model_list.model_id.
+;
+    _item.name                  '_ma_model_list.model_group_id'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_model_list.model_name
+    _item_description.description
+;     A decsriptive name for the model.
+;
+    _item.name                  '_ma_model_list.model_name'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_examples.case
+    'Best scoring model'
+    '2nd best scoring model'
+    'Cluster center'
+     save_
+
+save__ma_model_list.model_group_name
+    _item_description.description
+;     A decsriptive name for the model group. 
+;
+    _item.name                  '_ma_model_list.model_group_name'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_examples.case
+    'cluster1'
+    'cluster2'
+     save_
+
+save__ma_model_list.assembly_id
+    _item_description.description
+;     An identifier to the structural assembly corresponding to the model.
+      This data item is a pointer to the _ma_struct_assembly.assembly_id
+      in the MA_STRUCT_ASSEMBLY category.
+;
+    _item.name                  '_ma_model_list.assembly_id'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_model_list.assembly_id'
+    _item_linked.parent_name    '_ma_struct_assembly.assembly_id'
+     save_
+
+save__ma_model_list.protocol_id
+    _item_description.description
+;     An identifier to the modeling protocol that produced the model.
+      This data item is a pointer to the _ma_protocol_step.protocol_id
+      in the MA_PROTOCOL_STEP category.
+;
+    _item.name                  '_ma_model_list.protocol_id'
+    _item.category_id             ma_model_list
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_model_list.protocol_id'
+    _item_linked.parent_name    '_ma_protocol_step.protocol_id'
+     save_
 
 #########################
 ## MA_TEMPLATE_DETAILS ##
@@ -32,6 +184,7 @@ save_ma_template_details
     loop_
     _ma_template_details.id
     _ma_template_details.group_id
+    _ma_template_details.data_id
     _ma_template_details.target_entity_id
     _ma_template_details.pdb_code
     _ma_template_details.pdb_entity_id
@@ -42,17 +195,17 @@ save_ma_template_details
     _ma_template_details.pdb_seq_one_letter_code
     _ma_template_details.pdb_seq_one_letter_code_can
 
-    1  1  1  5KKO 1 A 3 55 1
+    1  1  3  1  5KKO 1 A 3 55 1
    SNA(SE)KYFQIDELTLNA(SE)LRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
 
    SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
 
-    2  1  1  5CX2 1 A 1 55 1
+    2  1  4  1  5CX2 1 A 1 55 1
    H(SE)(SE)D(SE)TQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAE(SE)LQVLEDIQTI 
 
    HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
 
-    3  1  1  5DH 1 A 1 53 1
+    3  1  5  1  5DHA 1 A 1 53 1
    (SE)KHHHHHHP(SE)SDYDIPTTENLYFQGA(SE)EPVEDRSIEISIRVDDFTKTGETVRY
 
    KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
@@ -82,6 +235,19 @@ save__ma_template_details.group_id
     _item.category_id             ma_template_details
     _item.mandatory_code          no
     _item_type.code               int
+     save_
+
+save__ma_template_details.data_id
+    _item_description.description
+;     The data_id identifier. This data item is a pointer to
+      _ma_data.id in the MA_DATA category.
+;
+    _item.name                  '_ma_template_details.data_id'
+    _item.category_id             ma_template_details
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_template_details.data_id'
+    _item_linked.parent_name    '_ma_data.id'
      save_
 
 save__ma_template_details.target_entity_id
@@ -207,6 +373,7 @@ save_ma_target_details
     loop_
     _ma_target_details.id
     _ma_target_details.entity_id    
+    _ma_target_details.data_id
     _ma_target_details.seq_db_name 
     _ma_target_details.seq_db_code   
     _ma_target_details.seq_db_accession  
@@ -215,10 +382,10 @@ save_ma_target_details
     _ma_target_details.seq_db_align_end
     _ma_target_details.seq_db_one_letter_code  
 
-    1 1 UNP B2RHG4_PORG3 B2RHG4  ?  26  51
+    1 1 1 UNP B2RHG4_PORG3 B2RHG4  ?  26  51
     EPVEDRSIEISIRVDDFTKTGETVRY
 
-    2 2 GB AE000513.1 11612676  ?  254393  254514
+    2 2 2 GB AE000513.1 11612676  ?  254393  254514
     CACCCCCGUGCCCAUAGCACUGUGGAACCACCCCACCCCAUGCCGAACUGGGUCGUGAAACACAGCAGCGCCAAUGAUAC
     UCGGACCGCAGGGUCCCGGAAAAGUCGGUCAGCGCGGGGGUU
 ;
@@ -241,14 +408,27 @@ save__ma_target_details.id
 save__ma_target_details.entity_id
     _item_description.description
 ;     A unique identifier for the distinct molecular entity.
-      This data item is a pointer to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category.
+      This data item is a pointer to _entity.id in the ENTITY category.
 ;
     _item.name                  '_ma_target_details.entity_id'
     _item.category_id             ma_target_details
     _item.mandatory_code          yes
     _item_type.code               code
     _item_linked.child_name       '_ma_target_details.entity_id'
-    _item_linked.parent_name      '_entity_poly_seq.entity_id'
+    _item_linked.parent_name      '_entity.id'
+     save_
+
+save__ma_target_details.data_id
+    _item_description.description
+;     The data_id identifier. This data item is a pointer to
+      _ma_data.id in the MA_DATA category.
+;
+    _item.name                  '_ma_target_details.data_id'
+    _item.category_id             ma_target_details
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_target_details.data_id'
+    _item_linked.parent_name    '_ma_data.id'
      save_
 
 save__ma_target_details.db_name
@@ -352,152 +532,234 @@ save__ma_target_details.seq_db_one_letter_code
     _item_type.code               text
      save_
 
-#################################
-## MA_TARGET_OLIGOMER_MODELING ##
-#################################
+########################
+## MA_STRUCT_ASSEMBLY ##
+########################
 
-save_ma_target_oligomer_modeling
+save_ma_struct_assembly
     _category.description
-;              Data items in the MA_TARGET_OLIGOMER_MODELING category captures information
-               on the modeling of oligomers, where the monomers can be modeled together
-               or separately. 
+;              Data items in the MA_STRUCT_ASSEMBLY category records the
+               details of the structural assemblies and used in the 
+               modeling.
 ;
-    _category.id                  ma_target_oligomer_modeling
+    _category.id                  ma_struct_assembly
     _category.mandatory_code      no
-    _category_key.name            '_ma_target_oligomer_modeling.ordinal_id'
+     loop_
+    _category_key.name          '_ma_struct_assembly.ordinal_id'
+
     loop_
-    _category_group.id            'inclusive_group'
-                                  'ma_group'
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
     loop_
     _category_examples.detail
     _category_examples.case
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ;
-    Example 1 - Dimer of Homodimers modeled together
+    Example 1 
 ;
 ;
     loop_
-    _ma_target_oligomer_modeling.ordinal_id
-    _ma_target_oligomer_modeling.oligomer_group_id
-    _ma_target_oligomer_modeling.target_entity_id
-    _ma_target_oligomer_modeling.asym_id
-    _ma_target_oligomer_modeling.seq_id_begin
-    _ma_target_oligomer_modeling.seq_id_end
-    1 1 1 A 1 128
-    2 1 1 B 1 128
-    3 1 2 C 1 207
-    4 1 2 D 1 207
-    # ... abbreviated ... #
-;
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-;
-    Example 2 - Dimer of Homodimers modeled separately
-;
-;
-    loop_
-    _ma_target_oligomer_modeling.ordinal_id
-    _ma_target_oligomer_modeling.oligomer_group_id
-    _ma_target_oligomer_modeling.target_entity_id
-    _ma_target_oligomer_modeling.asym_id
-    _ma_target_oligomer_modeling.seq_id_begin
-    _ma_target_oligomer_modeling.seq_id_end
-    1 1 1 A 1 128
-    2 2 1 B 1 128
-    3 3 2 C 1 207
-    4 4 2 D 1 207
-    # ... abbreviated ... #
+    _ma_struct_assembly.ordinal_id
+    _ma_struct_assembly.assembly_id
+    _ma_struct_assembly.parent_assembly_id
+    _ma_struct_assembly.entity_id
+    _ma_struct_assembly.asym_id
+    _ma_struct_assembly.seq_id_begin
+    _ma_struct_assembly.seq_id_end
+
+         1   0   0   1  A  1   726 
+         2   0   0   2  B  1   744 
+         3   0   0   3  C  1  1037 
+         4   0   0   4  D  1  1157 
+         5   1   0   1  A  1   726
+         6   2   0   2  B  1   744
+         7   3   0   3  C  1  1037
+         8   4   0   4  D  1  1157 
+         #...abbreviated...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_target_oligomer_modeling
+   _pdbx_category_context.category_id  ma_struct_assembly
      save_
 
-save__ma_target_oligomer_modeling.ordinal_id
+save__ma_struct_assembly.ordinal_id
     _item_description.description
-;     A unique identifier for this record.
+;     A unique identifier for the structural assembly description.
 ;
-    _item.name                  '_ma_target_oligomer_modeling.ordinal_id'
-    _item.category_id             ma_target_oligomer_modeling
+    _item.name                  '_ma_struct_assembly.ordinal_id'
+    _item.category_id             ma_struct_assembly
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_target_oligomer_modeling.oligomer_group_id
+save__ma_struct_assembly.assembly_id
     _item_description.description
-;     An identifier to a group of targets that are modeled as oligomers.
-      Oligomeric chains modeled together have the same oligomer group id
-      whereas oligomeric chains modeled separately have different oligomer 
-      group ids. 
+;     An identifier for the structural assembly. 
+      This data item will remain the same for all components 
+      of an assembly. 
 ;
-    _item.name                  '_ma_target_oligomer_modeling.oligomer_group_id'
-    _item.category_id             ma_target_oligomer_modeling
+    _item.name                  '_ma_struct_assembly.assembly_id'
+    _item.category_id             ma_struct_assembly
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_target_oligomer_modeling.oligomer_name
+save__ma_struct_assembly.parent_assembly_id
     _item_description.description
-;     A name for the oligomer provided by the depositor. 
+;     The parent of this assembly in a hierarchy. 
+      This data item is an internal category pointer to 
+      _ma_struct_assembly.assembly_id 
+      This data item should point to the assembly id of the immediate
+      parent in a hierarchy. 
+      By convention, the full assembly (top of hierarchy) is assigned parent id 0 (zero).
+      In case of assemblies that do not conform to a hierarchy, 
+      _ma_struct_assembly.parent_assembly_id is the same as 
+      _ma_struct_assembly.assembly_id indicating a self-parent. 
 ;
-    _item.name                  '_ma_target_oligomer_modeling.oligomer_name'
-    _item.category_id             ma_target_oligomer_modeling
+    _item.name                  '_ma_struct_assembly.parent_assembly_id'
+    _item.category_id             ma_struct_assembly
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_struct_assembly.parent_assembly_id'
+    _item_linked.parent_name    '_ma_struct_assembly.assembly_id'
+     save_
+
+save__ma_struct_assembly.entity_description
+    _item_description.description
+;     A text description of the molecular entity
+
+;
+    _item.name                  '_ma_struct_assembly.entity_description'
+    _item.category_id             ma_struct_assembly
+    _item.mandatory_code          no
+    _item_type.code               line
+    _item_linked.child_name     '_ma_struct_assembly.entity_description'
+    _item_linked.parent_name    '_entity.pdbx_description'
+     save_
+
+save__ma_struct_assembly.entity_id
+    _item_description.description
+;     A unique identifier for distinct molecular entities.
+      This data item is a pointer to _entity_poly_seq.entity_id in the 
+      ENTITY_POLY_SEQ category.
+;
+    _item.name                  '_ma_struct_assembly.entity_id'
+    _item.category_id             ma_struct_assembly
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ma_struct_assembly.entity_id'
+    _item_linked.parent_name      '_entity_poly_seq.entity_id'
+     save_
+
+save__ma_struct_assembly.asym_id
+    _item_description.description
+;     An asym/strand identifier for the component in the assembly.
+      This data item is a pointer to _struct_asym.id in the
+      STRUCT_ASYM category.
+;
+    _item.name                  '_ma_struct_assembly.asym_id'
+    _item.category_id             ma_struct_assembly
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ma_struct_assembly.asym_id'
+    _item_linked.parent_name      '_struct_asym.id'
+     save_
+
+save__ma_struct_assembly.seq_id_begin
+    _item_description.description
+;     The starting residue index for the sequence segment of the entity instance 
+      that is part of the assembly.
+;
+    _item.name                  '_ma_struct_assembly.seq_id_begin'
+    _item.category_id             ma_struct_assembly
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_linked.child_name       '_ma_struct_assembly.seq_id_begin'
+    _item_linked.parent_name      '_entity_poly_seq.num'
+     save_
+
+save__ma_struct_assembly.seq_id_end
+    _item_description.description
+;     The ending residue index for the sequence segment of the entity instance 
+      that is part of the assembly.
+;
+    _item.name                  '_ma_struct_assembly.seq_id_end'
+    _item.category_id             ma_struct_assembly
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_linked.child_name       '_ma_struct_assembly.seq_id_end'
+    _item_linked.parent_name      '_entity_poly_seq.num'
+     save_
+
+################################
+## MA_STRUCT_ASSEMBLY_DETAILS ##
+################################
+
+save_ma_struct_assembly_details
+    _category.description
+;              Data items in the MA_STRUCT_ASSEMBLY_DETAILS category provides
+               additional details regarding the structure assembly. 
+;
+    _category.id                  ma_struct_assembly_details
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ma_struct_assembly_details.assembly_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_struct_assembly_details.assembly_id
+    _ma_struct_assembly_details.assembly_name
+    _ma_struct_assembly_details.assembly_description
+         1     "Assembly A"  "Subunits in assembly A"
+         2     "Assembly B"  "Subunits in assembly B"
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_struct_assembly_details
+     save_
+
+save__ma_struct_assembly_details.assembly_id
+    _item_description.description
+;     A unique identifier for the structural assembly.
+;
+    _item.name                  '_ma_struct_assembly_details.assembly_id'
+    _item.category_id             ma_struct_assembly_details
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_struct_assembly_details.assembly_id'
+    _item_linked.parent_name    '_ma_struct_assembly.assembly_id'
+     save_
+
+save__ma_struct_assembly_details.assembly_name
+    _item_description.description
+;     A name for the structural assembly.
+;
+    _item.name                  '_ma_struct_assembly_details.assembly_name'
+    _item.category_id             ma_struct_assembly_details
     _item.mandatory_code          no
     _item_type.code               line
      save_
 
-save__ma_target_oligomer_modeling.target_entity_id
+save__ma_struct_assembly_details.assembly_description
     _item_description.description
-;     The identifier for the corresponding target entity.
-      This data item is a pointer to _ma_target_details.entity_id in the 
-      MA_TARGET_DETAILS category.
+;     Description of the structural assembly.
 ;
-    _item.name                  '_ma_target_oligomer_modeling.target_entity_id'
-    _item.category_id             ma_target_oligomer_modeling
-    _item.mandatory_code          yes
-    _item_type.code               code
-    _item_linked.child_name       '_ma_target_oligomer_modeling.target_entity_id'
-    _item_linked.parent_name      '_ma_target_details.entity_id'
-     save_
-
-save__ma_target_oligomer_modeling.asym_id
-    _item_description.description
-;     The asym/strand identifier for this target record.
-      This data item is a pointer to _struct_asym.id in the STRUCT_ASYM category.
-;
-    _item.name                  '_ma_target_oligomer_modeling.asym_id'
-    _item.category_id             ma_target_oligomer_modeling
-    _item.mandatory_code          yes
-    _item_type.code               code
-    _item_linked.child_name       '_ma_target_oligomer_modeling.asym_id'
-    _item_linked.parent_name      '_struct_asym.id'
-    save_
-
-save__ma_target_oligomer_modeling.seq_id_begin
-    _item_description.description
-;     The beginning sequence index of this target record. 
-      This data item is a pointer to _entity_poly_seq.num in the 
-      ENTITY_POLY_SEQ category.
-;
-    _item.name                  '_ma_target_oligomer_modeling.seq_id_begin'
-    _item.category_id             ma_target_oligomer_modeling
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name       '_ma_target_oligomer_modeling.seq_id_begin'
-    _item_linked.parent_name      '_entity_poly_seq.num'
-     save_
-
-save__ma_target_oligomer_modeling.seq_id_end
-    _item_description.description
-;     The ending sequence index of this target record. 
-      This data item is a pointer to _entity_poly_seq.num in the 
-      ENTITY_POLY_SEQ category.
-;
-    _item.name                  '_ma_target_oligomer_modeling.seq_id_end'
-    _item.category_id             ma_target_oligomer_modeling
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name       '_ma_target_oligomer_modeling.seq_id_end'
-    _item_linked.parent_name      '_entity_poly_seq.num'
+    _item.name                  '_ma_struct_assembly_details.assembly_description'
+    _item.category_id             ma_struct_assembly_details
+    _item.mandatory_code          no
+    _item_type.code               text
      save_
 
 #######################
@@ -527,7 +789,7 @@ save_ma_alignment_details
 ;
     loop_
 
-    _ma_alignment_details.id
+    _ma_alignment_details.ordinal_id
     _ma_alignment_details.alignment_id
     _ma_alignment_details.target_id
     _ma_alignment_details.template_id
@@ -538,10 +800,10 @@ save_ma_alignment_details
     _ma_alignment_details.e_value
     _ma_alignment_details.percent_sequence_identity
     _ma_alignment_details.sequence_identity_denominator
-    1 1 1 1  1  'PSI-BLAST'  128 "coevolution SA" 0.1 24.0 1
-    2 1 1 2  1  'PSI-BLAST'  163 "coevolution SA" 0.5 15.0 1 
-    3 1 1 3  1  'PSI-BLAST'  139 "coevolution SA" 0.1 21.0 1
-    4 2 2 4  2  'PSI-BLAST'  385 "target-template pairwise alignment" 0.5 18.0 1
+    1 1 1 1  6  'PSI-BLAST'  128 "coevolution MSA" 0.1 24.0 1
+    2 1 1 2  6  'PSI-BLAST'  163 "coevolution MSA" 0.5 15.0 1 
+    3 1 1 3  6  'PSI-BLAST'  139 "coevolution MSA" 0.1 21.0 1
+    4 2 2 4  7  'PSI-BLAST'  385 "target-template pairwise alignment" 0.5 18.0 1
     # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1110,10 +1372,12 @@ save__ma_data.content_type
     loop_
     _item_enumeration.value
     _item_enumeration.detail
-      'restraint'   'Spatial restraints'
-      'alignment'   'MSA for coevolution methods as well as target-template pairwise alignments'
-      'coordinates' 'Model coordinates'
-      'other'       'other'
+      'target'             'target sequence'
+      'template'           'template sequence and structure'
+      'restraint'          'Spatial restraints'
+      'alignment'          'MSA for coevolution methods as well as target-template pairwise alignments'
+      'coordinates'        'Model coordinates'
+      'other'              'other'
      save_
 
 save__ma_data.content_sub_type
@@ -1132,6 +1396,8 @@ save__ma_data.content_sub_type
       'target-template alignment'   
       'coevolution MSA' 
       'coordinates'
+      'target'
+      'template'
       'other'       
      save_ 
 
@@ -1150,6 +1416,82 @@ save__ma_data.name
     'Coevolution Data'
      save_
      
+###################
+## MA_DATA_GROUP ##
+###################
+
+save_ma_data_group
+    _category.description
+;              Data items in the MA_DATA_GROUP category captures the
+               details of sets of data used in the modeling.
+;
+    _category.id                  ma_data_group
+    _category.mandatory_code      yes
+     loop_
+    _category_key.name          '_ma_data_group.ordinal_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+        loop_
+        _ma_data_group.ordinal_id
+        _ma_data_group.group_id
+        _ma_data_group.data_id
+        0 1 2
+        1 1 3
+        2 1 4
+        3 2 3 
+        4 2 4
+        5 2 5 
+       # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_data_group
+     save_
+
+save__ma_data_group.ordinal_id
+    _item_description.description
+;    A unique identifier for a group of data.
+;
+    _item.name                  '_ma_data_group.ordinal_id'
+    _item.category_id             ma_data_group
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_data_group.group_id
+    _item_description.description
+;    An identifier for the group entry.
+;
+    _item.name                  '_ma_data_group.group_id'
+    _item.category_id             ma_data_group
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+
+save__ma_data_group.data_id
+    _item_description.description
+;     The data_id identifier. This data item is a pointer to
+      _ma_data.id in the MA_DATA category.
+;
+    _item.name                  '_ma_data_group.data_id'
+    _item.category_id             ma_data_group
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_data_group.data_id'
+    _item_linked.parent_name    '_ma_data.id'    
+     save_
+
 ###################
 ## MA_RESTRAINTS ##
 ###################
@@ -1290,7 +1632,7 @@ save_ma_distance_restraints
         _ma_distance_restraints.comp_id_2
         _ma_distance_restraints.atom_id_2
         _ma_distance_restraints.upper_limit
-        _ma_distance_restraints.uncertainty
+        _ma_distance_restraints.upper_limit_esd
         _ma_distance_restraints.restraint_type
           1  1  3  C   17  LYS  NZ  3  C  421  GLU  OE1  4.8  0.2  'upper bound'
           2  1  3  C  206  LYS  NZ  3  C  219  ASP  OD1  4.8  0.2  'upper bound'
@@ -1467,17 +1809,6 @@ save__ma_distance_restraints.atom_id_2
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_distance_restraints.uncertainty
-    _item_description.description
-;     The uncertainty to the distance threshold.
-;
-    _item.name                    '_ma_distance_restraints.uncertainty'
-    _item.category_id             ma_distance_restraints
-    _item.mandatory_code          no
-    _item_type.code               float
-    _item_units.code              angstroms
-     save_
-
 save__ma_distance_restraints.lower_limit
     _item_description.description
 ;     The lower limit of the distance threshold.
@@ -1498,6 +1829,45 @@ save__ma_distance_restraints.upper_limit
     _item.mandatory_code          no
     _item_type.code               float
     _item_units.code              angstroms
+     save_
+
+save__ma_distance_restraints.lower_limit_esd
+    _item_description.description
+;     The estimated standard deviation of the lower limit distance threshold applied to this distance restraint.
+;
+    _item.name                  '_ma_distance_restraints.lower_limit_esd'
+    _item.category_id             ma_distance_restraints
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__ma_distance_restraints.upper_limit_esd
+    _item_description.description
+;     The estimated standard deviation of the upper limit distance threshold applied to this distance restraint. 
+;
+    _item.name                  '_ma_distance_restraints.upper_limit_esd'
+    _item.category_id             ma_distance_restraints
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__ma_distance_restraints.probability
+    _item_description.description
+;      The real number that indicates the probability that the distance restraint
+       is correct. This number should fall between 0.0 and 1.0.
+;
+    _item.name                  '_ma_distance_restraints.probability'
+    _item.category_id             ma_distance_restraints
+    _item.mandatory_code          no
+    _item_type.code               float
+    loop_
+    _item_range.minimum
+    _item_range.maximum
+        0.0   0.0
+        0.0   1.0
+        1.0   1.0
      save_
 
 save__ma_distance_restraints.restraint_type
@@ -1561,18 +1931,17 @@ save_ma_angle_restraints
         _ma_angle_restraints.seq_id_3
         _ma_angle_restraints.comp_id_3
         _ma_angle_restraints.atom_id_3
-        _ma_angle_restraints.uncertainty
         _ma_angle_restraints.lower_limit
         _ma_angle_restraints.upper_limit
         _ma_angle_restraints.restraint_type
         _ma_angle_restraints.name
-        1  2  1 A 21 ALA N  1 A 21 ALA CA  1 A 21 ALA  C  1 5.0 -60.0 -40.0  'upper and lower bound' .
-        2  2  1 A 21 ALA C  1 A 22 THR  N  1 A 22 THR CA  1 8.0 -60.0 -40.0  'upper and lower bound' .
-        3  2  1 A 23 LYS C  1 A 24 ASP  N  1 A 24 ASP CA  1 5.0 -60.0 -40.0  'upper and lower bound' .
-        4  2  1 A 24 ASP N  1 A 24 ASP CA  1 A 24 ASP  C  1 5.0  90.0 120.0  'upper and lower bound' .
-        5  2  1 A 15 GLY C  1 A 16 ASN  N  1 A 16 ASN CA  1 5.0 -60.0 -40.0  'upper and lower bound' .
-        6  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 5.0  90.0 120.0  'upper and lower bound' .
-        7  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 5.0 140.0 170.0  'upper and lower bound' .
+        1  2  1 A 21 ALA N  1 A 21 ALA CA  1 A 21 ALA  C  1 -60.0 -40.0  'upper and lower bound' .
+        2  2  1 A 21 ALA C  1 A 22 THR  N  1 A 22 THR CA  1 -60.0 -40.0  'upper and lower bound' .
+        3  2  1 A 23 LYS C  1 A 24 ASP  N  1 A 24 ASP CA  1 -60.0 -40.0  'upper and lower bound' .
+        4  2  1 A 24 ASP N  1 A 24 ASP CA  1 A 24 ASP  C  1  90.0 120.0  'upper and lower bound' .
+        5  2  1 A 15 GLY C  1 A 16 ASN  N  1 A 16 ASN CA  1 -60.0 -40.0  'upper and lower bound' .
+        6  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1  90.0 120.0  'upper and lower bound' .
+        7  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 140.0 170.0  'upper and lower bound' .
         # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1803,17 +2172,6 @@ save__ma_angle_restraints.atom_id_3
     _item_linked.parent_name      '_chem_comp_atom.atom_id'
      save_
 
-save__ma_angle_restraints.uncertainty
-    _item_description.description
-;     The uncertainty to the angle threshold.
-;
-    _item.name                    '_ma_angle_restraints.uncertainty'
-    _item.category_id             ma_angle_restraints
-    _item.mandatory_code          no
-    _item_type.code               float
-    _item_units.code              degrees
-     save_
-
 save__ma_angle_restraints.lower_limit
     _item_description.description
 ;     The lower limit of the angle threshold.
@@ -1836,6 +2194,45 @@ save__ma_angle_restraints.upper_limit
     _item_units.code              degrees
      save_
 
+save__ma_angle_restraints.lower_limit_esd
+    _item_description.description
+;     The estimated standard deviation of the lower limit applied to this angle restraint.
+;
+    _item.name                  '_ma_angle_restraints.lower_limit_esd'
+    _item.category_id             ma_angle_restraints
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__ma_angle_restraints.upper_limit_esd
+    _item_description.description
+;     The estimated standard deviation of the upper limit applied to this angle restraint.
+;
+    _item.name                  '_ma_angle_restraints.upper_limit_esd'
+    _item.category_id             ma_angle_restraints
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__ma_angle_restraints.probability
+    _item_description.description
+;      The real number that indicates the probability that the angle restraint
+       is correct. This number should fall between 0.0 and 1.0.
+;
+    _item.name                  '_ma_angle_restraints.probability'
+    _item.category_id             ma_angle_restraints
+    _item.mandatory_code          no
+    _item_type.code               float
+    loop_
+    _item_range.minimum
+    _item_range.maximum
+        0.0   0.0
+        0.0   1.0
+        1.0   1.0
+     save_
+
 save__ma_angle_restraints.restraint_type
     _item_description.description
 ;     The type of restraint applied. 
@@ -1853,16 +2250,12 @@ save__ma_angle_restraints.restraint_type
 
 save__ma_angle_restraints.name
     _item_description.description
-;     The angle angle name, if applicable.
+;     The angle name, if applicable.
 ;   
     _item.name                    '_ma_angle_restraints.name'
     _item.category_id             ma_angle_restraints
     _item.mandatory_code          no
     _item_type.code               code
-    loop_
-    _item_examples.case
-    'PHI'
-    'PSI'
      save_
      
 ############################
@@ -1914,18 +2307,17 @@ save_ma_dihedral_restraints
         _ma_dihedral_restraints.seq_id_4
         _ma_dihedral_restraints.comp_id_4
         _ma_dihedral_restraints.atom_id_4
-        _ma_dihedral_restraints.uncertainty
         _ma_dihedral_restraints.lower_limit
         _ma_dihedral_restraints.upper_limit
         _ma_dihedral_restraints.restraint_type
         _ma_dihedral_restraints.name
-        1  2  1 A 21 ALA N  1 A 21 ALA CA  1 A 21 ALA  C  1 A 22 THR N  5.0 -60.0 -40.0  'upper and lower bound' PSI
-        2  2  1 A 21 ALA C  1 A 22 THR  N  1 A 22 THR CA  1 A 22 THR C  8.0 -60.0 -40.0  'upper and lower bound' PHI
-        3  2  1 A 23 LYS C  1 A 24 ASP  N  1 A 24 ASP CA  1 A 24 ASP C  5.0 -60.0 -40.0  'upper and lower bound' PHI
-        4  2  1 A 24 ASP N  1 A 24 ASP CA  1 A 24 ASP  C  1 A 25 HIS N  5.0  90.0 120.0  'upper and lower bound' PSI
-        5  2  1 A 15 GLY C  1 A 16 ASN  N  1 A 16 ASN CA  1 A 16 ASN C  5.0 -60.0 -40.0  'upper and lower bound' PHI
-        6  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N  5.0  90.0 120.0  'upper and lower bound' PSI
-        7  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N  5.0 140.0 170.0  'upper and lower bound' PSI
+        1  2  1 A 21 ALA N  1 A 21 ALA CA  1 A 21 ALA  C  1 A 22 THR N  -60.0 -40.0  'upper and lower bound' PSI
+        2  2  1 A 21 ALA C  1 A 22 THR  N  1 A 22 THR CA  1 A 22 THR C  -60.0 -40.0  'upper and lower bound' PHI
+        3  2  1 A 23 LYS C  1 A 24 ASP  N  1 A 24 ASP CA  1 A 24 ASP C  -60.0 -40.0  'upper and lower bound' PHI
+        4  2  1 A 24 ASP N  1 A 24 ASP CA  1 A 24 ASP  C  1 A 25 HIS N   90.0 120.0  'upper and lower bound' PSI
+        5  2  1 A 15 GLY C  1 A 16 ASN  N  1 A 16 ASN CA  1 A 16 ASN C  -60.0 -40.0  'upper and lower bound' PHI
+        6  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N   90.0 120.0  'upper and lower bound' PSI
+        7  2  1 A 16 ASN N  1 A 16 ASN CA  1 A 16 ASN  C  1 A 17 CYS N  140.0 170.0  'upper and lower bound' PSI
         # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2256,6 +2648,45 @@ save__ma_dihedral_restraints.upper_limit
     _item_units.code              degrees
      save_
 
+save__ma_dihedral_restraints.lower_limit_esd
+    _item_description.description
+;     The estimated standard deviation of the lower limit applied to this dihedral restraint.
+;
+    _item.name                  '_ma_dihedral_restraints.lower_limit_esd'
+    _item.category_id             ma_dihedral_restraints
+    _item.mandatory_code          no   
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__ma_dihedral_restraints.upper_limit_esd
+    _item_description.description
+;     The estimated standard deviation of the upper limit applied to this dihedral restraint.
+;
+    _item.name                  '_ma_dihedral_restraints.upper_limit_esd'
+    _item.category_id             ma_dihedral_restraints
+    _item.mandatory_code          no   
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__ma_dihedral_restraints.probability
+    _item_description.description
+;      The real number that indicates the probability that the dihedral restraint
+       is correct. This number should fall between 0.0 and 1.0. 
+;
+    _item.name                  '_ma_dihedral_restraints.probability'
+    _item.category_id             ma_dihedral_restraints
+    _item.mandatory_code          no   
+    _item_type.code               float
+    loop_
+    _item_range.minimum
+    _item_range.maximum
+        0.0   0.0  
+        0.0   1.0  
+        1.0   1.0  
+     save_
+
 save__ma_dihedral_restraints.restraint_type
     _item_description.description
 ;     The type of restraint applied. 
@@ -2292,12 +2723,12 @@ save__ma_dihedral_restraints.name
 save_ma_restraints_group
     _category.description
 ;              Data items in the MA_RESTRAINTS_GROUP category captures the
-               input data for a given protocol_step.   
+               details of groups of restraints used in the modeling. 
 ;
     _category.id                  ma_restraints_group
     _category.mandatory_code      yes
      loop_
-    _category_key.name          '_ma_restraints.ordinal_id'
+    _category_key.name          '_ma_restraints_group.ordinal_id'
 
     loop_
     _category_group.id           'inclusive_group'
@@ -2394,7 +2825,7 @@ save_ma_step_input
         _ma_step_input.id
         _ma_step_input.protocol_id
         _ma_step_input.step_id
-        _ma_step_input.data_id
+        _ma_step_input.data_group_id
         0 0 0 0
         1 0 1 0
         2 0 2 1
@@ -2443,18 +2874,18 @@ save__ma_step_input.step_id
     _item_linked.parent_name    '_ma_protocol_step.step_id'
      save_
 
-save__ma_step_input.data_id
+save__ma_step_input.data_group_id
     _item_description.description
-;    An identifier to the input dataset.
-     This data item is a pointer to _ma_data.id in the    
-     A_DATA category.
+;    An identifier to the set of input data.
+     This data item is a pointer to _ma_data_group.group_id in the
+     MA_DATA_GROUP category.
 ;
-    _item.name                  '_ma_step_input.data_id'
+    _item.name                  '_ma_step_input.data_group_id'
     _item.category_id             ma_step_input
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_step_input.data_id'
-    _item_linked.parent_name    '_ma_data.id'
+    _item_linked.child_name     '_ma_step_input.data_group_id'
+    _item_linked.parent_name    '_ma_data_group.group_id'
      save_
 
 ##############################
@@ -2487,28 +2918,21 @@ save_ma_protocol_step
   ma_protocol_step.ordinal_id
   ma_protocol_step.protocol_id
   ma_protocol_step.step_id
-  ma_protocol_step.asym_id
-  ma_protocol_step.entity_id
+  ma_protocol_step.assembly_id
   ma_protocol_step.method_type
   ma_protocol_step.step_name
   ma_protocol_step.software_used 
 
-   0 0 0 A 1 "template search" . "SWISS-MODEL SMNG" 
-   1 0 1 B 1 "template search" . "SWISS-MODEL SMNG" 
-   2 0 2 C 1 "template search" . "SWISS-MODEL SMNG" 
-   3 0 3 D 1 "template search" . "SWISS-MODEL SMNG" 
-   4 1 0 A 1 "template selection" . "SWISS-MODEL SMNG" 
-   5 1 1 B 1 "template selection" . "SWISS-MODEL SMNG" 
-   6 1 2 C 1 "template selection" . "SWISS-MODEL SMNG" 
-   7 1 3 D 1 "template selection" . "SWISS-MODEL SMNG" 
-   8 2 0 A 1 "modeling" . "SWISS-MODEL SMNG" 
-   9 2 1 B 1 "modeling" . "SWISS-MODEL SMNG" 
-  10 2 2 C 1 "modeling" . "SWISS-MODEL SMNG" 
-  11 2 3 D 1 "modeling" . "SWISS-MODEL SMNG" 
-  12 3 0 A 1 "model selection" . "SWISS-MODEL SMNG" 
-  13 3 1 B 1 "model selection" . "SWISS-MODEL SMNG" 
-  14 3 2 C 1 "model selection" . "SWISS-MODEL SMNG" 
-  15 3 3 D 1 "model selection" . "SWISS-MODEL SMNG" 
+   0 0 1 1 "template search" . "SWISS-MODEL SMNG" 
+   1 0 2 1 "template search" . "SWISS-MODEL SMNG" 
+   2 0 3 1 "template search" . "SWISS-MODEL SMNG" 
+   3 0 4 1 "template search" . "SWISS-MODEL SMNG" 
+   4 1 1 1 "template selection" . "SWISS-MODEL SMNG" 
+   5 1 2 1 "template selection" . "SWISS-MODEL SMNG" 
+   6 1 3 1 "template selection" . "SWISS-MODEL SMNG" 
+   7 1 4 1 "template selection" . "SWISS-MODEL SMNG" 
+   8 2 0 1 "modeling" . "SWISS-MODEL SMNG" 
+   9 3 0 1 "model selection" . "SWISS-MODEL SMNG" 
   # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -2546,31 +2970,18 @@ save__ma_protocol_step.step_id
     _item_type.code               int
      save_
    
-save__ma_protocol_step.entity_id 
+save__ma_protocol_step.assembly_id 
     _item_description.description
-;   The entity identifier the protocol step applies to.
-    This refers to _entity_poly_seq.entity_id in the ENTITY_POLY_SEQ category. 
+;   The identifier to the structural assembly that the protocol 
+    step applies to. This refers to _ma_struct_assembly.assembly_id 
+    in the MA_STRUCT_ASSEMBLY category. 
 ;
-    _item.name                  '_ma_protocol_step.entity_id'
+    _item.name                  '_ma_protocol_step.assembly_id'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
-    _item_type.code               code
-    _item_linked.child_name       '_ma_protocol_step.entity_id'
-    _item_linked.parent_name      '_entity_poly_seq.entity_id'
-     save_
-
-save__ma_protocol_step.asym_id
-    _item_description.description
-;   An asym/strand identifier for the entity molecule.
-    This data item is a pointer to _struct_asym.id in the
-    STRUCT_ASY category.
-;
-    _item.name                  '_ma_protocol_step.asym_id'
-    _item.category_id             ma_protocol_step
-    _item.mandatory_code          yes
-    _item_type.code               code
-    _item_linked.child_name       '_ma_protocol_step.asym_id'
-    _item_linked.parent_name      '_struct_asym.id'
+    _item_type.code               int
+    _item_linked.child_name     '_ma_protocol_step.assembly_id'
+    _item_linked.parent_name    '_ma_struct_assembly.assembly_id'
      save_
 
 save__ma_protocol_step.method_type
@@ -2615,7 +3026,6 @@ save__ma_protocol_step.software_used
 ## MA_STEP_OUTPUT           ##
 ##############################
 
-
 save_ma_step_output
     _category.description
 ;              Data items in the MA_STEP_OUTPUT category captures the
@@ -2641,7 +3051,7 @@ save_ma_step_output
         _ma_step_output.id
         _ma_step_output.protocol_id
         _ma_step_output.step_id
-        _ma_step_output.data_id
+        _ma_step_output.data_group_id
         0 0 0 0
         1 0 1 0
        # ...  abbreviated ...  
@@ -2689,24 +3099,25 @@ save__ma_step_output.step_id
     _item_linked.parent_name    '_ma_protocol_step.step_id'
      save_
 
-save__ma_step_output.data_id
+save__ma_step_output.data_group_id
     _item_description.description
 ;    An identifier to the output dataset.
-     This data item is a pointer to _ma_data.id in the    
-     A_DATA category.
+     This data item is a pointer to _ma_data_group.group_id in the    
+     MA_DATA_GROUP category.
 ;
-    _item.name                  '_ma_step_output.data_id'
+    _item.name                  '_ma_step_output.data_group_id'
     _item.category_id             ma_step_output
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_step_output.data_id'
-    _item_linked.parent_name    '_ma_data.id'
+    _item_linked.child_name     '_ma_step_output.data_group_id'
+    _item_linked.parent_name    '_ma_data_group.group_id'
      save_
 
 #################
 ## MA_CRITERIA ##
 #################
 
+##BV: REVISIT THIS CATEGORY
 
 save_ma_criteria
     _category.description
@@ -2821,6 +3232,18 @@ save__ma_criteria.value
     _item_type.code               float
      save_ 
 
+###############
+## ATOM_SITE ##
+###############
 
+save__atom_site.local_model_quality_score
+    _item_description.description
+;     The local model quality score for the atom. 
+;
+    _item.name                  '_atom_site.local_model_quality_score'
+    _item.category_id             atom_site
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
 
 
