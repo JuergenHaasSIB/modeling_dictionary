@@ -15,32 +15,32 @@
 <text text-anchor="start" x="291" y="-22.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="18.00">MA_ALIGNMENT</text>
 <text text-anchor="start" x="436" y="-22.6" font-family="Helvetica,sans-Serif" font-size="18.00"> </text>
 <text text-anchor="start" x="442" y="-22.6" font-family="Helvetica,sans-Serif" font-size="14.00"> </text>
-<text text-anchor="start" x="93" y="-7.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &#160;in dictionary mmcif_pdbx.dic version 5.280 </text>
+<text text-anchor="start" x="93" y="-7.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &#160;in dictionary mmcif_pdbx.dic version 5.296 </text>
 <!-- _ma_alignment -->
 <g id="node1" class="node"><title>_ma_alignment</title>
-<g id="a_node1_0"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Categories/ma_alignment.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node1_0"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Categories/ma_alignment.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="#f0027f" stroke="none" points="164.579,-444.5 164.579,-465.5 259.579,-465.5 259.579,-444.5 164.579,-444.5"/>
 <polygon fill="none" stroke="black" points="164.579,-444.5 164.579,-465.5 259.579,-465.5 259.579,-444.5 164.579,-444.5"/>
 <text text-anchor="start" x="172.579" y="-452.5" font-family="Helvetica,sans-Serif" font-size="10.00">MA_ALIGNMENT</text>
 </a>
 </g>
-<g id="a_node1_1"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment.ordinal_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node1_1"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment.ordinal_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="#ffff99" stroke="none" points="164.579,-424.5 164.579,-444.5 259.579,-444.5 259.579,-424.5 164.579,-424.5"/>
 <polygon fill="none" stroke="black" points="164.579,-424.5 164.579,-444.5 259.579,-444.5 259.579,-424.5 164.579,-424.5"/>
 <text text-anchor="start" x="169.579" y="-432.3" font-family="Helvetica,sans-Serif" font-size="9.00">ordinal_id</text>
 </a>
 </g>
-<g id="a_node1_2"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment.alignment_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node1_2"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment.alignment_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-404.5 164.579,-424.5 259.579,-424.5 259.579,-404.5 164.579,-404.5"/>
 <text text-anchor="start" x="169.579" y="-412.3" font-family="Helvetica,sans-Serif" font-size="9.00">alignment_id</text>
 </a>
 </g>
-<g id="a_node1_3"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment.sequence.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node1_3"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment.sequence.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-384.5 164.579,-404.5 259.579,-404.5 259.579,-384.5 164.579,-384.5"/>
 <text text-anchor="start" x="169.579" y="-392.3" font-family="Helvetica,sans-Serif" font-size="9.00">sequence</text>
 </a>
 </g>
-<g id="a_node1_4"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment.target_template_flag.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node1_4"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment.target_template_flag.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-364.5 164.579,-384.5 259.579,-384.5 259.579,-364.5 164.579,-364.5"/>
 <text text-anchor="start" x="169.579" y="-372.3" font-family="Helvetica,sans-Serif" font-size="9.00">target_template_flag</text>
 </a>
@@ -48,64 +48,64 @@
 </g>
 <!-- _ma_alignment_details -->
 <g id="node2" class="node"><title>_ma_alignment_details</title>
-<g id="a_node2_5"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Categories/ma_alignment_details.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_5"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Categories/ma_alignment_details.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="#99c49b" stroke="none" points="164.579,-299.5 164.579,-320.5 307.579,-320.5 307.579,-299.5 164.579,-299.5"/>
 <polygon fill="none" stroke="black" points="164.579,-299.5 164.579,-320.5 307.579,-320.5 307.579,-299.5 164.579,-299.5"/>
 <text text-anchor="start" x="172.579" y="-307.5" font-family="Helvetica,sans-Serif" font-size="10.00">MA_ALIGNMENT_DETAILS</text>
 </a>
 </g>
-<g id="a_node2_6"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.ordinal_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_6"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.ordinal_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="#ffff99" stroke="none" points="164.579,-279.5 164.579,-299.5 307.579,-299.5 307.579,-279.5 164.579,-279.5"/>
 <polygon fill="none" stroke="black" points="164.579,-279.5 164.579,-299.5 307.579,-299.5 307.579,-279.5 164.579,-279.5"/>
 <text text-anchor="start" x="169.579" y="-287.3" font-family="Helvetica,sans-Serif" font-size="9.00">ordinal_id</text>
 </a>
 </g>
-<g id="a_node2_7"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.alignment_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_7"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.alignment_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-259.5 164.579,-279.5 307.579,-279.5 307.579,-259.5 164.579,-259.5"/>
 <text text-anchor="start" x="169.579" y="-267.3" font-family="Helvetica,sans-Serif" font-size="9.00">alignment_id</text>
 </a>
 </g>
-<g id="a_node2_8"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.alignment_length.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_8"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.alignment_length.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-239.5 164.579,-259.5 307.579,-259.5 307.579,-239.5 164.579,-239.5"/>
 <text text-anchor="start" x="169.579" y="-247.3" font-family="Helvetica,sans-Serif" font-size="9.00">alignment_length</text>
 </a>
 </g>
-<g id="a_node2_9"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.alignment_type.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_9"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.alignment_type.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-219.5 164.579,-239.5 307.579,-239.5 307.579,-219.5 164.579,-219.5"/>
 <text text-anchor="start" x="169.579" y="-227.3" font-family="Helvetica,sans-Serif" font-size="9.00">alignment_type</text>
 </a>
 </g>
-<g id="a_node2_10"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.data_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_10"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.data_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-199.5 164.579,-219.5 307.579,-219.5 307.579,-199.5 164.579,-199.5"/>
 <text text-anchor="start" x="169.579" y="-207.3" font-family="Helvetica,sans-Serif" font-size="9.00">data_id</text>
 </a>
 </g>
-<g id="a_node2_11"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.e_value.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_11"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.e_value.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-179.5 164.579,-199.5 307.579,-199.5 307.579,-179.5 164.579,-179.5"/>
 <text text-anchor="start" x="169.579" y="-187.3" font-family="Helvetica,sans-Serif" font-size="9.00">e_value</text>
 </a>
 </g>
-<g id="a_node2_12"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.percent_sequence_identity.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_12"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.percent_sequence_identity.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-159.5 164.579,-179.5 307.579,-179.5 307.579,-159.5 164.579,-159.5"/>
 <text text-anchor="start" x="169.579" y="-167.3" font-family="Helvetica,sans-Serif" font-size="9.00">percent_sequence_identity</text>
 </a>
 </g>
-<g id="a_node2_13"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.sequence_identity_denominator.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_13"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.sequence_identity_denominator.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-139.5 164.579,-159.5 307.579,-159.5 307.579,-139.5 164.579,-139.5"/>
 <text text-anchor="start" x="169.579" y="-147.3" font-family="Helvetica,sans-Serif" font-size="9.00">sequence_identity_denominator</text>
 </a>
 </g>
-<g id="a_node2_14"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.software_used.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_14"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.software_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-119.5 164.579,-139.5 307.579,-139.5 307.579,-119.5 164.579,-119.5"/>
-<text text-anchor="start" x="169.579" y="-127.3" font-family="Helvetica,sans-Serif" font-size="9.00">software_used</text>
+<text text-anchor="start" x="169.579" y="-127.3" font-family="Helvetica,sans-Serif" font-size="9.00">software_id</text>
 </a>
 </g>
-<g id="a_node2_15"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.target_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_15"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.target_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-99.5 164.579,-119.5 307.579,-119.5 307.579,-99.5 164.579,-99.5"/>
 <text text-anchor="start" x="169.579" y="-107.3" font-family="Helvetica,sans-Serif" font-size="9.00">target_id</text>
 </a>
 </g>
-<g id="a_node2_16"><a xlink:href="/dictionaries/mmcif_modeling_v10.unix_1.04.dic/Items/_ma_alignment_details.template_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
+<g id="a_node2_16"><a xlink:href="/dictionaries/mmcif_pdbx_modeling_extension_all.dic/Items/_ma_alignment_details.template_id.html" xlink:title="&lt;TABLE&gt;" target="_top">
 <polygon fill="none" stroke="black" points="164.579,-79.5 164.579,-99.5 307.579,-99.5 307.579,-79.5 164.579,-79.5"/>
 <text text-anchor="start" x="169.579" y="-87.3" font-family="Helvetica,sans-Serif" font-size="9.00">template_id</text>
 </a>
