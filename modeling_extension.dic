@@ -2,7 +2,7 @@
 ## MODELING EXTENSION ##
 ########################
 
-# Version 1.0.9 3rd July 2018
+# Version 1.1.0 5th July 2018
 # JH/BV
 
 ##BV: Will these definitions suffice for fragment assembly methods such as Rosetta?
@@ -539,8 +539,7 @@ save__ma_target_details.seq_db_one_letter_code
 save_ma_struct_assembly
     _category.description
 ;              Data items in the MA_STRUCT_ASSEMBLY category records the
-               details of the structural assemblies and used in the 
-               modeling.
+               details of the structural assemblies modeled. 
 ;
     _category.id                  ma_struct_assembly
     _category.mandatory_code      no
@@ -794,16 +793,16 @@ save_ma_alignment_details
     _ma_alignment_details.target_id
     _ma_alignment_details.template_id
     _ma_alignment_details.data_id
-    _ma_alignment_details.software_used
+    _ma_alignment_details.software_id
     _ma_alignment_details.alignment_length
     _ma_alignment_details.alignment_type
     _ma_alignment_details.e_value
     _ma_alignment_details.percent_sequence_identity
     _ma_alignment_details.sequence_identity_denominator
-    1 1 1 1  6  'PSI-BLAST'  128 "coevolution MSA" 0.1 24.0 1
-    2 1 1 2  6  'PSI-BLAST'  163 "coevolution MSA" 0.5 15.0 1 
-    3 1 1 3  6  'PSI-BLAST'  139 "coevolution MSA" 0.1 21.0 1
-    4 2 2 4  7  'PSI-BLAST'  385 "target-template pairwise alignment" 0.5 18.0 1
+    1 1 1 1  6  1  128 "coevolution MSA" 0.1 24.0 1
+    2 1 1 2  6  1  163 "coevolution MSA" 0.5 15.0 1 
+    3 1 1 3  6  1  139 "coevolution MSA" 0.1 21.0 1
+    4 2 2 4  7  1  385 "target-template pairwise alignment" 0.5 18.0 1
     # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -871,19 +870,18 @@ save__ma_alignment_details.data_id
     _item_linked.parent_name    '_ma_data.id'
      save_
 
-save__ma_alignment_details.software_used
+save__ma_alignment_details.software_id
     _item_description.description
-;     The software used to obtaine the multiple sequence alignment.
+;     Identifier to the software used to obtaine the multiple sequence alignment.
+      This data item is a pointer to the _software.pdbx_ordinal in the
+      SOFTWARE category.
 ;
-    _item.name                  '_ma_alignment_details.software_used'
+    _item.name                  '_ma_alignment_details.software_id'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          no
-    _item_type.code               line
-    loop_
-    _item_examples.case
-      'PSI-BLAST'
-      'CLUSTALW'
-      'HHBlits'
+    _item_type.code               int
+    _item_linked.child_name       '_ma_alignment_details.software_id'
+    _item_linked.parent_name      '_software.pdbx_ordinal'
      save_
 
 save__ma_alignment_details.alignment_length
@@ -2793,12 +2791,9 @@ save__ma_restraints_group.restraint_id
     _item_linked.parent_name    '_ma_restraints.restraint_id'    
      save_
 
-
-     
 ##############################
 ## MA_STEP_INPUT            ##
 ##############################
-
 
 save_ma_step_input
     _category.description
@@ -2921,18 +2916,18 @@ save_ma_protocol_step
   ma_protocol_step.assembly_id
   ma_protocol_step.method_type
   ma_protocol_step.step_name
-  ma_protocol_step.software_used 
+  ma_protocol_step.software_id
 
-   0 0 1 1 "template search" . "SWISS-MODEL SMNG" 
-   1 0 2 1 "template search" . "SWISS-MODEL SMNG" 
-   2 0 3 1 "template search" . "SWISS-MODEL SMNG" 
-   3 0 4 1 "template search" . "SWISS-MODEL SMNG" 
-   4 1 1 1 "template selection" . "SWISS-MODEL SMNG" 
-   5 1 2 1 "template selection" . "SWISS-MODEL SMNG" 
-   6 1 3 1 "template selection" . "SWISS-MODEL SMNG" 
-   7 1 4 1 "template selection" . "SWISS-MODEL SMNG" 
-   8 2 0 1 "modeling" . "SWISS-MODEL SMNG" 
-   9 3 0 1 "model selection" . "SWISS-MODEL SMNG" 
+   0 0 1 1 "template search" . 2
+   1 0 2 1 "template search" . 2 
+   2 0 3 1 "template search" . 2
+   3 0 4 1 "template search" . 2
+   4 1 1 1 "template selection" . 2
+   5 1 2 1 "template selection" . 2
+   6 1 3 1 "template selection" . 2
+   7 1 4 1 "template selection" . 2
+   8 2 0 1 "modeling" . 2
+   9 3 0 1 "model selection" . 2
   # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -3012,14 +3007,18 @@ save__ma_protocol_step.name
     _item_type.code               line
      save_
 
-save__ma_protocol_step.software_used 
+save__ma_protocol_step.software_id 
     _item_description.description
-;   The software used when applying the protocol step.
+;   Identifier to the software used when applying the protocol step.
+    This data item is a pointer to the _software.pdbx_ordinal in the
+    SOFTWARE category.
 ;
-    _item.name                  '_ma_protocol_step.software_used'
+    _item.name                  '_ma_protocol_step.software_id'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
-    _item_type.code               line
+    _item_type.code               int
+    _item_linked.child_name       '_ma_protocol_step.software_id'
+    _item_linked.parent_name      '_software.pdbx_ordinal'
      save_
  
 ##############################
@@ -3117,8 +3116,6 @@ save__ma_step_output.data_group_id
 ## MA_CRITERIA ##
 #################
 
-##BV: REVISIT THIS CATEGORY
-
 save_ma_criteria
     _category.description
 ;              Data items in the MA_CRITERIA category capture the selection
@@ -3128,7 +3125,7 @@ save_ma_criteria
     _category.id                  ma_criteria
     _category.mandatory_code      yes
      loop_
-    _category_key.name          '_ma_criteria.ordinal_id'
+    _category_key.name          '_ma_criteria.id'
 
     loop_
     _category_group.id           'inclusive_group'
@@ -3142,17 +3139,17 @@ save_ma_criteria
 ;
 ;
         loop_
-        ma_criteria.ordinal_id
-        ma_criteria.step_input_id
-        ma_criteria.step_output_id
+        ma_criteria.id
+        ma_criteria.protocol_id
+        ma_criteria.step_id
         ma_criteria.type
         ma_criteria.name
         ma_criteria.value
         #target-template alignment
         0 1 1 evalue "ranking based on hhblits evalue"  1e-100
-        1 1 1 coverage "template coverage based on hhblits"  0.82
-        2 2 2 resolution "resolution of experimentally determined structure" 2.30
-        3 3 3 rfree "free R-factor threshold" 0.21
+        1 1 2 coverage "template coverage based on hhblits"  0.82
+        2 2 1 resolution "resolution of experimentally determined structure" 2.30
+        3 3 1 rfree "free R-factor threshold" 0.21
          # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -3160,38 +3157,42 @@ save_ma_criteria
    _pdbx_category_context.category_id  ma_criteria
      save_
 
-save__ma_criteria.ordinal_id
+save__ma_criteria.id
     _item_description.description
 ;    A unique identifier for the criteria applied.
 ;
-    _item.name                  '_ma_criteria.ordinal_id'
+    _item.name                  '_ma_criteria.id'
     _item.category_id             ma_criteria
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_criteria.step_input_id
+save__ma_criteria.protocol_id
     _item_description.description
-;    The input step id.
+;    An identifier to the protocol.
+     This data item is a pointer to _ma_protocol_step.protocol_id in the
+     A_PROTOCOL_STEP category.
 ;
-    _item.name                  '_ma_criteria.step_input_id'
+    _item.name                  '_ma_criteria.protocol_id'
     _item.category_id             ma_criteria
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_criteria.step_input_id'
-    _item_linked.parent_name      '_ma_step_input.id'
+    _item_linked.child_name     '_ma_criteria.protocol_id'
+    _item_linked.parent_name    '_ma_protocol_step.protocol_id'
      save_
 
-save__ma_criteria.step_output_id
+save__ma_criteria.step_id
     _item_description.description
-;    The output step id.
+;    An identifier to the protocol step.
+     This data item is a pointer to _ma_protocol_step.step_id in the
+     A_PROTOCOL_STEP category.
 ;
-    _item.name                  '_ma_criteria.step_output_id'
+    _item.name                  '_ma_criteria.step_id'
     _item.category_id             ma_criteria
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_criteria.step_output_id'
-    _item_linked.parent_name      '_ma_step_output.id'
+    _item_linked.child_name     '_ma_criteria.step_id'
+    _item_linked.parent_name    '_ma_protocol_step.step_id'
      save_
      
 save__ma_criteria.type
@@ -3220,7 +3221,6 @@ save__ma_criteria.name
     _item.mandatory_code          yes
     _item_type.code               line
      save_ 
-     
 
 save__ma_criteria.value
     _item_description.description
@@ -3245,5 +3245,4 @@ save__atom_site.local_model_quality_score
     _item.mandatory_code          no
     _item_type.code               float
      save_
-
 
