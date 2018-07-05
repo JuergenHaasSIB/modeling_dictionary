@@ -2239,7 +2239,7 @@ save__ma_angle_restraints.restraint_type
     _item.category_id             ma_angle_restraints
     _item.mandatory_code          yes
     _item_type.code               line
-    _loop
+    loop_
     _item_enumeration.value
      'lower bound'
      'upper bound'
@@ -2693,7 +2693,7 @@ save__ma_dihedral_restraints.restraint_type
     _item.category_id             ma_dihedral_restraints
     _item.mandatory_code          yes
     _item_type.code               line
-    _loop
+    loop_
     _item_enumeration.value
      'lower bound'
      'upper bound'
