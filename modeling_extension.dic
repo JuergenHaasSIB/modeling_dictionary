@@ -2,7 +2,7 @@
 ## MODELING EXTENSION ##
 ########################
 
-# Version 1.1.0 5th July 2018
+# Version 1.1.1 6th July 2018
 # JH/BV
 
 ##BV: Will these definitions suffice for fragment assembly methods such as Rosetta?
@@ -39,18 +39,18 @@ save_ma_model_list
     _ma_model_list.model_name
     _ma_model_list.model_group_name
     _ma_model_list.assembly_id
-    _ma_model_list.protocol_id
+    _ma_model_list.data_id
 
-    1    1      1    'Best scoring model'        'cluster1'     1  1 
-    2    2      1    '2nd Best scoring model'    'cluster1'     1  1 
-    3    3      1    '3rd Best scoring model'    'cluster1'     1  1 
-    4    4      1    '4th Best scoring model'    'cluster1'     1  1 
-    5    5      1    '5th Best scoring model'    'cluster1'     1  1 
-    6    6      2    'Best scoring model'        'cluster2'     1  1 
-    7    7      2    '2nd Best scoring model'    'cluster2'     1  1 
-    8    8      2    '3rd Best scoring model'    'cluster2'     1  1 
-    9    9      2    '4th Best scoring model'    'cluster2'     1  1 
-   10   10      2    '5th Best scoring model'    'cluster2'     1  1 
+    1    1      1    'Best scoring model'        'cluster1'     1   1
+    2    2      1    '2nd Best scoring model'    'cluster1'     1   2
+    3    3      1    '3rd Best scoring model'    'cluster1'     1   3
+    4    4      1    '4th Best scoring model'    'cluster1'     1   4
+    5    5      1    '5th Best scoring model'    'cluster1'     1   5
+    6    6      2    'Best scoring model'        'cluster2'     1   6
+    7    7      2    '2nd Best scoring model'    'cluster2'     1   7
+    8    8      2    '3rd Best scoring model'    'cluster2'     1   8 
+    9    9      2    '4th Best scoring model'    'cluster2'     1   9
+   10   10      2    '5th Best scoring model'    'cluster2'     1  10
    # ...  abbreviated ... 
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -143,18 +143,17 @@ save__ma_model_list.assembly_id
     _item_linked.parent_name    '_ma_struct_assembly.assembly_id'
      save_
 
-save__ma_model_list.protocol_id
+save__ma_model_list.data_id
     _item_description.description
-;     An identifier to the modeling protocol that produced the model.
-      This data item is a pointer to the _ma_protocol_step.protocol_id
-      in the MA_PROTOCOL_STEP category.
+;     The data_id identifier. This data item is a pointer to
+      _ma_data.id in the MA_DATA category.
 ;
-    _item.name                  '_ma_model_list.protocol_id'
+    _item.name                  '_ma_model_list.data_id'
     _item.category_id             ma_model_list
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_model_list.protocol_id'
-    _item_linked.parent_name    '_ma_protocol_step.protocol_id'
+    _item_linked.child_name     '_ma_model_list.data_id'
+    _item_linked.parent_name    '_ma_data.id'
      save_
 
 #########################
@@ -1414,82 +1413,6 @@ save__ma_data.name
     'Coevolution Data'
      save_
      
-###################
-## MA_DATA_GROUP ##
-###################
-
-save_ma_data_group
-    _category.description
-;              Data items in the MA_DATA_GROUP category captures the
-               details of sets of data used in the modeling.
-;
-    _category.id                  ma_data_group
-    _category.mandatory_code      yes
-     loop_
-    _category_key.name          '_ma_data_group.ordinal_id'
-
-    loop_
-    _category_group.id           'inclusive_group'
-                                 'ma_group'
-    loop_
-    _category_examples.detail
-    _category_examples.case
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-;
-    Example 1 - 
-;
-;
-        loop_
-        _ma_data_group.ordinal_id
-        _ma_data_group.group_id
-        _ma_data_group.data_id
-        0 1 2
-        1 1 3
-        2 1 4
-        3 2 3 
-        4 2 4
-        5 2 5 
-       # ...  abbreviated ...
-;
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_data_group
-     save_
-
-save__ma_data_group.ordinal_id
-    _item_description.description
-;    A unique identifier for a group of data.
-;
-    _item.name                  '_ma_data_group.ordinal_id'
-    _item.category_id             ma_data_group
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
-save__ma_data_group.group_id
-    _item_description.description
-;    An identifier for the group entry.
-;
-    _item.name                  '_ma_data_group.group_id'
-    _item.category_id             ma_data_group
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
-
-save__ma_data_group.data_id
-    _item_description.description
-;     The data_id identifier. This data item is a pointer to
-      _ma_data.id in the MA_DATA category.
-;
-    _item.name                  '_ma_data_group.data_id'
-    _item.category_id             ma_data_group
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name     '_ma_data_group.data_id'
-    _item_linked.parent_name    '_ma_data.id'    
-     save_
-
 ###################
 ## MA_RESTRAINTS ##
 ###################
@@ -2776,7 +2699,6 @@ save__ma_restraints_group.group_id
     _item_type.code               int
      save_
 
-
 save__ma_restraints_group.restraint_id
     _item_description.description
 ;    The identifier for the set of restraints. 
@@ -2820,7 +2742,7 @@ save_ma_step_input
         _ma_step_input.id
         _ma_step_input.protocol_id
         _ma_step_input.step_id
-        _ma_step_input.data_group_id
+        _ma_step_input.data_id
         0 0 0 0
         1 0 1 0
         2 0 2 1
@@ -2869,18 +2791,18 @@ save__ma_step_input.step_id
     _item_linked.parent_name    '_ma_protocol_step.step_id'
      save_
 
-save__ma_step_input.data_group_id
+save__ma_step_input.data_id
     _item_description.description
-;    An identifier to the set of input data.
-     This data item is a pointer to _ma_data_group.group_id in the
-     MA_DATA_GROUP category.
+;    An identifier to the input data.
+     This data item is a pointer to _ma_data.id in the
+     MA_DATA category.
 ;
-    _item.name                  '_ma_step_input.data_group_id'
+    _item.name                  '_ma_step_input.data_id'
     _item.category_id             ma_step_input
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_step_input.data_group_id'
-    _item_linked.parent_name    '_ma_data_group.group_id'
+    _item_linked.child_name     '_ma_step_input.data_id'
+    _item_linked.parent_name    '_ma_data.id'
      save_
 
 ##############################
@@ -2918,16 +2840,16 @@ save_ma_protocol_step
   ma_protocol_step.step_name
   ma_protocol_step.software_id
 
-   0 0 1 1 "template search" . 2
-   1 0 2 1 "template search" . 2 
-   2 0 3 1 "template search" . 2
-   3 0 4 1 "template search" . 2
-   4 1 1 1 "template selection" . 2
-   5 1 2 1 "template selection" . 2
-   6 1 3 1 "template selection" . 2
-   7 1 4 1 "template selection" . 2
-   8 2 0 1 "modeling" . 2
-   9 3 0 1 "model selection" . 2
+   0 0 0 1 "template search" . 2
+   1 0 1 2 "template search" . 2 
+   2 0 2 3 "template search" . 2
+   3 0 3 4 "template search" . 2
+   4 1 0 1 "template selection" . 2
+   5 1 1 2 "template selection" . 2
+   6 1 2 3 "template selection" . 2
+   7 1 3 4 "template selection" . 2
+   8 2 0 0 "modeling" . 2
+   9 3 0 0 "model selection" . 2
   # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -3050,7 +2972,7 @@ save_ma_step_output
         _ma_step_output.id
         _ma_step_output.protocol_id
         _ma_step_output.step_id
-        _ma_step_output.data_group_id
+        _ma_step_output.data_id
         0 0 0 0
         1 0 1 0
        # ...  abbreviated ...  
@@ -3098,18 +3020,18 @@ save__ma_step_output.step_id
     _item_linked.parent_name    '_ma_protocol_step.step_id'
      save_
 
-save__ma_step_output.data_group_id
+save__ma_step_output.data_id
     _item_description.description
-;    An identifier to the output dataset.
-     This data item is a pointer to _ma_data_group.group_id in the    
-     MA_DATA_GROUP category.
+;    An identifier to the output data.
+     This data item is a pointer to _ma_data.id in the    
+     MA_DATA category.
 ;
-    _item.name                  '_ma_step_output.data_group_id'
+    _item.name                  '_ma_step_output.data_id'
     _item.category_id             ma_step_output
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_step_output.data_group_id'
-    _item_linked.parent_name    '_ma_data_group.group_id'
+    _item_linked.child_name     '_ma_step_output.data_id'
+    _item_linked.parent_name    '_ma_data.id'
      save_
 
 #################
@@ -3119,7 +3041,7 @@ save__ma_step_output.data_group_id
 save_ma_criteria
     _category.description
 ;              Data items in the MA_CRITERIA category capture the selection
-               criteria applied to a particulat step input to obtain 
+               criteria applied to a particular step input to obtain 
                the corresponding step output. 
 ;
     _category.id                  ma_criteria
@@ -3140,8 +3062,8 @@ save_ma_criteria
 ;
         loop_
         ma_criteria.id
-        ma_criteria.protocol_id
-        ma_criteria.step_id
+        ma_criteria.step_input_id
+        ma_criteria.step_output_id
         ma_criteria.type
         ma_criteria.name
         ma_criteria.value
@@ -3167,37 +3089,37 @@ save__ma_criteria.id
     _item_type.code               int
      save_
 
-save__ma_criteria.protocol_id
+save__ma_criteria.step_input_id
     _item_description.description
-;    An identifier to the protocol.
-     This data item is a pointer to _ma_protocol_step.protocol_id in the
-     A_PROTOCOL_STEP category.
+;    An identifier to the step input.
+     This data item is a pointer to _ma_step_input.id in the
+     MA_STEP_INPUT category.
 ;
-    _item.name                  '_ma_criteria.protocol_id'
+    _item.name                  '_ma_criteria.step_input_id'
     _item.category_id             ma_criteria
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_criteria.protocol_id'
-    _item_linked.parent_name    '_ma_protocol_step.protocol_id'
+    _item_linked.child_name     '_ma_criteria.step_input_id'
+    _item_linked.parent_name    '_ma_step_input.id'
      save_
 
-save__ma_criteria.step_id
+save__ma_criteria.step_output_id
     _item_description.description
-;    An identifier to the protocol step.
-     This data item is a pointer to _ma_protocol_step.step_id in the
-     A_PROTOCOL_STEP category.
+;    An identifier to the step output.
+     This data item is a pointer to _ma_step_output.id in the
+     MA_STEP_OUTPUT category.
 ;
-    _item.name                  '_ma_criteria.step_id'
+    _item.name                  '_ma_criteria.step_output_id'
     _item.category_id             ma_criteria
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_criteria.step_id'
-    _item_linked.parent_name    '_ma_protocol_step.step_id'
+    _item_linked.child_name     '_ma_criteria.step_output_id'
+    _item_linked.parent_name    '_ma_step_output.id'
      save_
      
 save__ma_criteria.type
     _item_description.description
-;    The type of criteria used when selecting data with data_id.
+;    The type of criteria used in the modeling protocol step.
 ;
     _item.name                  '_ma_criteria.type'
     _item.category_id             ma_criteria
