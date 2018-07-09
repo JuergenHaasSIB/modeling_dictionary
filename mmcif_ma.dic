@@ -155,20 +155,19 @@ save_ma_model_list
     _ma_model_list.model_name
     _ma_model_list.model_group_name
     _ma_model_list.assembly_id
-    _ma_model_list.protocol_id
     _ma_model_list.data_id
     _ma_model_list.model_type
 
-    1    1      1    'Best scoring model'        'cluster1'     1   1  1   'Homology model'
-    2    2      1    '2nd Best scoring model'    'cluster1'     1   1  2   'Homology model'
-    3    3      1    '3rd Best scoring model'    'cluster1'     1   1  3   'Homology model'
-    4    4      1    '4th Best scoring model'    'cluster1'     1   1  4   'Homology model'
-    5    5      1    '5th Best scoring model'    'cluster1'     1   1  5   'Homology model'
-    6    6      2    'Best scoring model'        'cluster2'     1   1  6   'Homology model'
-    7    7      2    '2nd Best scoring model'    'cluster2'     1   1  7   'Homology model'
-    8    8      2    '3rd Best scoring model'    'cluster2'     1   1  8   'Homology model'
-    9    9      2    '4th Best scoring model'    'cluster2'     1   1  9   'Homology model'
-   10   10      2    '5th Best scoring model'    'cluster2'     1   1 10   'Homology model'
+    1    1      1    'Best scoring model'        'cluster1'     1    1   'Homology model'
+    2    2      1    '2nd Best scoring model'    'cluster1'     1    2   'Homology model'
+    3    3      1    '3rd Best scoring model'    'cluster1'     1    3   'Homology model'
+    4    4      1    '4th Best scoring model'    'cluster1'     1    4   'Homology model'
+    5    5      1    '5th Best scoring model'    'cluster1'     1    5   'Homology model'
+    6    6      2    'Best scoring model'        'cluster2'     1    6   'Homology model'
+    7    7      2    '2nd Best scoring model'    'cluster2'     1    7   'Homology model'
+    8    8      2    '3rd Best scoring model'    'cluster2'     1    8   'Homology model'
+    9    9      2    '4th Best scoring model'    'cluster2'     1    9   'Homology model'
+   10   10      2    '5th Best scoring model'    'cluster2'     1   10   'Homology model'
    # ...  abbreviated ... 
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -257,16 +256,6 @@ save__ma_model_list.assembly_id
     _item_type.code               int
      save_
 
-save__ma_model_list.protocol_id
-    _item_description.description
-;     An identifier to the modeling protocol that produced the model. 
-;
-    _item.name                  '_ma_model_list.protocol_id'
-    _item.category_id             ma_model_list
-    _item.mandatory_code          yes  
-    _item_type.code               int  
-     save_
-
 save__ma_model_list.model_type
     _item_description.description
 ;     The type of model. 
@@ -324,29 +313,17 @@ save_ma_template_details
     _ma_template_details.id
     _ma_template_details.group_id
     _ma_template_details.data_id
-    _ma_template_details.target_entity_id
-    _ma_template_details.pdb_code
-    _ma_template_details.pdb_entity_id
-    _ma_template_details.pdb_label_asym_id
-    _ma_template_details.pdb_seq_id_begin
-    _ma_template_details.pdb_seq_id_end
-    _ma_template_details.pdb_model_num
-    _ma_template_details.pdb_seq_one_letter_code
-    _ma_template_details.pdb_seq_one_letter_code_can
+    _ma_template_details.target_entity_id 
+    _ma_template_details.pdb_entry
+    _ma_template_details.seq_one_letter_code
 
-    1  1  3  1  5KKO 1 A 3 55 1
-   SNA(SE)KYFQIDELTLNA(SE)LRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
-
+    1  1  3  1  yes
    SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
 
-    2  1  4  1  5CX2 1 A 1 55 1
-   H(SE)(SE)D(SE)TQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAE(SE)LQVLEDIQTI 
-
+    2  1  4  1  yes
    HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
 
-    3  1  5  1  5DHA 1 A 1 53 1
-   (SE)KHHHHHHP(SE)SDYDIPTTENLYFQGA(SE)EPVEDRSIEISIRVDDFTKTGETVRY
-
+    3  1  5  1  yes
    KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
 
     # ...  abbreviated ...
@@ -403,84 +380,176 @@ save__ma_template_details.target_entity_id
     _item_linked.parent_name      '_ma_target_details.entity_id'
      save_
 
-save__ma_template_details.pdb_code
-    _item_description.description
-;     The 4-letter PDB CODE corresponding to the template.
-;
-    _item.name                  '_ma_template_details.pdb_code'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          yes
-    _item_type.code               line
-     save_
-
-save__ma_template_details.pdb_entity_id
-    _item_description.description
-;     The entity ID (from the PDB entry) corresponding to the template.
-;
-    _item.name                  '_ma_template_details.pdb_entity_id'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          yes
-    _item_type.code               code
-     save_
-
-save__ma_template_details.pdb_label_asym_id
-    _item_description.description
-;    The PDB database reference for the assigned chainId/strandId/asym_id corresponding to this template.
-;
-    _item.name                  '_ma_template_details.pdb_label_asym_id'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          yes
-    _item_type.code               code
-     save_
-
-save__ma_template_details.pdb_seq_id_begin
-    _item_description.description
-;     The leading residue index for the sequence segment used in this template.
-;
-    _item.name                  '_ma_template_details.pdb_seq_id_begin'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
-save__ma_template_details.pdb_seq_id_end
-    _item_description.description
-;     The trailing residue index for the sequence segment used in this template.
-;
-    _item.name                  '_ma_template_details.pdb_seq_id_end'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
-save__ma_template_details.pdb_model_num
-    _item_description.description
-;     The PDB model number.
-;
-    _item.name                  '_ma_template_details.pdb_model_num'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
-save__ma_template_details.pdb_seq_one_letter_code
+save__ma_template_details.seq_one_letter_code
     _item_description.description
 ;   Chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes. 
-    odifications and non-standard amino acids are included as three-letter codes within parentheses.
 ;
-    _item.name                  '_ma_template_details.pdb_seq_one_letter_code'
+    _item.name                  '_ma_template_details.seq_one_letter_code'
     _item.category_id             ma_template_details
     _item.mandatory_code          no
     _item_type.code               text
      save_
 
-save__ma_template_details.pdb_seq_one_letter_code_can
+save__ma_template_details.pdb_entry
+    _item_description.description
+;   A flag that indicates whether the template is a PDB entry. 
+;
+    _item.name                  '_ma_template_details.pdb_entry'
+    _item.category_id             ma_template_details
+    _item.mandatory_code          yes
+    _item_type.code               code
+    loop_
+    _item_enumeration.value
+    'yes'
+    'no'
+     save_
+
+#####################
+## MA_PDB_TEMPLATE ##
+#####################
+
+save_ma_pdb_template
+    _category.description
+;              Data items in the MA_PDB_TEMPLATE category record details about
+               the templates from the Protein Data Bank. 
+;
+    _category.id                  ma_pdb_template
+    _category.mandatory_code      no
+    _category_key.name            '_ma_pdb_template.template_id'
+    loop_
+    _category_group.id            'inclusive_group'
+                                  'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_pdb_template.template_id
+    _ma_pdb_template.pdb_code
+    _ma_pdb_template.pdb_entity_id
+    _ma_pdb_template.pdb_label_asym_id
+    _ma_pdb_template.pdb_seq_id_begin
+    _ma_pdb_template.pdb_seq_id_end
+    _ma_pdb_template.pdb_model_num
+    _ma_pdb_template.pdb_seq_one_letter_code
+    _ma_pdb_template.pdb_seq_one_letter_code_can
+
+    1  5KKO 1 A 3 55 1
+   SNA(SE)KYFQIDELTLNA(SE)LRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
+
+   SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
+
+    2  5CX2 1 A 1 55 1
+   H(SE)(SE)D(SE)TQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAE(SE)LQVLEDIQTI 
+
+   HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
+
+    3  5DHA 1 A 1 53 1
+   (SE)KHHHHHHP(SE)SDYDIPTTENLYFQGA(SE)EPVEDRSIEISIRVDDFTKTGETVRY
+
+   KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
+
+    # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_pdb_template
+     save_
+
+save__ma_pdb_template.template_id
+    _item_description.description
+;     A unique identifier for this template record.
+;
+    _item.name                  '_ma_pdb_template.template_id'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_pdb_template.template_id'
+    _item_linked.parent_name    '_ma_template_details.id'
+     save_
+
+save__ma_pdb_template.pdb_code
+    _item_description.description
+;     The 4-letter PDB CODE corresponding to the template.
+;
+    _item.name                  '_ma_pdb_template.pdb_code'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               line
+     save_
+
+save__ma_pdb_template.pdb_entity_id
+    _item_description.description
+;     The entity ID (from the PDB entry) corresponding to the template.
+;
+    _item.name                  '_ma_pdb_template.pdb_entity_id'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__ma_pdb_template.pdb_label_asym_id
+    _item_description.description
+;    The PDB database reference for the assigned chainId/strandId/asym_id corresponding to this template.
+;
+    _item.name                  '_ma_pdb_template.pdb_label_asym_id'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__ma_pdb_template.pdb_seq_id_begin
+    _item_description.description
+;     The leading residue index for the sequence segment used in this template.
+;
+    _item.name                  '_ma_pdb_template.pdb_seq_id_begin'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_pdb_template.pdb_seq_id_end
+    _item_description.description
+;     The trailing residue index for the sequence segment used in this template.
+;
+    _item.name                  '_ma_pdb_template.pdb_seq_id_end'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_pdb_template.pdb_model_num
+    _item_description.description
+;     The PDB model number.
+;
+    _item.name                  '_ma_pdb_template.pdb_model_num'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_pdb_template.pdb_seq_one_letter_code
+    _item_description.description
+;   Chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes. 
+    odifications and non-standard amino acids are included as three-letter codes within parentheses.
+;
+    _item.name                  '_ma_pdb_template.pdb_seq_one_letter_code'
+    _item.category_id             ma_pdb_template
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__ma_pdb_template.pdb_seq_one_letter_code_can
     _item_description.description
 ;   Cannonical chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes. 
     odifications are coded as the parent amino acid where possible. 
 ;
-    _item.name                  '_ma_template_details.pdb_seq_one_letter_code_can'
-    _item.category_id             ma_template_details
+    _item.name                  '_ma_pdb_template.pdb_seq_one_letter_code_can'
+    _item.category_id             ma_pdb_template
     _item.mandatory_code          no
     _item_type.code               text
      save_
@@ -513,20 +582,16 @@ save_ma_target_details
     _ma_target_details.id
     _ma_target_details.entity_id    
     _ma_target_details.data_id
-    _ma_target_details.seq_db_name 
-    _ma_target_details.seq_db_code   
-    _ma_target_details.seq_db_accession  
-    _ma_target_details.seq_db_isoform          
-    _ma_target_details.seq_db_align_begin 
-    _ma_target_details.seq_db_align_end
-    _ma_target_details.seq_db_one_letter_code  
+    _ma_target_detail.db_entry
+    _ma_target_details.one_letter_code
 
-    1 1 1 UNP B2RHG4_PORG3 B2RHG4  ?  26  51
-    EPVEDRSIEISIRVDDFTKTGETVRY
-
-    2 2 2 GB AE000513.1 11612676  ?  254393  254514
-    CACCCCCGUGCCCAUAGCACUGUGGAACCACCCCACCCCAUGCCGAACUGGGUCGUGAAACACAGCAGCGCCAAUGAUAC
+    1 1 1 yes 
+;   EPVEDRSIEISIRVDDFTKTGETVRY
+;
+    2 2 2 yes
+;   CACCCCCGUGCCCAUAGCACUGUGGAACCACCCCACCCCAUGCCGAACUGGGUCGUGAAACACAGCAGCGCCAAUGAUAC
     UCGGACCGCAGGGUCCCGGAAAAGUCGGUCAGCGCGGGGGUU
+;
 ;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -570,13 +635,92 @@ save__ma_target_details.data_id
     _item_linked.parent_name    '_ma_data.id'
      save_
 
-save__ma_target_details.db_name
+save__ma_target_details.ref_db_entry
+    _item_description.description
+;    A flag that represents whether the sequence is present in a
+     reference database. 
+;
+    _item.name                  '_ma_target_details.ref_db_entry'
+    _item.category_id             ma_target_details
+    _item.mandatory_code          yes
+    _item_type.code               code
+    loop_
+    _item_enumeration.value
+    'yes'
+    'no'
+     save_
+
+save__ma_target_details.seq_one_letter_code
+    _item_description.description
+;    Chemical sequence of the target expressed as string of one-letter
+     amino acid / nucleotide codes.
+;
+    _item.name                  '_ma_target_details.seq_one_letter_code'
+    _item.category_id             ma_target_details
+    _item.mandatory_code          yes
+    _item_type.code               text
+     save_
+
+##############################
+## MA_TARGET_REF_DB_DETAILS ##
+##############################
+
+save_ma_target_ref_db_details
+    _category.description
+;              Data items in the MA_TARGET_REF_DB_DETAILS category record details about
+               the reference databases for the target sequences.
+;
+    _category.id                  ma_target_ref_db_details
+    _category.mandatory_code      no
+    _category_key.name            '_ma_target_ref_db_details.target_id'
+    loop_
+    _category_group.id            'inclusive_group'
+                                  'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_target_ref_db_details.target_id
+    _ma_target_ref_db_details.seq_db_name 
+    _ma_target_ref_db_details.seq_db_code   
+    _ma_target_ref_db_details.seq_db_accession  
+    _ma_target_ref_db_details.seq_db_isoform          
+    _ma_target_ref_db_details.seq_db_align_begin 
+    _ma_target_ref_db_details.seq_db_align_end
+
+    1 UNP B2RHG4_PORG3 B2RHG4  ?  26  51
+    2 GB AE000513.1 11612676  ?  254393  254514
+;
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_target_ref_db_details
+   save_
+
+save__ma_target_ref_db_details.target_id
+    _item_description.description
+;     An identifier for the target. 
+;
+    _item.name                  '_ma_target_ref_db_details.target_id'
+    _item.category_id             ma_target_ref_db_details
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_target_ref_db_details.target_id'
+    _item_linked.parent_name    '_ma_target_details.id'
+     save_
+
+save__ma_target_ref_db_details.db_name
     _item_description.description
 ;              The name of the database containing reference information about
                this entity or biological unit.
 ;
-    _item.name                  '_ma_target_details.db_name'
-    _item.category_id            ma_target_details
+    _item.name                  '_ma_target_ref_db_details.db_name'
+    _item.category_id            ma_target_ref_db_details
     _item.mandatory_code          yes
     _item_type.code               line
     loop_
@@ -587,14 +731,14 @@ save__ma_target_details.db_name
       'Other'   'Other'
      save_
 
-save__ma_target_details.db_code
+save__ma_target_ref_db_details.db_code
     _item_description.description
 ;              The code for this entity or biological unit or for a closely
                related entity or biological unit in the named database.
                This can include the version number. 
 ;
-    _item.name                  '_ma_target_details.db_code'
-    _item.category_id             ma_target_details
+    _item.name                  '_ma_target_ref_db_details.db_code'
+    _item.category_id             ma_target_ref_db_details
     _item.mandatory_code          yes
     _item_type.code               line
     loop_
@@ -603,12 +747,12 @@ save__ma_target_details.db_code
       'AE000513.1'
      save_
 
-save__ma_target_details.db_accession
+save__ma_target_ref_db_details.db_accession
     _item_description.description
 ;              Accession code assigned by the reference database.
 ;
-    _item.name                  '_ma_target_details.db_accession'
-    _item.category_id             ma_target_details
+    _item.name                  '_ma_target_ref_db_details.db_accession'
+    _item.category_id             ma_target_ref_db_details
     _item.mandatory_code          yes
     _item_type.code               code
     loop_
@@ -618,57 +762,46 @@ save__ma_target_details.db_accession
       'B2RHG4'
      save_
 
-save__ma_target_details.db_isoform
+save__ma_target_ref_db_details.db_isoform
     _item_description.description
 ;  Database code assigned by the reference database for a sequence isoform.   An isoform sequence is an
    alternative protein sequence that can be generated from the same gene by a single or by a combination of
    biological events such as: alternative promoter usage, alternative splicing, alternative initiation
    and ribosomal frameshifting.
 ;
-    _item.name                  '_ma_target_details.db_isoform'
-    _item.category_id             ma_target_details
+    _item.name                  '_ma_target_ref_db_details.db_isoform'
+    _item.category_id             ma_target_ref_db_details
     _item.mandatory_code          no
     _item_type.code               code
     loop_
      _item_examples.case          'P29994-6'
       save_
 
-save__ma_target_details.seq_db_align_begin
+save__ma_target_ref_db_details.seq_db_align_begin
     _item_description.description
 ;
                Beginning index in the chemical sequence from the
                reference database.
 ;
-    _item.name                  '_ma_target_details.seq_db_align_begin'
-    _item.category_id             ma_target_details
+    _item.name                  '_ma_target_ref_db_details.seq_db_align_begin'
+    _item.category_id             ma_target_ref_db_details
     _item.mandatory_code          no
     _item_type.code               code
      loop_
     _item_examples.case         '1' '2'
      save_
 
-save__ma_target_details.seq_db_align_end
+save__ma_target_ref_db_details.seq_db_align_end
     _item_description.description
 ;    Ending index in the chemical sequence from the
      reference database.
 ;
-    _item.name                  '_ma_target_details.seq_db_align_end'
-    _item.category_id             ma_target_details
+    _item.name                  '_ma_target_ref_db_details.seq_db_align_end'
+    _item.category_id             ma_target_ref_db_details
     _item.mandatory_code          no
     _item_type.code               code
      loop_
     _item_examples.case         '105' '245'
-     save_
-
-save__ma_target_details.seq_db_one_letter_code
-    _item_description.description
-;              Refernce database chemical sequence expressed as string of one-letter
-               amino acid / nucleotide codes.
-;
-    _item.name                  '_ma_target_details.seq_db_one_letter_code'
-    _item.category_id             ma_target_details
-    _item.mandatory_code          yes
-    _item_type.code               text
      save_
 
 ########################
@@ -918,13 +1051,14 @@ save_ma_alignment_details
     _ma_alignment_details.software_id
     _ma_alignment_details.alignment_length
     _ma_alignment_details.alignment_type
-    _ma_alignment_details.e_value
+    _ma_alignment_details.score_type
+    _ma_alignment_details.score_value
     _ma_alignment_details.percent_sequence_identity
     _ma_alignment_details.sequence_identity_denominator
-    1 1 1 1  6  1  128 "coevolution MSA" 0.1 24.0 1
-    2 1 1 2  6  1  163 "coevolution MSA" 0.5 15.0 1 
-    3 1 1 3  6  1  139 "coevolution MSA" 0.1 21.0 1
-    4 2 2 4  7  1  385 "target-template pairwise alignment" 0.5 18.0 1
+    1 1 1 1  6  1  128 "coevolution MSA" 'HHblits e-value' 0.1 24.0 1
+    2 1 1 2  6  1  163 "coevolution MSA" 'HHblits e-value' 0.5 15.0 1 
+    3 1 1 3  6  1  139 "coevolution MSA" 'HHblits e-value' 0.1 21.0 1
+    4 2 2 4  7  1  385 "target-template pairwise alignment" 'HHblits e-value' 0.5 18.0 1
     # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1031,13 +1165,40 @@ save__ma_alignment_details.alignment_type
       'other'
      save_
 
-save__ma_alignment_details.e_value
+save__ma_alignment_details.alignment_mode
     _item_description.description
-;     The Expect value (E) is a parameter that describes the number of hits one can "expect" 
-      to see by chance when searching a database of a particular size. Essentially, the E value 
-      describes the random background noise.
+;     The alignment mode.
 ;
-    _item.name                  '_ma_alignment_details.e_value'
+    _item.name                  '_ma_alignment_details.alignment_mode'
+    _item.category_id             ma_alignment_details
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+      'global'
+      'local'
+     save_
+
+save__ma_alignment_details.score_type
+    _item_description.description
+;     The alignment score type.
+;
+    _item.name                  '_ma_alignment_details.score_type'
+    _item.category_id             ma_alignment_details
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+      'BLAST e-value'
+      'HHblits e-value'
+      'Other'
+     save_
+
+save__ma_alignment_details.score_value
+    _item_description.description
+;     The alignment score value. 
+;
+    _item.name                  '_ma_alignment_details.score_value'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          no
     _item_type.code               float
@@ -1536,6 +1697,83 @@ save__ma_data.name
     'Coevolution Data'
      save_
      
+###################
+## MA_DATA_GROUP ##
+###################
+
+save_ma_data_group
+    _category.description
+;              Data items in the MA_DATA_GROUP category describes the
+               collection of data into groups so that they can be used
+               efficiently in the MA_PROTOCOL_STEP category. 
+;
+    _category.id                  ma_data_group
+    _category.mandatory_code      yes
+     loop_
+    _category_key.name          '_ma_data_group.ordinal_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+        loop_
+        _ma_data_group.ordinal_id
+        _ma_data_group.group_id
+        _ma_data_group.data_id
+        0 1 2
+        1 1 3
+        2 1 4
+        3 2 3 
+        4 2 4
+        5 2 5 
+       # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_data_group
+     save_
+
+save__ma_data_group.ordinal_id
+    _item_description.description
+;    A unique identifier for a group of data.
+;
+    _item.name                  '_ma_data_group.ordinal_id'
+    _item.category_id             ma_data_group
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_data_group.group_id
+    _item_description.description
+;    An identifier for the group entry.
+;
+    _item.name                  '_ma_data_group.group_id'
+    _item.category_id             ma_data_group
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_data_group.data_id
+    _item_description.description
+;    The identifier for the data. 
+     This data item is a pointer to _ma_data.id
+     in the MA_DATA category. 
+;
+    _item.name                  '_ma_data_group.data_id'
+    _item.category_id             ma_data_group
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_data_group.data_id'
+    _item_linked.parent_name    '_ma_data.id'    
+     save_
+
 ###################
 ## MA_RESTRAINTS ##
 ###################
@@ -2863,15 +3101,15 @@ save_ma_protocol_step
 ;
 ;
   loop_
-  ma_protocol_step.ordinal_id
-  ma_protocol_step.protocol_id
-  ma_protocol_step.step_id
-  ma_protocol_step.assembly_id
-  ma_protocol_step.method_type
-  ma_protocol_step.step_name
-  ma_protocol_step.software_id
-  ma_protocol_step.input_data_id
-  ma_protocol_step.output_data_id
+  _ma_protocol_step.ordinal_id
+  _ma_protocol_step.protocol_id
+  _ma_protocol_step.step_id
+  _ma_protocol_step.assembly_id
+  _ma_protocol_step.method_type
+  _ma_protocol_step.step_name
+  _ma_protocol_step.software_id
+  _ma_protocol_step.input_data_group_id
+  _ma_protocol_step.output_data_group_id
 
    0 0 0 1 "template search" . 2   1  5
    1 0 1 2 "template search" . 2   2  6
@@ -2966,45 +3204,34 @@ save__ma_protocol_step.software_id
     _item_linked.parent_name      '_software.pdbx_ordinal'
      save_
 
-save__ma_protocol_step.input_data_id
+save__ma_protocol_step.input_data_group_id
     _item_description.description
-;   Identifier to the input data id. 
-    This data item is a pointer to _ma_data.id in the MA_DATA category.
+;   Identifier to the input data group id. 
+    This data item is a pointer to _ma_data_group.group_id in the 
+    MA_DATA_GROUP category.
 ;
-    _item.name                  '_ma_protocol_step.input_data_id'
+    _item.name                  '_ma_protocol_step.input_data_group_id'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_protocol_step.input_data_id'
-    _item_linked.parent_name      '_ma_data.id'
+    _item_linked.child_name       '_ma_protocol_step.input_data_group_id'
+    _item_linked.parent_name      '_ma_data_group.group_id'
      save_
 
-save__ma_protocol_step.output_data_id
+save__ma_protocol_step.output_data_group_id
     _item_description.description
-;   Identifier to the output data id. 
-    This data item is a pointer to _ma_data.id in the MA_DATA category. 
+;   Identifier to the output data group_id. 
+    This data item is a pointer to _ma_data_group.group_id in the 
+    MA_DATA_GROUP category.
 ;
-    _item.name                  '_ma_protocol_step.output_data_id'
+    _item.name                  '_ma_protocol_step.output_data_group_id'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name       '_ma_protocol_step.output_data_id'
-    _item_linked.parent_name      '_ma_data.id'
+    _item_linked.child_name       '_ma_protocol_step.output_data_group_id'
+    _item_linked.parent_name      '_ma_data_group.group_id'
      save_
  
-save__ma_protocol_step.criteria_id
-    _item_description.description
-;   Identifier to the criteria applied, if applicable.
-    This data item is a pointer to _ma_criteria.id in the MA_CRITERIA category.
-;
-    _item.name                  '_ma_protocol_step.criteria_id'
-    _item.category_id             ma_protocol_step
-    _item.mandatory_code          no
-    _item_type.code               int
-    _item_linked.child_name       '_ma_protocol_step.criteria_id'
-    _item_linked.parent_name      '_ma_criteria.id'
-     save_
-
 ######################
 ## MA_STEP_CRITERIA ##
 ######################
@@ -3032,15 +3259,16 @@ save_ma_step_criteria
 ;
 ;
         loop_
-        ma_step_criteria.id
-        ma_step_criteria.type
-        ma_step_criteria.name
-        ma_step_criteria.value
+        _ma_step_criteria.id
+        _ma_step_criteria.type
+        _ma_step_criteria.name
+        _ma_step_criteria.value
+        _ma_step_criteria.condition
         #target-template alignment
-        0  evalue "ranking based on hhblits evalue"  1e-100
-        1  coverage "template coverage based on hhblits"  0.82
-        2  resolution "resolution of experimentally determined structure" 2.30
-        3  rfree "free R-factor threshold" 0.21
+        0  evalue "ranking based on hhblits evalue"  1e-100     less
+        1  coverage "template coverage based on hhblits"  0.82  greater
+        2  resolution "resolution of experimentally determined structure" 2.30 less
+        3  rfree "free R-factor threshold" 0.21  less
          # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -3074,6 +3302,21 @@ save__ma_step_criteria.type
       'rfree'
       'other'
      save_ 
+
+save__ma_step_criteria.condition
+    _item_description.description
+;    The condition applied to the criteria. 
+;
+    _item.name                  '_ma_step_criteria.condition'
+    _item.category_id             ma_step_criteria
+    _item.mandatory_code          yes
+    _item_type.code               code
+    loop_
+     _item_enumeration.value
+      'less'
+      'greater'
+      'equal'
+     save_
 
 save__ma_step_criteria.name
     _item_description.description
