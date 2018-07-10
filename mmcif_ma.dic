@@ -2,7 +2,7 @@
 ## MODELING EXTENSION DICTIONARY ##
 ###################################
 
-# Version 1.1.2 9th July 2018
+# Version 1.1.3 10th July 2018
 # JH/BV
 
 ##BV: Will these definitions suffice for fragment assembly methods such as Rosetta?
@@ -23,7 +23,7 @@ data_mmcif_ma.dic
 
     _dictionary.title           mmcif_ma.dic
     _dictionary.datablock_id    mmcif_ma.dic
-    _dictionary.version         1.1.2
+    _dictionary.version         1.1.3
 #
      loop_
     _dictionary_history.version
@@ -40,6 +40,11 @@ data_mmcif_ma.dic
   Changes (jh/bv/jw/gt/sb)
   + Updated MA_MODEL_LIST, MA_STRUCT_ASSEMBLY, MA_PROTCOL_STEP
   + Removed MA_STEP_INPUT, MA_STEP_OUTPUT
+;
+  1.1.3   2018-07-10
+;
+  Changes (jh/bv/jw/gt/sb)
+  + Added MA_PDB_TEMPLATE, MA_TARGET_REF_DB_DETAILS, MA_DATA_GROUP
 ;
 
 #########################
@@ -535,7 +540,7 @@ save__ma_pdb_template.pdb_model_num
 save__ma_pdb_template.pdb_seq_one_letter_code
     _item_description.description
 ;   Chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes. 
-    odifications and non-standard amino acids are included as three-letter codes within parentheses.
+    Modifications and non-standard amino acids are included as three-letter codes within parentheses.
 ;
     _item.name                  '_ma_pdb_template.pdb_seq_one_letter_code'
     _item.category_id             ma_pdb_template
@@ -546,7 +551,7 @@ save__ma_pdb_template.pdb_seq_one_letter_code
 save__ma_pdb_template.pdb_seq_one_letter_code_can
     _item_description.description
 ;   Cannonical chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes. 
-    odifications are coded as the parent amino acid where possible. 
+    Modifications are coded as the parent amino acid where possible. 
 ;
     _item.name                  '_ma_pdb_template.pdb_seq_one_letter_code_can'
     _item.category_id             ma_pdb_template
@@ -582,8 +587,8 @@ save_ma_target_details
     _ma_target_details.id
     _ma_target_details.entity_id    
     _ma_target_details.data_id
-    _ma_target_detail.db_entry
-    _ma_target_details.one_letter_code
+    _ma_target_detail.ref_db_entry
+    _ma_target_details.seq_one_letter_code
 
     1 1 1 yes 
 ;   EPVEDRSIEISIRVDDFTKTGETVRY
@@ -1753,6 +1758,8 @@ save__ma_data_group.ordinal_id
 save__ma_data_group.group_id
     _item_description.description
 ;    An identifier for the group entry.
+     If data does not need to be grouped, then _ma_data_group.group_id
+     is the same as _ma_data_group.data_id. 
 ;
     _item.name                  '_ma_data_group.group_id'
     _item.category_id             ma_data_group
@@ -3104,23 +3111,22 @@ save_ma_protocol_step
   _ma_protocol_step.ordinal_id
   _ma_protocol_step.protocol_id
   _ma_protocol_step.step_id
-  _ma_protocol_step.assembly_id
   _ma_protocol_step.method_type
   _ma_protocol_step.step_name
   _ma_protocol_step.software_id
   _ma_protocol_step.input_data_group_id
   _ma_protocol_step.output_data_group_id
 
-   0 0 0 1 "template search" . 2   1  5
-   1 0 1 2 "template search" . 2   2  6
-   2 0 2 3 "template search" . 2   3  7
-   3 0 3 4 "template search" . 2   4  8
-   4 1 0 1 "template selection" . 2  5  9
-   5 1 1 2 "template selection" . 2  6 10
-   6 1 2 3 "template selection" . 2  7 11
-   7 1 3 4 "template selection" . 2  8 12
-   8 2 0 0 "modeling" . 2   13   14
-   9 3 0 0 "model selection" . 2   14  15
+   0 0 0 "template search" . 2   1  5
+   1 0 1 "template search" . 2   2  6
+   2 0 2 "template search" . 2   3  7
+   3 0 3 "template search" . 2   4  8
+   4 1 0 "template selection" . 2  5  9
+   5 1 1 "template selection" . 2  6 10
+   6 1 2 "template selection" . 2  7 11
+   7 1 3 "template selection" . 2  8 12
+   8 2 0 "modeling" . 2   13   14
+   9 3 0 "model selection" . 2   14  15
   # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -3180,11 +3186,11 @@ save__ma_protocol_step.method_type
     'other'
      save_
 
-save__ma_protocol_step.name
+save__ma_protocol_step.step_name
     _item_description.description
 ;   A name for the protocol step.
 ;
-    _item.name                  '_ma_protocol_step.name'
+    _item.name                  '_ma_protocol_step.step_name'
     _item.category_id             ma_protocol_step
     _item.mandatory_code          no
     _item_type.code               line
