@@ -839,7 +839,7 @@ save_ma_target_struct
     B  1
     C  1
     D  1
-
+;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
    _pdbx_category_context.category_id  ma_target_struct
@@ -3539,11 +3539,11 @@ save__ma_protocol_step.output_data_group_id
 ## ATOM_SITE ##
 ###############
 
-save__atom_site.local_model_quality_score
+save__atom_site.ma_local_model_quality_score
     _item_description.description
 ;     The local model quality score for the atom. 
 ;
-    _item.name                  '_atom_site.local_model_quality_score'
+    _item.name                  '_atom_site.ma_local_model_quality_score'
     _item.category_id             atom_site
     _item.mandatory_code          no
     _item_type.code               float
