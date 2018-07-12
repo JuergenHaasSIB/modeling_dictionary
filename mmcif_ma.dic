@@ -821,12 +821,12 @@ save_ma_target_entity
     _ma_target_entity.seq_one_letter_code
 
     1 1 yes 
-;   EPVEDRSIEISIRVDDFTKTGETVRY
-;
+    EPVEDRSIEISIRVDDFTKTGETVRY
+
     2 2 yes
-;   CACCCCCGUGCCCAUAGCACUGUGGAACCACCCCACCCCAUGCCGAACUGGGUCGUGAAACACAGCAGCGCCAAUGAUAC
+    CACCCCCGUGCCCAUAGCACUGUGGAACCACCCCACCCCAUGCCGAACUGGGUCGUGAAACACAGCAGCGCCAAUGAUAC
     UCGGACCGCAGGGUCCCGGAAAAGUCGGUCAGCGCGGGGGUU
-;
+ 
 ;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -956,7 +956,7 @@ save_ma_target_ref_db_details
 ;
     _category.id                  ma_target_ref_db_details
     _category.mandatory_code      no
-    _category_key.name            '_ma_target_ref_db_details.target_id'
+    _category_key.name            '_ma_target_ref_db_details.target_entity_id'
     loop_
     _category_group.id            'inclusive_group'
                                   'ma_group'
