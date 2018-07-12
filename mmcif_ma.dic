@@ -57,7 +57,7 @@ data_mmcif_ma.dic
   Changes (jh/bv/jw/gt/sb)
   + Revised MA_TARGET_TEMPLATE_MAPPING, MA_ALIGNMENT_DETAILS, MA_TEMPLATE_DETAILS 
   + Revised MA_PDB_TEMPLATE, MA_TEMPLATE_COORD
-  + Added MA_TEMPLATE_SEGMENT
+  + Added MA_TEMPLATE_POLY_SEGMENT
 ;
   1.1.6   2018-07-12
 ;
@@ -335,26 +335,13 @@ save_ma_template_details
 ;
     loop_
     _ma_template_details.id
-    _ma_template_details.pdb_entry
-    _ma_template_details.asym_id
-    _ma_template_details.full_seq_one_letter_code
-    _ma_template_details.full_seq_one_letter_code_can
-
-    1  yes A
-;SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
-;
-;SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
-;
-    2  yes A
-;HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
-;
-;HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
-;
-    3  yes A
-;KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
-;
-;KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
-;
+    _ma_template_details.ref_db_entry
+    _ma_template_details.type
+    _ma_template_details.trans_matrix_id
+    _ma_template_details.data_id
+    1  yes polymer  1 1
+    2  yes polymer  1 1
+    3  yes polymer  1 1
     # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -372,43 +359,27 @@ save__ma_template_details.id
     _item_type.code               int
      save_
 
-save__ma_template_details.asym_id
+save__ma_template_details.type
     _item_description.description
-;    The chainId/strandId/asym_id corresponding to this template.
+;    The type of template. 
 ;
-    _item.name                  '_ma_template_details.asym_id'
+    _item.name                  '_ma_template_details.type'
     _item.category_id             ma_template_details
     _item.mandatory_code          yes
     _item_type.code               code
+    loop_
+    _item_enumeration.value
+    'polymer'
+    'non-polymer'
+    'water'
+    'macrolide'
      save_
 
-save__ma_template_details.seq_one_letter_code
+save__ma_template_details.ref_db_entry
     _item_description.description
-;   Chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes.
-    Modifications and non-standard amino acids are included as three-letter codes within parentheses.
+;   A flag that indicates whether the template is obtained from a reference database. 
 ;
-    _item.name                  '_ma_template_details.seq_one_letter_code'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          no
-    _item_type.code               text
-     save_
-
-save__ma_template_details.seq_one_letter_code_can
-    _item_description.description
-;   The canonical chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes.
-    Modifications are coded as the parent amino acid / nucleotide where possible.
-;
-    _item.name                  '_ma_template_details.seq_one_letter_code_can'
-    _item.category_id             ma_template_details
-    _item.mandatory_code          no
-    _item_type.code               text
-     save_
-
-save__ma_template_details.pdb_entry
-    _item_description.description
-;   A flag that indicates whether the template is a PDB entry. 
-;
-    _item.name                  '_ma_template_details.pdb_entry'
+    _item.name                  '_ma_template_details.ref_db_entry'
     _item.category_id             ma_template_details
     _item.mandatory_code          yes
     _item_type.code               code
@@ -418,125 +389,45 @@ save__ma_template_details.pdb_entry
     'no'
      save_
 
-#########################
-## MA_TEMPLATE_SEGMENT ##
-#########################
-
-save_ma_template_segment
-    _category.description
-;              Data items in the MA_TEMPLATE_SEGMENT category record details about
-               the template segments used in the modeling
-;
-    _category.id                  ma_template_segment
-    _category.mandatory_code      no
-    _category_key.name            '_ma_template_segment.id'
-    loop_
-    _category_group.id            'inclusive_group'
-                                  'ma_group'
-    loop_
-    _category_examples.detail
-    _category_examples.case
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-;
-    Example 1 -
-;
-;
-    loop_
-    _ma_template_segment.id
-    _ma_template_segment.template_id
-    _ma_template_segment.data_id 
-    _ma_template_segment.template_residue_number_begin
-    _ma_template_segment.template_residue_number_end
-    _ma_template_segment.segment_length
-
-    1  1  3 1 53 53  
-    2  2  4 1 60 60  
-    # ...  abbreviated ...
-;
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_template_segment
-     save_
-
-save__ma_template_segment.id
-    _item_description.description
-;     A unique identifier for the template segment used in the modeling. 
-;
-    _item.name                  '_ma_template_segment.id'
-    _item.category_id             ma_template_segment
-    _item.mandatory_code          yes
-    _item_type.code               int
-     save_
-
-save__ma_template_segment.template_id
-    _item_description.description
-;     An identifier to the full template. 
-      This data item is a pointer to _ma_template_details.id
-      in the MA_TEMPLATE_DETAILS category. 
-;
-    _item.name                  '_ma_template_segment.template_id'
-    _item.category_id             ma_template_segment
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name     '_ma_template_segment.template_id'
-    _item_linked.parent_name    '_ma_template_details.id'
-     save_
-
-save__ma_template_segment.data_id
+save__ma_template_details.data_id
     _item_description.description
 ;     The data_id identifier. This data item is a pointer to
       _ma_data.id in the MA_DATA category.
 ;
-    _item.name                  '_ma_template_segment.data_id'
-    _item.category_id             ma_template_segment
+    _item.name                  '_ma_template_details.data_id'
+    _item.category_id             ma_template_details
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_template_segment.data_id'
+    _item_linked.child_name     '_ma_template_details.data_id'
     _item_linked.parent_name    '_ma_data.id'
      save_
 
-save__ma_template_segment.template_residue_number_begin
+save__ma_template_details.trans_matrix_id
     _item_description.description
-;     The leading residue index for the template segment in the template structure.
+;     The identifier to the transformation matrix applied to the template
+      in order to generate the structural template used in the current modeling.
+      An identify matrix should be reference in case of no transformation. 
 ;
-    _item.name                  '_ma_template_segment.template_residue_number_begin'
-    _item.category_id             ma_template_segment
-    _item.mandatory_code          no
+    _item.name                  '_ma_template_details.trans_matrix_id'
+    _item.category_id             ma_template_details
+    _item.mandatory_code          yes
     _item_type.code               int
+    _item_linked.child_name     '_ma_template_details.trans_matrix_id'
+    _item_linked.parent_name    '_ma_template_trans_matrix.id'
      save_
 
-save__ma_template_segment.template_residue_number_end
-    _item_description.description
-;     The trailing residue index for the template segment in the template structure.
-;
-    _item.name                  '_ma_template_segment.template_residue_number_end'
-    _item.category_id             ma_template_segment
-    _item.mandatory_code          no
-    _item_type.code               int
-     save_
+######################
+## MA_TEMPLATE_POLY ##
+######################
 
-save__ma_template_segment.segment_length
-    _item_description.description
-;     The length of the template segment. 
-;
-    _item.name                  '_ma_template_segment.segment_length'
-    _item.category_id             ma_template_segment
-    _item.mandatory_code          no   
-    _item_type.code               int  
-     save_
-
-#####################
-## MA_PDB_TEMPLATE ##
-#####################
-
-save_ma_pdb_template
+save_ma_template_poly
     _category.description
-;              Data items in the MA_PDB_TEMPLATE category record details about
-               the templates from the Protein Data Bank. 
+;              Data items in the MA_TEMPLATE_POLY category record details about
+               the polymeric templates.
 ;
-    _category.id                  ma_pdb_template
+    _category.id                  ma_template_poly
     _category.mandatory_code      no
-    _category_key.name            '_ma_pdb_template.template_id'
+    _category_key.name            '_ma_template_poly.template_id'
     loop_
     _category_group.id            'inclusive_group'
                                   'ma_group'
@@ -549,90 +440,295 @@ save_ma_pdb_template
 ;
 ;
     loop_
-    _ma_pdb_template.template_id
-    _ma_pdb_template.pdb_code
-    _ma_pdb_template.pdb_entity_id
-    _ma_pdb_template.pdb_model_num
-    _ma_pdb_template.trans_matrix_id
+    _ma_template_poly.template_id
+    _ma_template_poly.asym_id
+    _ma_template_poly.entity_id
+    _ma_template_poly.model_num
+    _ma_template_poly.full_seq_one_letter_code
+    _ma_template_poly.full_seq_one_letter_code_can
+    1  A  1  1
+;SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
+;
+;SNAKYFQIDELTLNALRITTIESLTPEQRLELIKAHLLNIKTPSDDNEPWDEF
+;
+    2  A  1  1
+;HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
+;
+;HDTQQEIFDKQRRLQELSEKVRTCHQEISALRKALQEKEAELQVLEDIQTI
+;
+    3  A  1  1
+;KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
+;
+;KHHHHHHPSDYDIPTTENLYFQGAEPVEDRSIEISIRVDDFTKTGETVRY
+;
+    # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_template_poly
+     save_
 
-    1  5KKO 1 1 1
-    2  5CX2 1 1 1
-    3  5DHA 1 1 1
+save__ma_template_poly.template_id
+    _item_description.description
+;     A unique identifier for the template.
+      This data item is a pointer to _ma_template_details.id
+      in the MA_TEMPLATE_DETAILS caategory. 
+;
+    _item.name                  '_ma_template_poly.template_id'
+    _item.category_id             ma_template_poly
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_template_poly.template_id'
+    _item_linked.parent_name    '_ma_template_details.id'
+     save_
+
+save__ma_template_poly.asym_id
+    _item_description.description
+;     The asym ID corresponding to the template.
+;   
+    _item.name                  '_ma_template_poly.asym_id'
+    _item.category_id             ma_template_poly
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+save__ma_template_poly.entity_id
+    _item_description.description
+;     The entity ID corresponding to the template.
+;  
+    _item.name                  '_ma_template_poly.entity_id'
+    _item.category_id             ma_template_poly
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__ma_template_poly.model_num
+    _item_description.description
+;     The model number.
+;
+    _item.name                  '_ma_template_poly.model_num'
+    _item.category_id             ma_template_poly
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_template_poly.seq_one_letter_code
+    _item_description.description
+;   Chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes.
+    Modifications and non-standard amino acids are included as three-letter codes within parentheses.
+;
+    _item.name                  '_ma_template_poly.seq_one_letter_code'
+    _item.category_id             ma_template_poly
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__ma_template_poly.seq_one_letter_code_can
+    _item_description.description
+;   The canonical chemical sequence of the template expressed as string of one-letter amino acid / nucleotide codes.
+    Modifications are coded as the parent amino acid / nucleotide where possible.
+;
+    _item.name                  '_ma_template_poly.seq_one_letter_code_can'
+    _item.category_id             ma_template_poly
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+##############################
+## MA_TEMPLATE_POLY_SEGMENT ##
+##############################
+
+save_ma_template_poly_segment
+    _category.description
+;              Data items in the MA_TEMPLATE_POLY_SEGMENT category record details about
+               the template segments used in the modeling
+;
+    _category.id                  ma_template_poly_segment
+    _category.mandatory_code      no
+    _category_key.name            '_ma_template_poly_segment.id'
+    loop_
+    _category_group.id            'inclusive_group'
+                                  'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_template_poly_segment.id
+    _ma_template_poly_segment.template_id
+    _ma_template_poly_segment.template_residue_number_begin
+    _ma_template_poly_segment.template_residue_number_end
+    _ma_template_poly_segment.segment_length
+
+    1  1  1 53 53  
+    2  2  1 60 60  
+    # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_template_poly_segment
+     save_
+
+save__ma_template_poly_segment.id
+    _item_description.description
+;     A unique identifier for the template segment used in the modeling. 
+;
+    _item.name                  '_ma_template_poly_segment.id'
+    _item.category_id             ma_template_poly_segment
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_template_poly_segment.template_id
+    _item_description.description
+;     An identifier to the full template. 
+      This data item is a pointer to _ma_template_poly.template_id
+      in the MA_TEMPLATE_POLY category. 
+;
+    _item.name                  '_ma_template_poly_segment.template_id'
+    _item.category_id             ma_template_poly_segment
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_template_poly_segment.template_id'
+    _item_linked.parent_name    '_ma_template_poly.template_id'
+     save_
+
+save__ma_template_poly_segment.template_residue_number_begin
+    _item_description.description
+;     The leading residue index for the template segment in the template structure.
+;
+    _item.name                  '_ma_template_poly_segment.template_residue_number_begin'
+    _item.category_id             ma_template_poly_segment
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_template_poly_segment.template_residue_number_end
+    _item_description.description
+;     The trailing residue index for the template segment in the template structure.
+;
+    _item.name                  '_ma_template_poly_segment.template_residue_number_end'
+    _item.category_id             ma_template_poly_segment
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_template_poly_segment.segment_length
+    _item_description.description
+;     The length of the template segment. 
+;
+    _item.name                  '_ma_template_poly_segment.segment_length'
+    _item.category_id             ma_template_poly_segment
+    _item.mandatory_code          no   
+    _item_type.code               int  
+     save_
+
+################################
+## MA_TEMPLATE_REF_DB_DETAILS ##
+################################
+
+save_ma_template_ref_db_details
+    _category.description
+;              Data items in the MA_TEMPLATE_REF_DB_DETAILS category record details about
+               the templates from the reference database. 
+;
+    _category.id                  ma_template_ref_db_details
+    _category.mandatory_code      no
+    _category_key.name            '_ma_template_ref_db_details.template_id'
+    loop_
+    _category_group.id            'inclusive_group'
+                                  'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_template_ref_db_details.template_id
+    _ma_template_ref_db_details.db_name
+    _ma_template_ref_db_details.db_accession_code
+
+    1  PDB 5KKO 
+    2  PDB 5CX2 
+    3  PDB 5DHA
 
     # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_pdb_template
+   _pdbx_category_context.category_id  ma_template_ref_db_details
      save_
 
-save__ma_pdb_template.template_id
+save__ma_template_ref_db_details.template_id
     _item_description.description
 ;     A unique identifier for this template record.
 ;
-    _item.name                  '_ma_pdb_template.template_id'
-    _item.category_id             ma_pdb_template
+    _item.name                  '_ma_template_ref_db_details.template_id'
+    _item.category_id             ma_template_ref_db_details
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_pdb_template.template_id'
+    _item_linked.child_name     '_ma_template_ref_db_details.template_id'
     _item_linked.parent_name    '_ma_template_details.id'
      save_
 
-save__ma_pdb_template.pdb_code
+save__ma_template_ref_db_details.db_name
     _item_description.description
-;     The 4-letter PDB CODE corresponding to the template.
+;     The name of the reference database.
 ;
-    _item.name                  '_ma_pdb_template.pdb_code'
-    _item.category_id             ma_pdb_template
+    _item.name                  '_ma_template_ref_db_details.db_name'
+    _item.category_id             ma_template_ref_db_details
+    _item.mandatory_code          yes  
+    _item_type.code               code 
+    loop_
+    _item_enumeration.value
+    'PDB'       'Protein Data Bank'
+    'PDB-Dev'   'PDB-Dev'
+    'MA'        'Model Archive'
+    'CSD'       'Cambridge Structural Database'
+    'Other'     'Other'
+     save_
+
+save__ma_template_ref_db_details.db_name_other_details
+    _item_description.description
+;     The name of the other reference database.
+;   
+    _item.name                  '_ma_template_ref_db_details.db_name_other_details'
+    _item.category_id             ma_template_ref_db_details
     _item.mandatory_code          no
+    _item_type.code               line  
+     save_
+
+save__ma_template_ref_db_details.db_accession_code
+    _item_description.description
+;     The accession code corresponding to the reference database entry.
+;
+    _item.name                  '_ma_template_ref_db_details.db_accession_code'
+    _item.category_id             ma_template_ref_db_details
+    _item.mandatory_code          yes
     _item_type.code               line
      save_
 
-save__ma_pdb_template.pdb_entity_id
-    _item_description.description
-;     The entity ID (from the PDB entry) corresponding to the template.
-;
-    _item.name                  '_ma_pdb_template.pdb_entity_id'
-    _item.category_id             ma_pdb_template
-    _item.mandatory_code          no
-    _item_type.code               code
-     save_
+##############################
+## MA_TEMPLATE_TRANS_MATRIX ##
+##############################
 
-save__ma_pdb_template.pdb_model_num
-    _item_description.description
-;     The PDB model number.
-;
-    _item.name                  '_ma_pdb_template.pdb_model_num'
-    _item.category_id             ma_pdb_template
-    _item.mandatory_code          no
-    _item_type.code               int
-     save_
-
-save__ma_pdb_template.trans_matrix_id
-    _item_description.description
-;     The identifier to the transformation matrix applied to the PDB template
-      in order to generate the structural template used in the current modeling. 
-;
-    _item.name                  '_ma_pdb_template.trans_matrix_id'
-    _item.category_id             ma_pdb_template
-    _item.mandatory_code          no
-    _item_type.code               int
-     save_
-
-##################################
-## MA_PDB_TEMPLATE_TRANS_MATRIX ##
-##################################
-
-save_ma_pdb_template_trans_matrix
+save_ma_template_trans_matrix
     _category.description
-;              Data items in the MA_PDB_TEMPLATE_TRANS_MATRIX category records the
-               details of the transormatrix matrix applied to the PDB template
+;              Data items in the MA_TEMPLATE_TRANS_MATRIX category records the
+               details of the transormatrix matrix applied to the template
                to generate the structural template used in the current modeling. 
 ;
-    _category.id                  ma_pdb_template_trans_matrix
+    _category.id                  ma_template_trans_matrix
     _category.mandatory_code      no
      loop_
-    _category_key.name          '_ma_pdb_template_trans_matrix.id'
+    _category_key.name          '_ma_template_trans_matrix.id'
 
     loop_
     _category_group.id           'inclusive_group'
@@ -645,153 +741,153 @@ save_ma_pdb_template_trans_matrix
     Example 1 -
 ;
 ;
-    _ma_pdb_template_trans_matrix.id                                1
-    _ma_pdb_template_trans_matrix.rot_matrix[1][1]                1.0
-    _ma_pdb_template_trans_matrix.rot_matrix[2][1]                0.0
-    _ma_pdb_template_trans_matrix.rot_matrix[3][1]                0.0
-    _ma_pdb_template_trans_matrix.rot_matrix[1][2]                0.0
-    _ma_pdb_template_trans_matrix.rot_matrix[2][2]                1.0
-    _ma_pdb_template_trans_matrix.rot_matrix[3][2]                0.0
-    _ma_pdb_template_trans_matrix.rot_matrix[1][3]                0.0
-    _ma_pdb_template_trans_matrix.rot_matrix[2][3]                0.0
-    _ma_pdb_template_trans_matrix.rot_matrix[3][3]                1.0
-    _ma_pdb_template_trans_matrix.tr_vector[1]                    0.0
-    _ma_pdb_template_trans_matrix.tr_vector[2]                    0.0
-    _ma_pdb_template_trans_matrix.tr_vector[3]                    0.0
+    _ma_template_trans_matrix.id                                1
+    _ma_template_trans_matrix.rot_matrix[1][1]                1.0
+    _ma_template_trans_matrix.rot_matrix[2][1]                0.0
+    _ma_template_trans_matrix.rot_matrix[3][1]                0.0
+    _ma_template_trans_matrix.rot_matrix[1][2]                0.0
+    _ma_template_trans_matrix.rot_matrix[2][2]                1.0
+    _ma_template_trans_matrix.rot_matrix[3][2]                0.0
+    _ma_template_trans_matrix.rot_matrix[1][3]                0.0
+    _ma_template_trans_matrix.rot_matrix[2][3]                0.0
+    _ma_template_trans_matrix.rot_matrix[3][3]                1.0
+    _ma_template_trans_matrix.tr_vector[1]                    0.0
+    _ma_template_trans_matrix.tr_vector[2]                    0.0
+    _ma_template_trans_matrix.tr_vector[3]                    0.0
 ;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
    _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_pdb_template_trans_matrix
+   _pdbx_category_context.category_id  ma_template_trans_matrix
      save_
 
-save__ma_pdb_template_trans_matrix.id
+save__ma_template_trans_matrix.id
     _item_description.description
 ;     A unique identifier for the transformation matrix. 
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.id'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.id'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[1][1]
+save__ma_template_trans_matrix.rot_matrix[1][1]
     _item_description.description
 ;     Data item [1][1] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[1][1]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[1][1]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[2][1]
+save__ma_template_trans_matrix.rot_matrix[2][1]
     _item_description.description
 ;     Data item [2][1] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[2][1]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[2][1]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[3][1]
+save__ma_template_trans_matrix.rot_matrix[3][1]
     _item_description.description
 ;     Data item [3][1] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[3][1]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[3][1]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[1][2]
+save__ma_template_trans_matrix.rot_matrix[1][2]
     _item_description.description
 ;     Data item [1][2] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[1][2]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[1][2]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[2][2]
+save__ma_template_trans_matrix.rot_matrix[2][2]
     _item_description.description
 ;     Data item [2][2] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[2][2]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[2][2]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[3][2]
+save__ma_template_trans_matrix.rot_matrix[3][2]
     _item_description.description
 ;     Data item [3][2] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[3][2]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[3][2]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[1][3]
+save__ma_template_trans_matrix.rot_matrix[1][3]
     _item_description.description
 ;     Data item [1][3] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[1][3]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[1][3]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[2][3]
+save__ma_template_trans_matrix.rot_matrix[2][3]
     _item_description.description
 ;     Data item [2][3] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[2][3]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[2][3]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.rot_matrix[3][3]
+save__ma_template_trans_matrix.rot_matrix[3][3]
     _item_description.description
 ;     Data item [3][3] of the rotation matrix.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.rot_matrix[3][3]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.rot_matrix[3][3]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.tr_vector[1]
+save__ma_template_trans_matrix.tr_vector[1]
     _item_description.description
 ;     Data item [1] of the tranlation vector.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.tr_vector[1]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.tr_vector[1]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.tr_vector[2]
+save__ma_template_trans_matrix.tr_vector[2]
     _item_description.description
 ;     Data item [2] of the tranlation vector.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.tr_vector[2]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.tr_vector[2]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
 
-save__ma_pdb_template_trans_matrix.tr_vector[3]
+save__ma_template_trans_matrix.tr_vector[3]
     _item_description.description
 ;     Data item [3] of the tranlation vector.
 ;
-    _item.name                  '_ma_pdb_template_trans_matrix.tr_vector[3]'
-    _item.category_id             ma_pdb_template_trans_matrix
+    _item.name                  '_ma_template_trans_matrix.tr_vector[3]'
+    _item.category_id             ma_template_trans_matrix
     _item.mandatory_code          no
     _item_type.code               float
      save_
@@ -824,14 +920,10 @@ save_ma_target_entity
     _ma_target_entity.entity_id    
     _ma_target_entity.data_id
     _ma_target_entity.ref_db_entry
-    _ma_target_entity.seq_one_letter_code
 
     1 1 yes 
-    EPVEDRSIEISIRVDDFTKTGETVRY
 
     2 2 yes
-    CACCCCCGUGCCCAUAGCACUGUGGAACCACCCCACCCCAUGCCGAACUGGGUCGUGAAACACAGCAGCGCCAAUGAUAC
-    UCGGACCGCAGGGUCCCGGAAAAGUCGGUCAGCGCGGGGGUU
  
 ;
 
@@ -879,17 +971,6 @@ save__ma_target_entity.ref_db_entry
     _item_enumeration.value
     'yes'
     'no'
-     save_
-
-save__ma_target_entity.seq_one_letter_code
-    _item_description.description
-;    The full chemical sequence of the target expressed as string of one-letter
-     amino acid / nucleotide codes.
-;
-    _item.name                  '_ma_target_entity.seq_one_letter_code'
-    _item.category_id             ma_target_entity
-    _item.mandatory_code          yes
-    _item_type.code               text
      save_
 
 ######################
@@ -976,9 +1057,9 @@ save_ma_target_ref_db_details
 ;
     loop_
     _ma_target_ref_db_details.target_entity_id
-    _ma_target_ref_db_details.seq_db_name 
-    _ma_target_ref_db_details.seq_db_code   
-    _ma_target_ref_db_details.seq_db_accession  
+    _ma_target_ref_db_details.db_name 
+    _ma_target_ref_db_details.db_code   
+    _ma_target_ref_db_details.db_accession  
     _ma_target_ref_db_details.seq_db_isoform          
     _ma_target_ref_db_details.seq_db_align_begin 
     _ma_target_ref_db_details.seq_db_align_end
@@ -994,7 +1075,7 @@ save_ma_target_ref_db_details
 
 save__ma_target_ref_db_details.target_entity_id
     _item_description.description
-;     An identifier for the target. 
+;     An identifier for the target entity. 
 ;
     _item.name                  '_ma_target_ref_db_details.target_entity_id'
     _item.category_id             ma_target_ref_db_details
@@ -1018,6 +1099,17 @@ save__ma_target_ref_db_details.db_name
     _item_enumeration.detail
       'UNP'     'UniProt'
       'GB'      'Genbank'
+      'Other'   'Other'
+     save_
+
+save__ma_target_ref_db_details.db_name_other_details
+    _item_description.description
+;    The other database name. 
+;
+    _item.name                  '_ma_target_ref_db_details.db_name_other_details'
+    _item.category_id             ma_target_ref_db_details
+    _item.mandatory_code          no
+    _item_type.code               line
      save_
 
 save__ma_target_ref_db_details.db_code
@@ -1051,14 +1143,14 @@ save__ma_target_ref_db_details.db_accession
       'B2RHG4'
      save_
 
-save__ma_target_ref_db_details.db_isoform
+save__ma_target_ref_db_details.seq_db_isoform
     _item_description.description
 ;  Database code assigned by the reference database for a sequence isoform.   An isoform sequence is an
    alternative protein sequence that can be generated from the same gene by a single or by a combination of
    biological events such as: alternative promoter usage, alternative splicing, alternative initiation
    and ribosomal frameshifting.
 ;
-    _item.name                  '_ma_target_ref_db_details.db_isoform'
+    _item.name                  '_ma_target_ref_db_details.seq_db_isoform'
     _item.category_id             ma_target_ref_db_details
     _item.mandatory_code          no
     _item_type.code               code
@@ -1145,15 +1237,15 @@ save__ma_target_template_mapping.id
 save__ma_target_template_mapping.template_segment_id
     _item_description.description
 ;     An identifier to the template segment. 
-      This data item is a pointer to _ma_template_segment.id
-      in the MA_TEMPLATE_SEGMENT category. 
+      This data item is a pointer to _ma_template_poly_segment.id
+      in the MA_TEMPLATE_POLY_SEGMENT category. 
 ;
     _item.name                  '_ma_target_template_mapping.template_segment_id'
     _item.category_id             ma_target_template_mapping
     _item.mandatory_code          yes
     _item_type.code               int
     _item_linked.child_name     '_ma_target_template_mapping.template_segment_id'
-    _item_linked.parent_name    '_ma_template_segment.id'
+    _item_linked.parent_name    '_ma_template_poly_segment.id'
      save_
 
 save__ma_target_template_mapping.target_asym_id
@@ -1479,14 +1571,14 @@ save__ma_alignment_details.alignment_id
 save__ma_alignment_details.template_segment_id
     _item_description.description
 ;     The template segment identifier. This data item is a pointer to
-      _ma_template_segment.id in the MA_TEMPLATE_SEGMENT category. 
+      _ma_template_poly_segment.id in the MA_TEMPLATE_POLY_SEGMENT category. 
 ;
     _item.name                  '_ma_alignment_details.template_segment_id'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          yes
     _item_type.code               int
     _item_linked.child_name     '_ma_alignment_details.template_segment_id'
-    _item_linked.parent_name    '_ma_template_segment.id '
+    _item_linked.parent_name    '_ma_template_poly_segment.id '
      save_
 
 save__ma_alignment_details.target_asym_id
