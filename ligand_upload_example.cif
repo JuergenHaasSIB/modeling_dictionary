@@ -1,4 +1,4 @@
-data_SM-1H2y5F
+data_1het
 #
 #
 loop_
@@ -7,7 +7,315 @@ _entity.type
 _entity.pdbx_description
 1  polymer      Polypeptide  
 2  polymer      Polypeptide  
-3  non-polymer  .            
+3  non-polymer  .
+##
+loop_
+_ma_target_entity.entity_id
+_ma_target_entity.data_id
+_ma_target_entity.origin
+1 1 designed
+2 2 designed
+3 12 designed
+##
+loop_
+_ma_target_entity_instance.asym_id
+_ma_target_entity_instance.entity_id
+A 1
+C 1
+B 2
+D 2
+_ 3
+_ 3
+_ 3
+_ 3
+##
+loop_
+_struct_asym.id
+_struct_asym.entity_id
+A 1
+C 1
+B 2
+D 2
+_ 3
+_ 3
+_ 3
+_ 3
+##
+_pdbx_entity_nonpoly.entity_id 3
+_pdbx_entity_nonpoly.comp_id HEM
+_pdbx_entity_nonpoly.name "PROTOPORPHYRIN IX CONTAINING FE"
+_pdbx_entity_nonpoly.ma_model_mode explicit
+##
+loop_
+_ma_template_details.ordinal_id
+_ma_template_details.template_id
+_ma_template_details.template_origin
+_ma_template_details.template_label_asym_id
+_ma_template_details.template_label_entity_id
+_ma_template_details.template_model_num
+_ma_template_details.template_entity_type
+_ma_template_details.template_data_id
+_ma_template_details.template_trans_matrix_id
+_ma_template_details.target_asym_id
+1 1 "customized" A 1 1 polymer 3 1 A
+2 2 "customized" C 1 1 polymer 4 1 C
+3 3 "customized" B 2 1 polymer 5 1 B
+4 4 "customized" D 2 1 polymer 6 1 D
+5 5 "customized" _ 3 1 non-polymer 13 1 _
+6 6 "customized" _ 3 1 non-polymer 14 1 _
+7 7 "customized" _ 3 1 non-polymer 15 1 _
+8 8 "customized" _ 3 1 non-polymer 16 1 _
+##
+loop_
+_ma_template_poly.template_id
+_ma_template_poly.full_seq_one_letter_code
+_ma_template_poly.full_seq_one_letter_code_can
+1
+;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
+;
+;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
+;
+2
+;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
+;
+;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
+;
+3
+;MLTAEEKAAVTAFWGKVKVDEVGGEALGRLLVVYPWTQRFFESFGDLSTADAVMNNPKVKAHGKKVLDSFSNGMKHLDDLKGTFAALSELHCDKLHVDPENFKLLGNVLVVVLARNFGKEFTPVLQADFQKVVAGVANALAHRYH
+;
+;MLTAEEKAAVTAFWGKVKVDEVGGEALGRLLVVYPWTQRFFESFGDLSTADAVMNNPKVKAHGKKVLDSFSNGMKHLDDLKGTFAALSELHCDKLHVDPENFKLLGNVLVVVLARNFGKEFTPVLQADFQKVVAGVANALAHRYH
+;
+4
+;MLTAEEKAAVTAFWGKVKVDEVGGEALGRLLVVYPWTQRFFESFGDLSTADAVMNNPKVKAHGKKVLDSFSNGMKHLDDLKGTFAALSELHCDKLHVDPENFKLLGNVLVVVLARNFGKEFTPVLQADFQKVVAGVANALAHRYH
+;
+;MLTAEEKAAVTAFWGKVKVDEVGGEALGRLLVVYPWTQRFFESFGDLSTADAVMNNPKVKAHGKKVLDSFSNGMKHLDDLKGTFAALSELHCDKLHVDPENFKLLGNVLVVVLARNFGKEFTPVLQADFQKVVAGVANALAHRYH
+;
+##
+loop_
+_ma_template_non_poly.template_id
+_ma_template_non_poly.inchi_key
+5 KABFMIBPWCXCRK-RGGAHWMASA-L
+6 KABFMIBPWCXCRK-RGGAHWMASA-L
+7 KABFMIBPWCXCRK-RGGAHWMASA-L
+8 KABFMIBPWCXCRK-RGGAHWMASA-L
+##
+loop_
+_ma_template_poly_segment.id
+_ma_template_poly_segment.template_id
+_ma_template_poly_segment.residue_number_begin
+_ma_template_poly_segment.residue_number_end
+_ma_template_poly_segment.segment_length
+_ma_template_poly_segment.residue_name_begin
+_ma_template_poly_segment.residue_name_end
+1 1 1 141 141 VAL ARG 
+2 2 1 141 141 VAL ARG 
+3 3 2 145 144 VAL HIS 
+4 4 2 145 144 VAL HIS 
+##
+loop_
+_ma_target_template_poly_mapping.id
+_ma_target_template_poly_mapping.template_segment_id
+_ma_target_template_poly_mapping.target_asym_id
+_ma_target_template_poly_mapping.target_seq_id_begin
+_ma_target_template_poly_mapping.target_seq_id_end
+1 1 A 1 141 
+2 2 C 1 141
+3 3 B 1 146
+4 4 D 1 146
+##
+loop_
+_ma_template_customized.template_id
+_ma_template_customized.details
+1  .
+2  .
+3  .
+4  .
+5  .
+6  .
+7  .
+8  .
+##
+loop_
+_ma_template_coord.template_id
+_ma_template_coord.group_PDB
+_ma_template_coord.ordinal_id
+_ma_template_coord.label_atom_id
+_ma_template_coord.label_comp_id
+_ma_template_coord.label_entity_id
+_ma_template_coord.label_asym_id
+_ma_template_coord.label_seq_id
+_ma_template_coord.auth_seq_id
+_ma_template_coord.Cartn_x
+_ma_template_coord.Cartn_y
+_ma_template_coord.Cartn_z
+_ma_template_coord.occupancy
+_ma_template_coord.B_iso_or_equiv
+_ma_template_coord.pdb_model_num
+_ma_template_coord.type_symbol
+_ma_template_coord.auth_asym_id
+_ma_template_coord.auth_atom_id
+_ma_template_coord.auth_comp_id
+1 ATOM 1 N PRO 1 A 1 2 -8.773 -24.872 -12.941 1.00 37.16 1 N . . .
+1 ATOM 2 CA PRO 1 A 1 2 -10.129 -25.397 -13.029 1.00 36.99 1 C . . .
+1 ATOM 3 C PRO 1 A 1 2 -10.321 -26.512 -12.014 1.00 36.42 1 C . . . 
+1 ATOM 4 O PRO 1 A 1 2 -9.336 -27.094 -11.562 1.00 36.66 1 O . . .
+1 ATOM 5 CB PRO 1 A 1 2 -10.192 -25.968 -14.451 1.00 37.22 1 C . . .
+1 ATOM 6 CG PRO 1 A 1 2 -8.742 -26.065 -14.928 1.00 37.56 1 C . . .
+1 ATOM 7 CD PRO 1 A 1 2 -7.850 -25.607 -13.817 1.00 37.23 1 C . . .
+##
+_ma_template_trans_matrix.id                                1
+_ma_template_trans_matrix.rot_matrix[1][1]                1.0
+_ma_template_trans_matrix.rot_matrix[2][1]                0.0
+_ma_template_trans_matrix.rot_matrix[3][1]                0.0
+_ma_template_trans_matrix.rot_matrix[1][2]                0.0
+_ma_template_trans_matrix.rot_matrix[2][2]                1.0
+_ma_template_trans_matrix.rot_matrix[3][2]                0.0
+_ma_template_trans_matrix.rot_matrix[1][3]                0.0
+_ma_template_trans_matrix.rot_matrix[2][3]                0.0
+_ma_template_trans_matrix.rot_matrix[3][3]                1.0
+_ma_template_trans_matrix.tr_vector[1]                    0.0
+_ma_template_trans_matrix.tr_vector[2]                    0.0
+_ma_template_trans_matrix.tr_vector[3]                    0.0
+##
+loop_
+_ma_struct_assembly.ordinal_id
+_ma_struct_assembly.assembly_id
+_ma_struct_assembly.entity_id
+_ma_struct_assembly.asym_id
+_ma_struct_assembly.seq_id_begin
+_ma_struct_assembly.seq_id_end
+1 1 1 A 1 141
+2 1 1 C 1 141
+3 1 2 B 3 146
+4 1 2 D 3 146
+5 1 3 _ . .
+6 1 3 _ . .
+7 1 3 _ . .
+8 1 3 _ . .
+##
+_ma_struct_assembly_details.assembly_id 1
+_ma_struct_assembly_details.assembly_name "Heteromer with Heme"
+_ma_struct_assembly_details.assembly_description "Hemoglobin example"
+##
+_ma_model_list.ordinal_id 1
+_ma_model_list.model_id 1
+_ma_model_list.model_name 'Top scoring model'
+_ma_model_list.assembly_id 1
+_ma_model_list.data_id 11
+_ma_model_list.model_type 'Homology model'
+##
+_ma_alignment_info.alignment_id
+_ma_alignment_info.data_id
+_ma_alignment_info.software_id
+_ma_alignment_info.alignment_length
+_ma_alignment_info.alignment_type
+1 7 ? 141 "target-template pairwise alignment" 
+2 8 ? 141 "target-template pairwise alignment" 
+3 9 ? 144 "target-template pairwise alignment" 
+4 10 ? 144 "target-template pairwise alignment" 
+##
+_ma_alignment_details.ordinal_id
+_ma_alignment_details.alignment_id
+_ma_alignment_details.template_segment_id
+_ma_alignment_details.target_asym_id
+_ma_alignment_details.score_type
+_ma_alignment_details.score_value
+_ma_alignment_details.percent_sequence_identity
+_ma_alignment_details.sequence_identity_denominator
+1 1 1 A "HHblits e-value" 1.0 84.0 "Other"
+2 2 2 C "HHblits e-value" 1.0 84.0 "Other"
+3 3 3 B "HHblits e-value" 1.0 82.0 "Other"
+4 4 4 D "HHblits e-value" 1.0 82.0 "Other"
+##
+loop_ 
+_ma_alignment.ordinal_id
+_ma_alignment.alignment_id
+_ma_alignment.target_template_flag
+_ma_alignment.sequence
+1 1 1
+;VLSPADKTNVKAAWAKVGNHAADFGAEALERMFMSFPSTKTYFSHFDLGHNSTQVKGHGKKVADALTKAVGHLDTLPDALSDLSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPGDFTPSVHASLDKFLASVSTVLTSKYR
+;
+2 1 2
+;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
+;
+3 2 1
+;VLSPADKTNVKAAWAKVGNHAADFGAEALERMFMSFPSTKTYFSHFDLGHNSTQVKGHGKKVADALTKAVGH
+LDTLPDALSDLSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPGDFTPSVHASLDKFLASVSTVLTSKYR
+;
+4 2 2
+;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
+;
+5 3 1
+;VHLTGEEKSGLTALWAKVNVEEIGGEALGRLLVVYPWTQRFFEHFGDLSTADAVMKNPKVKKHGQKVLASFGEGLKHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVVVLARHFGKEFTPELQTAYQKVVAGVANALAHKYH
+;
+6 3 2
+;--LTAEEKAAVTAFWGKVKVDEVGGEALGRLLVVYPWTQRFFESFGDLSTADAVMNNPKVKAHGKKVLDSFSNGMKHLDDLKGTFAALSELHCDKLHVDPENFKLLGNVLVVVLARNFGKEFTPVLQADFQKVVAGVANALAHRYH
+;
+7 4 1
+;VHLTGEEKSGLTALWAKVNVEEIGGEALGRLLVVYPWTQRFFEHFGDLSTADAVMKNPKVKKHGQKVLASFG
+EGLKHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVVVLARHFGKEFTPELQTAYQKVVAGVANALAHKYH
+;
+8 4 2
+;--LTAEEKAAVTAFWGKVKVDEVGGEALGRLLVVYPWTQRFFESFGDLSTADAVMNNPKVKAHGKKVLDSFSNGMKHLDDLKGTFAALSELHCDKLHVDPENFKLLGNVLVVVLARNFGKEFTPVLQADFQKVVAGVANALAHRYH
+;
+##
+loop_
+_ma_data.id
+_ma_data.name
+_ma_data.content_type
+1 "Target 1" "target"
+2 "Target 2" "target"
+3 "Template A" "template structure"
+4 "Template C" "template structure"
+5 "Template B" "template structure"
+6 "Template D" "template structure"
+7 "Aln 1A" "alignment" "target-template alignment"
+8 "Aln 1C" "alignment" "target-template alignment"
+9 "Aln 2B" "alignment" "target-template alignment"
+10 "Aln 2D" "alignment" "target-template alignment"
+11 "Model" "model coordinates"
+12 "Target 3" "target"
+13 "Template E" "template structure"
+14 "Template F" "template structure"
+15 "Template G" "template structure"
+16 "Template H" "template structure"
+##
+loop_
+_ma_data_group.ordinal_id
+_ma_data_group.group_id
+_ma_data_group.data_id
+1 1 1
+2 2 2
+3 3 3
+4 3 4
+5 3 5
+6 3 6
+7 3 7
+8 3 8
+9 3 9
+10 3 10
+11 4 11
+12 5 12
+13 3 13
+14 3 14
+15 3 15
+16 3 16
+17 1 12
+18 2 12
+##
+loop_
+_ma_protocol_step.ordinal_id
+_ma_protocol_step.protocol_id
+_ma_protocol_step.step_id
+_ma_protocol_step.method_type
+_ma_protocol_step.step_name
+_ma_protocol_step.software_id
+_ma_protocol_step.input_data_group_id
+_ma_protocol_step.output_data_group_id
+1 1 1 'template search' ? 1 ?
+2 1 1 'template search' ? 2 ?
+3 1 2 'template selection' ? ? 3
+4 1 3 'modeling' ? 3 4
 ##
 loop_
 _entity_poly.entity_id
@@ -15,7 +323,7 @@ _entity_poly.pdbx_strand_id
 _entity_poly.type
 _entity_poly.pdbx_seq_one_letter_code
 _entity_poly.pdbx_seq_one_letter_code_can
-1  A,C  polypeptide(L)  VLSPADKTNVKAAWAKVGNHAADFGAEALERMFMSFPSTKTYFSHFDLGHNSTQVKGHGKKVADALTKAVGHLDTLPDALSDLSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPGDFTPSVHASLDKFLASVSTVLTSKYR     VLSPADKTNVKAAWAKVGNHAADFGAEALERMFMSFPSTKTYFSHFDLGHNSTQVKGHGKKVADALTKAVGHLDTLPDALSDLSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPGDFTPSVHASLDKFLASVSTVLTSKYR     
+1  A,C  polypeptide(L)  VLSPADKTNVKAAWAKVGNHAADFGAEALERMFMSFPSTKTYFSHFDLGHNSTQVKGHGKKVADALTKAVGHLDTLPDALSDLSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPGDFTPSVHASLDKFLASVSTVLTSKYR     VLSPADKTNVKAAWAKVGNHAADFGAEALERMFMSFPSTKTYFSHFDLGHNSTQVKGHGKKVADALTKAVGHLDTLPDALSDLSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPGDFTPSVHASLDKFLASVSTVLTSKYR
 2  B,D  polypeptide(L)  LTGEEKSGLTALWAKVNVEEIGGEALGRLLVVYPWTQRFFEHFGDLSTADAVMKNPKVKKHGQKVLASFGEGLKHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVVVLARHFGKEFTPELQTAYQKVVAGVANALAHKYH  LTGEEKSGLTALWAKVNVEEIGGEALGRLLVVYPWTQRFFEHFGDLSTADAVMKNPKVKKHGQKVLASFGEGLKHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVVVLARHFGKEFTPELQTAYQKVVAGVANALAHKYH  
 ##
 loop_
@@ -4802,9 +5110,4 @@ FE
 S   
 O   
 N   
-##
-_pdbx_entity_nonpoly.entity_id 3
-_pdbx_entity_nonpoly.comp_id HEM
-_pdbx_entity_nonpoly.name "PROTOPORPHYRIN IX CONTAINING FE"
-_pdbx_entity_nonpoly.ma_model_mode explicit
 ##

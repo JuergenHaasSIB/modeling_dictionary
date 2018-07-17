@@ -2,7 +2,7 @@
 ## MODELING EXTENSION DICTIONARY ##
 ###################################
 
-# Version 1.1.9 16th July 2018
+# Version 1.2.0 17th July 2018
 # JH/BV
 
 ##BV: Will these definitions suffice for fragment assembly methods such as Rosetta?
@@ -23,7 +23,7 @@ data_mmcif_ma.dic
 
     _dictionary.title           mmcif_ma.dic
     _dictionary.datablock_id    mmcif_ma.dic
-    _dictionary.version         1.1.9
+    _dictionary.version         1.2.0
 #
      loop_
     _dictionary_history.version
@@ -80,6 +80,12 @@ data_mmcif_ma.dic
 ;
   Changes (jh/bv/jw/gt/sb)
   + Revised MA_TEMPLATE_POLY_SEGMENT, MA_TARGET_TEMPLATE_POLY_MAPPING, MA_ALIGNMENT_DETAILS
+;
+  1.2.0   2018-07-17
+;
+  Changes (jh/bv/jw/gt/sb)
+  + Added MA_ALIGNMENT_INFO, MA_TARGET_ENTITY_INSTANCE
+  + Revised MA_TEMPLATE_DETAILS, MA_TARGET_TEMPLATE_POLY_MAPPING, MA_ALIGNMENT_DETAILS
 ;
 
 #########################
@@ -450,15 +456,15 @@ save__ma_template_details.target_asym_id
     _item_description.description
 ;     A unique identifier for the target instance for which the 
       structural template is used.
-      This data item is a pointer to _struct_asym.id
-      in the STRUCT_ASYM caategory.
+      This data item is a pointer to _ma_target_entity_instance.asym_id
+      in the MA_TARGET_ENTITY_INSTANCE caategory.
 ;
     _item.name                  '_ma_template_details.target_asym_id'
     _item.category_id             ma_template_details
     _item.mandatory_code          yes
     _item_type.code               int
     _item_linked.child_name     '_ma_template_details.target_asym_id'
-    _item_linked.parent_name    '_struct_asym.id'
+    _item_linked.parent_name    '_ma_target_entity_instance.asym_id'
      save_
 
 save__ma_template_details.template_label_asym_id
@@ -668,41 +674,41 @@ save__ma_template_non_poly.template_id
     _item_linked.parent_name    '_ma_template_details.template_id'
      save_
 
-save__ma_template_non_poly.template_smiles
+save__ma_template_non_poly.smiles
     _item_description.description
 ;     The smile string of the non-polymeric template.
 ;
-    _item.name                  '_ma_template_non_poly.template_smiles'
+    _item.name                  '_ma_template_non_poly.smiles'
     _item.category_id             ma_template_non_poly
     _item.mandatory_code          no
     _item_type.code               line
      save_
 
-save__ma_template_non_poly.template_smiles_canonical
+save__ma_template_non_poly.smiles_canonical
     _item_description.description
 ;     The canonical smile string of the non-polymeric template.
 ;
-    _item.name                  '_ma_template_non_poly.template_smiles_canonical'
+    _item.name                  '_ma_template_non_poly.smiles_canonical'
     _item.category_id             ma_template_non_poly
     _item.mandatory_code          no
     _item_type.code               line
      save_
 
-save__ma_template_non_poly.template_inchi
+save__ma_template_non_poly.inchi
     _item_description.description
 ;     The IUPAC INCHI descriptor of the non-polymeric template.
 ;
-    _item.name                  '_ma_template_non_poly.template_inchi'
+    _item.name                  '_ma_template_non_poly.inchi'
     _item.category_id             ma_template_non_poly
     _item.mandatory_code          no
     _item_type.code               line
      save_
 
-save__ma_template_non_poly.template_inchi_key
+save__ma_template_non_poly.inchi_key
     _item_description.description
 ;     The hashed INCHI key of the non-polymeric template.
 ;
-    _item.name                  '_ma_template_non_poly.template_inchi_key'
+    _item.name                  '_ma_template_non_poly.inchi_key'
     _item.category_id             ma_template_non_poly
     _item.mandatory_code          no
     _item_type.code               line
@@ -1247,6 +1253,81 @@ save__ma_target_entity.origin
     'designed'              'target is designed by the user'
      save_
 
+###############################
+## MA_TARGET_ENTITY_INSTANCE ##
+###############################
+
+save_ma_target_entity_instance
+    _category.description
+;              Data items in the MA_TARGET_ENTITY_INSTANCE category record details about
+               the instances of target entities modeled. 
+;
+    _category.id                  ma_target_entity_instance
+    _category.mandatory_code      no
+    _category_key.name            '_ma_target_entity_instance.asym_id'
+    loop_
+    _category_group.id            'inclusive_group'
+                                  'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_target_entity_instance.asym_id 
+    _ma_target_entity_instance.entity_id
+    _ma_target_entity_instance.details
+    A 1 .
+    B 1 .
+    #...abbreviated...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_target_entity_instance
+   save_
+
+ave__ma_target_entity_instance.asym_id
+    _item_description.description
+;     A unique identifier for the instance of the entity. 
+;
+    _item.name                  '_ma_target_entity_instance.asym_id'
+    _item.category_id             ma_target_entity_instance
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_struct_asym.id'
+    _item_linked.parent_name      '_ma_target_entity_instance.asym_id'
+     save_
+
+save__ma_target_entity_instance.entity_id
+    _item_description.description
+;     A unique identifier for the distinct molecular entity of the target.
+      This data item is a pointer to _ma_target_entity.entity_id in the 
+      MA_TARGET_ENTITY category.
+;
+    _item.name                  '_ma_target_entity_instance.entity_id'
+    _item.category_id             ma_target_entity_instance
+    _item.mandatory_code          yes
+    _item_type.code               code
+    loop_
+    _item_linked.child_name 
+    _item_linked.parent_name 
+    '_ma_target_entity_instance.entity_id'  '_ma_target_entity.entity_id'
+    '_struct_asym.entity_id'                '_ma_target_entity_instance.entity_id'
+     save_
+
+save__ma_target_entity_instance.details
+    _item_description.description
+;     Additional details about the entity instance. 
+;
+    _item.name                  '_ma_target_entity_instance.details'
+    _item.category_id             ma_target_entity_instance
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
 ##############################
 ## MA_TARGET_REF_DB_DETAILS ##
 ##############################
@@ -1466,15 +1547,15 @@ save__ma_target_template_poly_mapping.template_segment_id
 save__ma_target_template_poly_mapping.target_asym_id
     _item_description.description
 ;     The identifier for the corresponding target instance for which this template is used.
-      This data item is a pointer to _ma_target_struct.asym_id in the
-      MA_TARGET_STRUCT category.
+      This data item is a pointer to _ma_target_entity_instance.asym_id in the
+      MA_TARGET_ENTITY_INSTANCE category.
 ;
     _item.name                  '_ma_target_template_poly_mapping.target_asym_id'
     _item.category_id             ma_target_template_poly_mapping
     _item.mandatory_code          yes
     _item_type.code               code
     _item_linked.child_name       '_ma_target_template_poly_mapping.target_asym_id'
-    _item_linked.parent_name      '_ma_target_struct.asym_id'
+    _item_linked.parent_name      '_ma_target_entity_instance.asym_id'
      save_
 
 save__ma_target_template_poly_mapping.target_seq_id_begin
@@ -1710,16 +1791,161 @@ save__ma_struct_assembly_details.assembly_description
      save_
 
 #######################
-## MA_ALIGNMENT_DETAILS
+## MA_ALIGNMENT_INFO ##
 #######################
 
-##BV: Should data_id and software_id be moved to another table with alignment_id as key?
+save_ma_alignment_info
+    _category.description
+;               Data items in the MA_ALIGNMENT_INFO category record
+                list of target-template alignments (pairwise as well as
+                multiple-sequence alignments) used in the modeling.
+                Additional details are included in the MA_ALIGNMENT_DETAILS category
+                and the actual alignments are captured in the MA_ALIGNMENT category. 
+;
+    _category.id                  ma_alignment_info
+    _category.mandatory_code      no
+    _category_key.name           '_ma_alignment_info.alignment_id'
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example - 1
+;
+;
+    loop_
+
+    _ma_alignment_info.alignment_id
+    _ma_alignment_info.data_id
+    _ma_alignment_info.software_id
+    _ma_alignment_info.alignment_length
+    _ma_alignment_info.alignment_type
+    _ma_alignment_info.alignment_mode
+    1 5 1  128 "target-template MSA" "local" 
+    2 6 1  163 "target-template pairwise alignment" "local" 
+    3 7 1  139 "target-template MSA" "local" 
+    4 8 1  385 "target-template pairwise alignment" "local" 
+    # ... abbreviated ... #
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_alignment_info
+     save_
+
+save__ma_alignment_info.alignment_id
+    _item_description.description
+;     A unique identifier for the alignment. 
+;
+    _item.name                  '_ma_alignment_info.alignment_id'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_alignment_info.data_id
+    _item_description.description
+;     The data_id identifier. This data item is a pointer to
+      _ma_data.id in the MA_DATA category. 
+;
+    _item.name                  '_ma_alignment_info.data_id'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_alignment_info.data_id'
+    _item_linked.parent_name    '_ma_data.id'
+     save_
+
+save__ma_alignment_info.software_id
+    _item_description.description
+;     Identifier to the software used to obtaine the multiple sequence alignment.
+      This data item is a pointer to the _software.pdbx_ordinal in the
+      SOFTWARE category.
+;
+    _item.name                  '_ma_alignment_info.software_id'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_linked.child_name       '_ma_alignment_info.software_id'
+    _item_linked.parent_name      '_software.pdbx_ordinal'
+     save_
+
+save__ma_alignment_info.software_parameter_group_id
+    _item_description.description
+;   Identifier that denotes a set of parameters used with the software
+    in the alignment.
+    This data item is a pointer to _ma_software_parameter.group_id
+    in the MA_SOFTWARE_PARAMETER category.
+;
+    _item.name                  '_ma_alignment_info.software_parameter_group_id'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_linked.child_name     '_ma_alignment_info.software_parameter_group_id'
+    _item_linked.parent_name    '_ma_software_parameter.group_id'
+     save_
+
+save__ma_alignment_info.alignment_length
+    _item_description.description
+;     The total length of the alignment including gaps. 
+;
+    _item.name                  '_ma_alignment_info.alignment_length'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_alignment_info.alignment_type
+    _item_description.description
+;     The alignment type. 
+;
+    _item.name                  '_ma_alignment_info.alignment_type'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+      'target-template pairwise alignment'
+      'target-template MSA'
+      'other'
+     save_
+
+save__ma_alignment_info.alignment_type_other_details
+    _item_description.description
+;     Details for other alignment types. 
+;
+    _item.name                  '_ma_alignment_info.alignment_type_other_details'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__ma_alignment_info.alignment_mode
+    _item_description.description
+;     The alignment mode.
+;
+    _item.name                  '_ma_alignment_info.alignment_mode'
+    _item.category_id             ma_alignment_info
+    _item.mandatory_code          no
+    _item_type.code               line
+    loop_
+    _item_enumeration.value
+      'global'
+      'local'
+     save_
+
+#######################
+## MA_ALIGNMENT_DETAILS
+#######################
 
 save_ma_alignment_details
     _category.description
 ;               Data items in the MA_ALIGNMENT_DETAILS category record
-                details of the target-template alignments as well as other 
-                multiple-sequence alignments used in the modeling.
+                details of the target-template pairwise and multiple sequence 
+                alignments used in the modeling.
                 The actual alignments are captured in the MA_ALIGNMENT category. 
 ;
     _category.id                  ma_alignment_details
@@ -1742,19 +1968,14 @@ save_ma_alignment_details
     _ma_alignment_details.alignment_id
     _ma_alignment_details.template_segment_id
     _ma_alignment_details.target_asym_id
-    _ma_alignment_details.data_id
-    _ma_alignment_details.software_id
-    _ma_alignment_details.alignment_length
-    _ma_alignment_details.alignment_type
-    _ma_alignment_details.alignment_mode
     _ma_alignment_details.score_type
     _ma_alignment_details.score_value
     _ma_alignment_details.percent_sequence_identity
     _ma_alignment_details.sequence_identity_denominator
-    1 1 1 A 6  1  128 "target-template MSA" "local" "HHblits e-value" 0.1 24.0 "Other"
-    2 1 2 A 6  1  163 "target-template MSA" "local" "HHblits e-value" 0.5 15.0 "Other"
-    3 1 3 A 6  1  139 "target-template MSA" "local" "HHblits e-value" 0.1 21.0 "Other"
-    4 2 4 B 7  1  385 "target-template pairwise alignment" "local" 'HHblits e-value' 0.5 18.0 "Other"
+    1 1 1 A "HHblits e-value" 0.1 24.0 "Other"
+    2 1 2 A "HHblits e-value" 0.5 15.0 "Other"
+    3 1 3 A "HHblits e-value" 0.1 21.0 "Other"
+    4 2 4 B "HHblits e-value" 0.5 18.0 "Other"
     # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1776,11 +1997,15 @@ save__ma_alignment_details.ordinal_id
 save__ma_alignment_details.alignment_id
     _item_description.description
 ;     An identifier for the alignment. 
+      This data item is a pointer to _ma_alignment_info.alignment_id
+      in the MA_ALIGNMENT_INFO category. 
 ;
     _item.name                  '_ma_alignment_details.alignment_id'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          yes
     _item_type.code               int
+    _item_linked.child_name     '_ma_alignment_details.alignment_id'
+    _item_linked.parent_name    '_ma_alignment_info.alignment_id'
      save_
 
 save__ma_alignment_details.template_segment_id
@@ -1799,105 +2024,14 @@ save__ma_alignment_details.template_segment_id
 save__ma_alignment_details.target_asym_id
     _item_description.description
 ;     The target instance identifier. This data item is a pointer to
-      _struct_asym.id in the STRUCT_ASYM category.
+      _ma_target_entity_instance.asym_id in the MA_TARGET_ENTITY_INSTANCE category.
 ;
     _item.name                  '_ma_alignment_details.target_asym_id'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          yes
     _item_type.code               int
     _item_linked.child_name     '_ma_alignment_details.target_asym_id'
-    _item_linked.parent_name    '_struct_asym.id'
-     save_
-
-save__ma_alignment_details.data_id
-    _item_description.description
-;     The data_id identifier. This data item is a pointer to
-      _ma_data.id in the MA_DATA category. 
-;
-    _item.name                  '_ma_alignment_details.data_id'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          yes
-    _item_type.code               int
-    _item_linked.child_name     '_ma_alignment_details.data_id'
-    _item_linked.parent_name    '_ma_data.id'
-     save_
-
-save__ma_alignment_details.software_id
-    _item_description.description
-;     Identifier to the software used to obtaine the multiple sequence alignment.
-      This data item is a pointer to the _software.pdbx_ordinal in the
-      SOFTWARE category.
-;
-    _item.name                  '_ma_alignment_details.software_id'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          no
-    _item_type.code               int
-    _item_linked.child_name       '_ma_alignment_details.software_id'
-    _item_linked.parent_name      '_software.pdbx_ordinal'
-     save_
-
-save__ma_alignment_details.software_parameter_group_id
-    _item_description.description
-;   Identifier that denotes a set of parameters used with the software
-    in the alignment.
-    This data item is a pointer to _ma_software_parameter.group_id
-    in the MA_SOFTWARE_PARAMETER category.
-;
-    _item.name                  '_ma_alignment_details.software_parameter_group_id'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          no
-    _item_type.code               int
-    _item_linked.child_name     '_ma_alignment_details.software_parameter_group_id'
-    _item_linked.parent_name    '_ma_software_parameter.group_id'
-     save_
-
-save__ma_alignment_details.alignment_length
-    _item_description.description
-;     The total length of the alignment including gaps. 
-;
-    _item.name                  '_ma_alignment_details.alignment_length'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          no
-    _item_type.code               int
-     save_
-
-save__ma_alignment_details.alignment_type
-    _item_description.description
-;     The alignment type. 
-;
-    _item.name                  '_ma_alignment_details.alignment_type'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          no
-    _item_type.code               line
-    loop_
-    _item_enumeration.value
-      'target-template pairwise alignment'
-      'target-template MSA'
-      'other'
-     save_
-
-save__ma_alignment_details.alignment_type_other_details
-    _item_description.description
-;     Details for other alignment types. 
-;
-    _item.name                  '_ma_alignment_details.alignment_type_other_details'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          no
-    _item_type.code               text
-     save_
-
-save__ma_alignment_details.alignment_mode
-    _item_description.description
-;     The alignment mode.
-;
-    _item.name                  '_ma_alignment_details.alignment_mode'
-    _item.category_id             ma_alignment_details
-    _item.mandatory_code          no
-    _item_type.code               line
-    loop_
-    _item_enumeration.value
-      'global'
-      'local'
+    _item_linked.parent_name    '_ma_target_entity_instance.asym_id'
      save_
 
 save__ma_alignment_details.score_type
