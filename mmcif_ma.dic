@@ -2,7 +2,7 @@
 ## MODELING EXTENSION DICTIONARY ##
 ###################################
 
-# Version 1.1.8 16th July 2018
+# Version 1.1.9 16th July 2018
 # JH/BV
 
 ##BV: Will these definitions suffice for fragment assembly methods such as Rosetta?
@@ -23,7 +23,7 @@ data_mmcif_ma.dic
 
     _dictionary.title           mmcif_ma.dic
     _dictionary.datablock_id    mmcif_ma.dic
-    _dictionary.version         1.1.8
+    _dictionary.version         1.1.9
 #
      loop_
     _dictionary_history.version
@@ -57,7 +57,7 @@ data_mmcif_ma.dic
   Changes (jh/bv/jw/gt/sb)
   + Revised MA_TARGET_TEMPLATE_MAPPING, MA_ALIGNMENT_DETAILS, MA_TEMPLATE_DETAILS 
   + Revised MA_PDB_TEMPLATE, MA_TEMPLATE_COORD
-  + Added MA_TARGET_TEMPLATE_POLY_MAPPING
+  + Added MA_TEMPLATE_POLY_SEGMENT
 ;
   1.1.6   2018-07-12
 ;
@@ -68,13 +68,18 @@ data_mmcif_ma.dic
   1.1.7   2018-07-13
 ;
   Changes (jh/bv/jw/gt/sb)
-  + Revised MA_TEMPLATE_DETAILS, MA_TARGET_TEMPLATE_POLY_MAPPING, MA_TEMPLATE_POLY, MA_TARGET_TEMPLATE_POLY_MAPPING
+  + Revised MA_TEMPLATE_DETAILS, MA_TEMPLATE_POLY_SEGMENT, MA_TEMPLATE_POLY, MA_TEMPLATE_POLY_SEGMENT
   + Added MA_TEMPLATE_NON_POLY, MA_TEMPLATE_CUSTOMIZED
 ;
   1.1.8   2018-07-16
 ;
   Changes (jh/bv/jw/gt/sb)
   + Addressed requirements for coevolution MSA and predicted contacts
+;
+  1.1.9   2018-07-16
+;
+  Changes (jh/bv/jw/gt/sb)
+  + Revised MA_TEMPLATE_POLY_SEGMENT, MA_TARGET_TEMPLATE_POLY_MAPPING, MA_ALIGNMENT_DETAILS
 ;
 
 #########################
@@ -713,18 +718,18 @@ save__ma_template_non_poly.details
     _item_type.code               text
      save_
 
-#####################################
-## MA_TARGET_TEMPLATE_POLY_MAPPING ##
-#####################################
+##############################
+## MA_TEMPLATE_POLY_SEGMENT ##
+##############################
 
-save_ma_target_template_poly_mapping
+save_ma_template_poly_segment
     _category.description
-;              Data items in the MA_TARGET_TEMPLATE_POLY_MAPPING category record details about
-               the mapping of the target template segments used in the modeling.
+;              Data items in the MA_TEMPLATE_POLY_SEGMENT category record details about
+               the template segments used in the modeling.
 ;
-    _category.id                  ma_target_template_poly_mapping
+    _category.id                  ma_template_poly_segment
     _category.mandatory_code      no
-    _category_key.name            '_ma_target_template_poly_mapping.id'
+    _category_key.name            '_ma_template_poly_segment.id'
     loop_
     _category_group.id            'inclusive_group'
                                   'ma_group'
@@ -737,146 +742,97 @@ save_ma_target_template_poly_mapping
 ;
 ;
     loop_
-    _ma_target_template_poly_mapping.id
-    _ma_target_template_poly_mapping.template_id
-    _ma_target_template_poly_mapping.template_residue_number_begin
-    _ma_target_template_poly_mapping.template_residue_number_end
-    _ma_target_template_poly_mapping.template_residue_name_begin
-    _ma_target_template_poly_mapping.template_residue_name_end
-    _ma_target_template_poly_mapping.target_seq_id_begin
-    _ma_target_template_poly_mapping.target_seq_id_end
-    _ma_target_template_poly_mapping.target_comp_id_begin
-    _ma_target_template_poly_mapping.target_comp_id_end
+    _ma_template_poly_segment.id
+    _ma_template_poly_segment.template_id
+    _ma_template_poly_segment.residue_number_begin
+    _ma_template_poly_segment.residue_number_end
+    _ma_template_poly_segment.segment_length
+    _ma_template_poly_segment.residue_name_begin
+    _ma_template_poly_segment.residue_name_end
 
-    1  1  1 53 MET VAL  1 53 MET VAL
-    2  2  1 60 ILE ALA  1 60 ILE ALA
+    1  1  1 53 53 MET VAL  
+    2  2  1 60 60 ILE ALA  
     # ...  abbreviated ...
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    _pdbx_category_context.type         CONTRIBUTED
-   _pdbx_category_context.category_id  ma_target_template_poly_mapping
+   _pdbx_category_context.category_id  ma_template_poly_segment
      save_
 
-save__ma_target_template_poly_mapping.id
+save__ma_template_poly_segment.id
     _item_description.description
 ;     A unique identifier for the template segment used in the modeling. 
 ;
-    _item.name                  '_ma_target_template_poly_mapping.id'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.id'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          yes
     _item_type.code               int
      save_
 
-save__ma_target_template_poly_mapping.template_id
+save__ma_template_poly_segment.template_id
     _item_description.description
 ;     An identifier to the full template. 
       This data item is a pointer to _ma_template_poly.template_id
       in the MA_TEMPLATE_POLY category. 
 ;
-    _item.name                  '_ma_target_template_poly_mapping.template_id'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.template_id'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_target_template_poly_mapping.template_id'
+    _item_linked.child_name     '_ma_template_poly_segment.template_id'
     _item_linked.parent_name    '_ma_template_poly.template_id'
      save_
 
-save__ma_target_template_poly_mapping.template_residue_number_begin
+save__ma_template_poly_segment.residue_number_begin
     _item_description.description
 ;     The leading residue index for the template segment in the template structure.
 ;
-    _item.name                  '_ma_target_template_poly_mapping.template_residue_number_begin'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.residue_number_begin'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          no
     _item_type.code               int
      save_
 
-save__ma_target_template_poly_mapping.template_residue_number_end
+save__ma_template_poly_segment.residue_number_end
     _item_description.description
 ;     The trailing residue index for the template segment in the template structure.
 ;
-    _item.name                  '_ma_target_template_poly_mapping.template_residue_number_end'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.residue_number_end'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          no
     _item_type.code               int
      save_
 
-save__ma_target_template_poly_mapping.template_residue_name_begin
+save__ma_template_poly_segment.residue_name_begin
     _item_description.description
 ;     The leading residue name (3-letter code) for the template segment 
       in the template structure.
 ;
-    _item.name                  '_ma_target_template_poly_mapping.template_residue_name_begin'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.residue_name_begin'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          no
     _item_type.code               ucode
      save_
 
-save__ma_target_template_poly_mapping.template_residue_name_end
+save__ma_template_poly_segment.residue_name_end
     _item_description.description
 ;     The trailing residue name (3-letter code) for the template segment 
       in the template structure.
 ;
-    _item.name                  '_ma_target_template_poly_mapping.template_residue_name_end'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.residue_name_end'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          no
     _item_type.code               ucode
      save_
 
-save__ma_target_template_poly_mapping.target_seq_id_begin
+save__ma_template_poly_segment.segment_length
     _item_description.description
-;     The leading residue index for the target sequence segment.
-      This data item is a pointer to _entity_poly_seq.num in the
-      ENTITY_POLY_SEQ category. 
+;     The length of the template segment.
 ;
-    _item.name                  '_ma_target_template_poly_mapping.target_seq_id_begin'
-    _item.category_id             ma_target_template_poly_mapping
+    _item.name                  '_ma_template_poly_segment.segment_length'
+    _item.category_id             ma_template_poly_segment
     _item.mandatory_code          no
     _item_type.code               int
-    _item_linked.child_name     '_ma_target_template_poly_mapping.target_seq_id_begin'
-    _item_linked.parent_name    '_entity_poly_seq.num'
-     save_
-
-save__ma_target_template_poly_mapping.target_seq_id_end
-    _item_description.description
-;     The trailing residue index for the target sequence segment.
-      This data item is a pointer to _entity_poly_seq.num in the
-      ENTITY_POLY_SEQ category. 
-;
-    _item.name                  '_ma_target_template_poly_mapping.target_seq_id_end'
-    _item.category_id             ma_target_template_poly_mapping
-    _item.mandatory_code          no
-    _item_type.code               int
-    _item_linked.child_name     '_ma_target_template_poly_mapping.target_seq_id_end'
-    _item_linked.parent_name    '_entity_poly_seq.num'
-     save_
-
-ave__ma_target_template_poly_mapping.target_comp_id_begin
-    _item_description.description
-;     The leading component identifier (3-letter code) for the target sequence segment.
-      This data item is a pointer to _entity_poly_seq.mon_id in the
-      ENTITY_POLY_SEQ category. 
-;
-    _item.name                  '_ma_target_template_poly_mapping.target_comp_id_begin'
-    _item.category_id             ma_target_template_poly_mapping
-    _item.mandatory_code          no
-    _item_type.code               int
-    _item_linked.child_name     '_ma_target_template_poly_mapping.target_comp_id_begin'
-    _item_linked.parent_name    '_entity_poly_seq.mon_id'
-     save_
-
-save__ma_target_template_poly_mapping.target_comp_id_end
-    _item_description.description
-;     The trailing component identifier (3-letter code) for the target sequence segment.
-      This data item is a pointer to _entity_poly_seq.mon_id in the
-      ENTITY_POLY_SEQ category. 
-;
-    _item.name                  '_ma_target_template_poly_mapping.target_comp_id_end'
-    _item.category_id             ma_target_template_poly_mapping
-    _item.mandatory_code          no
-    _item_type.code               int
-    _item_linked.child_name     '_ma_target_template_poly_mapping.target_comp_id_end'
-    _item_linked.parent_name    '_entity_poly_seq.mon_id'
      save_
 
 ################################
@@ -1444,6 +1400,103 @@ save__ma_target_ref_db_details.seq_db_align_end
     _item_examples.case         '105' '245'
      save_
 
+#####################################
+## MA_TARGET_TEMPLATE_POLY_MAPPING ##
+#####################################
+
+save_ma_target_template_poly_mapping
+    _category.description
+;              Data items in the MA_TARGET_TEMPLATE_MAPPING category record details about
+               the target-template mappings for polymeric targets.
+;
+    _category.id                  ma_target_template_poly_mapping
+    _category.mandatory_code      no
+    _category_key.name            '_ma_target_template_poly_mapping.id'
+    loop_
+    _category_group.id            'inclusive_group'
+                                  'ma_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    loop_
+    _ma_target_template_poly_mapping.id
+    _ma_target_template_poly_mapping.template_segment_id
+    _ma_target_template_poly_mapping.target_asym_id 
+    _ma_target_template_poly_mapping.target_seq_id_begin
+    _ma_target_template_poly_mapping.target_seq_id_end
+
+    1  1  A  1  53 
+    2  2  B  1  60 
+    # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ma_target_template_poly_mapping
+     save_
+
+save__ma_target_template_poly_mapping.id
+    _item_description.description
+;     A unique identifier for the target-template mapping. 
+;
+    _item.name                  '_ma_target_template_poly_mapping.id'
+    _item.category_id             ma_target_template_poly_mapping
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ma_target_template_poly_mapping.template_segment_id
+    _item_description.description
+;     An identifier to the template segment. 
+      This data item is a pointer to _ma_template_poly_segment.id
+      in the MA_TEMPLATE_POLY_SEGMENT category. 
+;
+    _item.name                  '_ma_target_template_poly_mapping.template_segment_id'
+    _item.category_id             ma_target_template_poly_mapping
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_target_template_poly_mapping.template_segment_id'
+    _item_linked.parent_name    '_ma_template_poly_segment.id'
+     save_
+
+save__ma_target_template_poly_mapping.target_asym_id
+    _item_description.description
+;     The identifier for the corresponding target instance for which this template is used.
+      This data item is a pointer to _ma_target_struct.asym_id in the
+      MA_TARGET_STRUCT category.
+;
+    _item.name                  '_ma_target_template_poly_mapping.target_asym_id'
+    _item.category_id             ma_target_template_poly_mapping
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ma_target_template_poly_mapping.target_asym_id'
+    _item_linked.parent_name      '_ma_target_struct.asym_id'
+     save_
+
+save__ma_target_template_poly_mapping.target_seq_id_begin
+    _item_description.description
+;     The leading residue index for the target sequence segment. 
+;
+    _item.name                  '_ma_target_template_poly_mapping.target_seq_id_begin'
+    _item.category_id             ma_target_template_poly_mapping
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ma_target_template_poly_mapping.target_seq_id_end
+    _item_description.description
+;     The trailing residue index for the target sequence segment.
+;
+    _item.name                  '_ma_target_template_poly_mapping.target_seq_id_end'
+    _item.category_id             ma_target_template_poly_mapping
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
 ########################
 ## MA_STRUCT_ASSEMBLY ##
 ########################
@@ -1687,7 +1740,8 @@ save_ma_alignment_details
 
     _ma_alignment_details.ordinal_id
     _ma_alignment_details.alignment_id
-    _ma_alignment_details.target_template_poly_mapping_id
+    _ma_alignment_details.template_segment_id
+    _ma_alignment_details.target_asym_id
     _ma_alignment_details.data_id
     _ma_alignment_details.software_id
     _ma_alignment_details.alignment_length
@@ -1697,10 +1751,10 @@ save_ma_alignment_details
     _ma_alignment_details.score_value
     _ma_alignment_details.percent_sequence_identity
     _ma_alignment_details.sequence_identity_denominator
-    1 1 1 6  1  128 "target-template MSA" "local" "HHblits e-value" 0.1 24.0 "Other"
-    2 1 2 6  1  163 "target-template MSA" "local" "HHblits e-value" 0.5 15.0 "Other"
-    3 1 3 6  1  139 "target-template MSA" "local" "HHblits e-value" 0.1 21.0 "Other"
-    4 2 4 7  1  385 "target-template pairwise alignment" "local" 'HHblits e-value' 0.5 18.0 "Other"
+    1 1 1 A 6  1  128 "target-template MSA" "local" "HHblits e-value" 0.1 24.0 "Other"
+    2 1 2 A 6  1  163 "target-template MSA" "local" "HHblits e-value" 0.5 15.0 "Other"
+    3 1 3 A 6  1  139 "target-template MSA" "local" "HHblits e-value" 0.1 21.0 "Other"
+    4 2 4 B 7  1  385 "target-template pairwise alignment" "local" 'HHblits e-value' 0.5 18.0 "Other"
     # ... abbreviated ... #
 ;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1729,17 +1783,30 @@ save__ma_alignment_details.alignment_id
     _item_type.code               int
      save_
 
-save__ma_alignment_details.target_template_poly_mapping_id
+save__ma_alignment_details.template_segment_id
     _item_description.description
-;     The target template mapping identifier. This data item is a pointer to
-      _ma_target_template_poly_mapping.id in the MA_TARGET_TEMPLATE_POLY_MAPPING category. 
+;     The template segment identifier. This data item is a pointer to
+      _ma_template_poly_segment.id in the MA_TEMPLATE_POLY_SEGMENT category.
 ;
-    _item.name                  '_ma_alignment_details.target_template_poly_mapping_id'
+    _item.name                  '_ma_alignment_details.template_segment_id'
     _item.category_id             ma_alignment_details
     _item.mandatory_code          yes
     _item_type.code               int
-    _item_linked.child_name     '_ma_alignment_details.target_template_poly_mapping_id'
-    _item_linked.parent_name    '_ma_target_template_poly_mapping.id'
+    _item_linked.child_name     '_ma_alignment_details.template_segment_id'
+    _item_linked.parent_name    '_ma_template_poly_segment.id '
+     save_
+
+save__ma_alignment_details.target_asym_id
+    _item_description.description
+;     The target instance identifier. This data item is a pointer to
+      _struct_asym.id in the STRUCT_ASYM category.
+;
+    _item.name                  '_ma_alignment_details.target_asym_id'
+    _item.category_id             ma_alignment_details
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name     '_ma_alignment_details.target_asym_id'
+    _item_linked.parent_name    '_struct_asym.id'
      save_
 
 save__ma_alignment_details.data_id
@@ -2700,14 +2767,14 @@ save__ma_coevolution_msa.sequence
     _item_type.code               text
      save_
 
-#######################################
-## MA_COEVOLUTION_MSA_TARGET_DETAILS ##
-#######################################
+################################
+## MA_COEVOLUTION_MSA_DETAILS ##
+################################
 
 save_ma_coevolution_msa_details
     _category.description
-;              Data items in the MA_COEVOLUTION_MSA_TARGET_DETAILS category record details about
-               the target sequence in the coevolution MSA.
+;              Data items in the MA_COEVOLUTION_MSA_DETAILS category record details about
+               the coevolution MSA used in the modeling.
 ;
     _category.id                  ma_coevolution_msa_details
     _category.mandatory_code      no
