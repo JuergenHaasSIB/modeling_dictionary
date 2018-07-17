@@ -1289,7 +1289,7 @@ save_ma_target_entity_instance
    _pdbx_category_context.category_id  ma_target_entity_instance
    save_
 
-ave__ma_target_entity_instance.asym_id
+save__ma_target_entity_instance.asym_id
     _item_description.description
 ;     A unique identifier for the instance of the entity. 
 ;
@@ -2985,11 +2985,11 @@ save__ma_coevolution_msa_details.seq_clust_db
     loop_
     _item_enumeration.value
     _item_enumeration.detail
-    'UniRef100'
-    'UniRef90'
-    'UniRef50'
-    'NR20'
-    'Other'
+    'UniRef100' .
+    'UniRef90'  .
+    'UniRef50'  .
+    'NR20'      .
+    'Other'     .
      save_
 
 save__ma_coevolution_msa_details.seq_clust_db_other_details
@@ -3007,7 +3007,7 @@ save__ma_coevolution_msa_details.seq_clust_db_version
 ;     Version of the sequence cluster database. 
       This might correspond to the release date of the database. 
 ;   
-    _item.name                  '_ma_coevolution_msa_details.seq_clust_db_other_version'
+    _item.name                  '_ma_coevolution_msa_details.seq_clust_db_version'
     _item.category_id             ma_coevolution_msa_details
     _item.mandatory_code          yes
     _item_type.code               line
