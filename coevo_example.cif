@@ -1,6 +1,5 @@
 data_1coe
-#
-#
+##
 _entity.id                1
 _entity.type              polymer
 _entity.pdbx_description  Polypeptide
@@ -16,6 +15,12 @@ _ma_model_list.model_type "Ab initio model"
 _ma_target_entity.entity_id 1
 _ma_target_entity.data_id 1
 _ma_target_entity.origin "reference database"
+##
+_ma_target_entity_instance.asym_id A
+_ma_target_entity_instance.entity_id 1
+##
+_struct_asym.id A
+_struct_asym.entity_id 1
 ##
 _ma_target_ref_db_details.target_entity_id 1
 _ma_target_ref_db_details.db_name "UNP"
