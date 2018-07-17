@@ -12,10 +12,22 @@ _entity.pdbx_description
 loop_
 _ma_target_entity.entity_id
 _ma_target_entity.data_id
-_ma_target_entity.ref_db_entry
-1 1 no
-2 2 no
-3 12 no
+_ma_target_entity.origin
+1 1 designed
+2 2 designed
+3 12 designed
+##
+loop_
+_ma_target_entity_instance.asym_id
+_ma_target_entity_instance.entity_id
+A 1
+C 1
+B 2
+D 2
+_ 3
+_ 3
+_ 3
+_ 3
 ##
 loop_
 _struct_asym.id
@@ -35,27 +47,29 @@ _pdbx_entity_nonpoly.name "PROTOPORPHYRIN IX CONTAINING FE"
 _pdbx_entity_nonpoly.ma_model_mode explicit
 ##
 loop_
-_ma_template_details.id
-_ma_template_details.origin
-_ma_template_details.label_asym_id
-_ma_template_details.label_entity_id
-_ma_template_details.model_num
-_ma_template_details.entity_type
-_ma_template_details.data_id
-_ma_template_details.trans_matrix_id
-1 "reference database" A 1 1 polymer 3 1
-2 "reference database" C 1 1 polymer 3 1
-3 "reference database" B 2 1 polymer 4 1
-4 "reference database" D 2 1 polymer 4 1
-5 "reference database" _ 3 1 non-polymer 13 1
-6 "reference database" _ 3 1 non-polymer 14 1
-7 "reference database" _ 3 1 non-polymer 15 1
-8 "reference database" _ 3 1 non-polymer 16 1
+_ma_template_details.ordinal_id
+_ma_template_details.template_id
+_ma_template_details.template_origin
+_ma_template_details.template_label_asym_id
+_ma_template_details.template_label_entity_id
+_ma_template_details.template_model_num
+_ma_template_details.template_entity_type
+_ma_template_details.template_data_id
+_ma_template_details.template_trans_matrix_id
+_ma_template_details.target_asym_id
+1 1 "customized" A 1 1 polymer 3 1 A
+2 2 "customized" C 1 1 polymer 4 1 C
+3 3 "customized" B 2 1 polymer 5 1 B
+4 4 "customized" D 2 1 polymer 6 1 D
+5 5 "customized" _ 3 1 non-polymer 13 1 _
+6 6 "customized" _ 3 1 non-polymer 14 1 _
+7 7 "customized" _ 3 1 non-polymer 15 1 _
+8 8 "customized" _ 3 1 non-polymer 16 1 _
 ##
 loop_
 _ma_template_poly.template_id
-_ma_template_poly.seq_one_letter_code
-_ma_template_poly.seq_one_letter_code_can
+_ma_template_poly.full_seq_one_letter_code
+_ma_template_poly.full_seq_one_letter_code_can
 1
 ;VLSAADKGNVKAAWGKVGGHAAEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGAKVAAALTKAVEHLDDLPGALSELSDLHAHKLRVDPVNFKLLSHSLLVTLASHLPSDFTPAVHASLDKFLANVSTVLTSKYR
 ;
@@ -79,25 +93,35 @@ _ma_template_poly.seq_one_letter_code_can
 ##
 loop_
 _ma_template_non_poly.template_id
-_ma_template_non_poly.target_entity_id
-_ma_template_non_poly.template_inchi_key
-5 3 KABFMIBPWCXCRK-RGGAHWMASA-L
-6 3 KABFMIBPWCXCRK-RGGAHWMASA-L
-7 3 KABFMIBPWCXCRK-RGGAHWMASA-L
-8 3 KABFMIBPWCXCRK-RGGAHWMASA-L
+_ma_template_non_poly.inchi_key
+5 KABFMIBPWCXCRK-RGGAHWMASA-L
+6 KABFMIBPWCXCRK-RGGAHWMASA-L
+7 KABFMIBPWCXCRK-RGGAHWMASA-L
+8 KABFMIBPWCXCRK-RGGAHWMASA-L
 ##
 loop_
 _ma_template_poly_segment.id
 _ma_template_poly_segment.template_id
-_ma_template_poly_segment.template_residue_number_begin
-_ma_template_poly_segment.template_residue_number_end
+_ma_template_poly_segment.residue_number_begin
+_ma_template_poly_segment.residue_number_end
 _ma_template_poly_segment.segment_length
-_ma_template_poly_segment.template_residue_name_begin
-_ma_template_poly_segment.template_residue_name_end
-1 1 1 141 141 VAL ARG
-2 2 1 141 141 VAL ARG
-3 3 2 145 144 VAL HIS
-4 4 2 145 144 VAL HIS
+_ma_template_poly_segment.residue_name_begin
+_ma_template_poly_segment.residue_name_end
+1 1 1 141 141 VAL ARG 
+2 2 1 141 141 VAL ARG 
+3 3 2 145 144 VAL HIS 
+4 4 2 145 144 VAL HIS 
+##
+loop_
+_ma_target_template_poly_mapping.id
+_ma_target_template_poly_mapping.template_segment_id
+_ma_target_template_poly_mapping.target_asym_id
+_ma_target_template_poly_mapping.target_seq_id_begin
+_ma_target_template_poly_mapping.target_seq_id_end
+1 1 A 1 141 
+2 2 C 1 141
+3 3 B 1 146
+4 4 D 1 146
 ##
 loop_
 _ma_template_ref_db_details.template_id
@@ -127,17 +151,6 @@ _ma_template_trans_matrix.tr_vector[2]                    0.0
 _ma_template_trans_matrix.tr_vector[3]                    0.0
 ##
 loop_
-_ma_target_template_poly_mapping.id
-_ma_target_template_poly_mapping.template_segment_id
-_ma_target_template_poly_mapping.target_asym_id 
-_ma_target_template_poly_mapping.target_seq_id_begin
-_ma_target_template_poly_mapping.target_seq_id_end
-1 1 A 1 141
-2 2 C 1 141
-3 3 B 3 146
-4 4 D 3 146
-##
-loop_
 _ma_struct_assembly.ordinal_id
 _ma_struct_assembly.assembly_id
 _ma_struct_assembly.entity_id
@@ -164,22 +177,28 @@ _ma_model_list.assembly_id 1
 _ma_model_list.data_id 11
 _ma_model_list.model_type 'Homology model'
 ##
+_ma_alignment_info.alignment_id
+_ma_alignment_info.data_id
+_ma_alignment_info.software_id
+_ma_alignment_info.alignment_length
+_ma_alignment_info.alignment_type
+1 7 ? 141 "target-template pairwise alignment" 
+2 8 ? 141 "target-template pairwise alignment" 
+3 9 ? 144 "target-template pairwise alignment" 
+4 10 ? 144 "target-template pairwise alignment" 
+##
 _ma_alignment_details.ordinal_id
 _ma_alignment_details.alignment_id
 _ma_alignment_details.template_segment_id
 _ma_alignment_details.target_asym_id
-_ma_alignment_details.data_id
-_ma_alignment_details.software_id
-_ma_alignment_details.alignment_length
-_ma_alignment_details.alignment_type
 _ma_alignment_details.score_type
 _ma_alignment_details.score_value
 _ma_alignment_details.percent_sequence_identity
 _ma_alignment_details.sequence_identity_denominator
-1 1 1 A 7 ? 141 "target-template pairwise alignment" "HHblits e-value" 1.0 84.0 "Other"
-2 2 2 C 8 ? 141 "target-template pairwise alignment" "HHblits e-value" 1.0 84.0 "Other"
-3 3 3 B 9 ? 144 "target-template pairwise alignment" "HHblits e-value" 1.0 82.0 "Other"
-4 4 4 D 10 ? 144 "target-template pairwise alignment" "HHblits e-value" 1.0 82.0 "Other"
+1 1 1 A "HHblits e-value" 1.0 84.0 "Other"
+2 2 2 C "HHblits e-value" 1.0 84.0 "Other"
+3 3 3 B "HHblits e-value" 1.0 82.0 "Other"
+4 4 4 D "HHblits e-value" 1.0 82.0 "Other"
 ##
 loop_ 
 _ma_alignment.ordinal_id
@@ -217,23 +236,22 @@ loop_
 _ma_data.id
 _ma_data.name
 _ma_data.content_type
-_ma_data.content_sub_type
-1 "Target 1" "target" "target"
-2 "Target 2" "target" "target"
-3 "Template A" "template" "template"
-4 "Template C" "template" "template"
-5 "Template B" "template" "template"
-6 "Template D" "template" "template"
+1 "Target 1" "target"
+2 "Target 2" "target"
+3 "Template A" "template structure"
+4 "Template C" "template structure"
+5 "Template B" "template structure"
+6 "Template D" "template structure"
 7 "Aln 1A" "alignment" "target-template alignment"
 8 "Aln 1C" "alignment" "target-template alignment"
 9 "Aln 2B" "alignment" "target-template alignment"
 10 "Aln 2D" "alignment" "target-template alignment"
-11 "Model" "coordinates" "coordinates"
-12 "Target 3" "target" "target"
-13 "Template E" "template" "template"
-14 "Template F" "template" "template"
-15 "Template G" "template" "template"
-16 "Template H" "template" "template"
+11 "Model" "model coordinates"
+12 "Target 3" "target"
+13 "Template E" "template structure"
+14 "Template F" "template structure"
+15 "Template G" "template structure"
+16 "Template H" "template structure"
 ##
 loop_
 _ma_data_group.ordinal_id
@@ -243,10 +261,10 @@ _ma_data_group.data_id
 2 2 2
 3 3 3
 4 3 4
-5 3 7
-6 3 8
-7 3 5
-8 3 6
+5 3 5
+6 3 6
+7 3 7
+8 3 8
 9 3 9
 10 3 10
 11 4 11
