@@ -12,6 +12,7 @@ _struct_asym.details 'Example'
 _ma_model_list.ordinal_id 1
 _ma_model_list.model_id 1
 _ma_model_list.model_group_id 1
+_ma_model_list.model_name 'Top scoring model'
 _ma_model_list.assembly_id 1
 _ma_model_list.data_id 4
 _ma_model_list.model_type 'Homology Model'
@@ -22,6 +23,10 @@ _ma_struct_assembly.entity_id 1
 _ma_struct_assembly.asym_id A
 _ma_struct_assembly.seq_id_begin 7
 _ma_struct_assembly.seq_id_end 301
+##
+_ma_struct_assembly_details.assembly_id 1
+_ma_struct_assembly_details.assembly_name "Monomer example"
+_ma_struct_assembly_details.assembly_description "Monomer example"
 ##
 _ma_template_details.id 1
 _ma_template_details.data_id 2
@@ -34,53 +39,89 @@ GDGNNVLNSLLEVAPLAGLKVRVATPKGYEPDPGLLKRANAFFTHDPKEAALGAHALYTDVWTSMGQEAEREKRLRDFQG
 FQVNGELLKLLRPEGVFLHCLPAHYGEETTEEAVHGPRSRVFDQAENRLHTAKAVLLTLLK
 ;
 ##
-_ma_pdb_template.template_id 1
-_ma_pdb_template.pdb_code 2ef0
-_ma_pdb_template.pdb_entity_id 1
-_ma_pdb_template.pdb_label_asym_id A
-_ma_pdb_template.pdb_seq_id_begin 1
-_ma_pdb_template.pdb_seq_id_end 301
-_ma_pdb_template.pdb_model_num 1
-_ma_pdb_template.pdb_seq_one_letter_code
+_ma_template_details.ordinal_id 1
+_ma_template_details.template_id 1
+_ma_template_details.template_origin "reference database"
+_ma_template_details.template_label_asym_id A
+_ma_template_details.template_label_entity_id 1
+_ma_template_details.template_model_num 1
+_ma_template_details.template_entity_type polymer
+_ma_template_details.template_data_id 2
+_ma_template_details.template_trans_matrix_id 1
+_ma_template_details.target_asym_id A
+##
+_ma_template_poly.template_id 1
+_ma_template_poly.full_seq_one_letter_code
 ;MGGEALTLPKDLLDFSGYGPKELQALLDLAEQLKRERYRGEDLKGKVLALLFEKPSLRTRTTLEVAMVHLGGHAVYL
 DQKQVGIGEREPVRDVAKNLERFVEGIAARVFRHETVEALARHAKVPVVNALSDRAHPLQALADLLTLKEVFGGLAGL
 EVAWVGDGNNVLNSLLEVAPLAGLKVRVATPKGYEPDPGLLKRANAFFTHDPKEAALGAHALYTDVWTSMGQEAEREK
 RLRDFQGFQVNGELLKLLRPEGVFLHCLPAHYGEETTEEAVHGPRSRVFDQAENRLHTAKAVLLTLLK
 ;
-_ma_pdb_template.pdb_seq_one_letter_code_can
+_ma_template_poly.full_seq_one_letter_code_can
 ;MGGEALTLPKDLLDFSGYGPKELQALLDLAEQLKRERYRGEDLKGKVLALLFEKPSLRTRTTLEVAMVHLGGHAVYL
 DQKQVGIGEREPVRDVAKNLERFVEGIAARVFRHETVEALARHAKVPVVNALSDRAHPLQALADLLTLKEVFGGLAGL
 EVAWVGDGNNVLNSLLEVAPLAGLKVRVATPKGYEPDPGLLKRANAFFTHDPKEAALGAHALYTDVWTSMGQEAEREK
 RLRDFQGFQVNGELLKLLRPEGVFLHCLPAHYGEETTEEAVHGPRSRVFDQAENRLHTAKAVLLTLLK
 ;
 ##
-_ma_target_details.id 1
-_ma_target_details.entity_id 1  
-_ma_target_details.data_id 1
-_ma_target_details.ref_db_entry yes
-_ma_target_details.one_letter_code TLPKDLLDFSGYGPKELQALLDLAERLKRERYRGEDLKGKVLALLFEKPSLRTRTTLEVAMVHLGGHAVYLDQKQVGIGEREPVRDVAKNLERFVEGIAARVFRHETVEALARHAKVPVVNALSDRAHPLQALADLLTLKEVFGGLAGLEVAWVGDGNNVLNSLLEVAPLAGLKVRVATPKGYEPDPGLLKRANAFFTHDPKEAALGAHALYTDVWTSMGQEAERAKRLRDFQGFQVNGELLKLLRPEGVFLHCLPAHYGEETTEEAVHGPRSRVFDQAENRLHTAKAVLLTLLK
+_ma_template_poly_segment.id 1
+_ma_template_poly_segment.template_id 1
+_ma_template_poly_segment.residue_number_begin 7
+_ma_template_poly_segment.residue_number_end 301
+_ma_template_poly_segment.segment_length 295
+_ma_template_poly_segment.residue_name_begin THR
+_ma_template_poly_segment.residue_name_end LYS
 ##
-_ma_target_ref_db_details.target_id 1
-_ma_target_ref_db_details.seq_db_name ? 
-_ma_target_ref_db_details.seq_db_code ? 
-_ma_target_ref_db_details.seq_db_accession ?
-_ma_target_ref_db_details.seq_db_isoform ?      
+_ma_target_template_poly_mapping.id 1
+_ma_target_template_poly_mapping.template_segment_id 1
+_ma_target_template_poly_mapping.target_asym_id A
+_ma_target_template_poly_mapping.target_seq_id_begin 7
+_ma_target_template_poly_mapping.target_seq_id_end 301
+##
+_ma_template_ref_db_details.template_id 1
+_ma_template_ref_db_details.db_name PDB
+_ma_template_ref_db_details.db_accession_code 2ef0
+##
+_ma_template_trans_matrix.id                                1
+_ma_template_trans_matrix.rot_matrix[1][1]                1.0
+_ma_template_trans_matrix.rot_matrix[2][1]                0.0
+_ma_template_trans_matrix.rot_matrix[3][1]                0.0
+_ma_template_trans_matrix.rot_matrix[1][2]                0.0
+_ma_template_trans_matrix.rot_matrix[2][2]                1.0
+_ma_template_trans_matrix.rot_matrix[3][2]                0.0
+_ma_template_trans_matrix.rot_matrix[1][3]                0.0
+_ma_template_trans_matrix.rot_matrix[2][3]                0.0
+_ma_template_trans_matrix.rot_matrix[3][3]                1.0
+_ma_template_trans_matrix.tr_vector[1]                    0.0
+_ma_template_trans_matrix.tr_vector[2]                    0.0
+_ma_template_trans_matrix.tr_vector[3]                    0.0
+##
+_ma_target_entity.entity_id 1  
+_ma_target_entity.data_id 1
+_ma_target_entity.origin 'reference database'
+##
+_ma_target_entity_instance.asym_id A
+_ma_target_entity_instance.entity_id A
+_ma_target_entity_instance.details .
+##
+_ma_target_ref_db_details.target_entity_id 1
+_ma_target_ref_db_details.db_name ? 
+_ma_target_ref_db_details.db_code ? 
+_ma_target_ref_db_details.db_accession ?
 _ma_target_ref_db_details.seq_db_align_begin ?
 _ma_target_ref_db_details.seq_db_align_end ?
 ##
-_ma_struct_assembly_details.assembly_id 1
-_ma_struct_assembly_details.assembly_name 'Monomer'
-_ma_struct_assembly_details.assembly_description 'Chain A'
+_ma_alignment_info.alignment_id 1
+_ma_alignment_info.data_id 3
+_ma_alignment_info.software_id ?
+_ma_alignment_info.alignment_length 301
+_ma_alignment_info.alignment_type 'target-template pairwise alignment'
+_ma_alignment_details.alignment_mode 'local'
 ##
 _ma_alignment_details.ordinal_id 1
 _ma_alignment_details.alignment_id 1
-_ma_alignment_details.target_id 1
-_ma_alignment_details.template_id 1
-_ma_alignment_details.data_id 3
-_ma_alignment_details.software_id ?
-_ma_alignment_details.alignment_length 301
-_ma_alignment_details.alignment_type 'target-template pairwise alignment'
-_ma_alignment_details.alignment_mode 'local'
+_ma_alignment_details.target_asym_id A
+_ma_alignment_details.template_segment_id 1
 _ma_alignment_details.score_type 'HHblits e-value'
 _ma_alignment_details.score_value 2e-107
 _ma_alignment_details.percent_sequence_identity 99.34
@@ -98,11 +139,10 @@ loop_
 _ma_data.id
 _ma_data.name
 _ma_data.content_type
-_ma_data.content_sub_type
-1 'target sequence' 'target' 'target'
-2 'template sequence' 'template' 'template'
-3 'alignment' 'alignment' 'target-template alignment'
-4 'model' 'coordinates' 'coordinates'
+1 'Target' 'target' 
+2 'Template' 'template structure' 
+3 'Alignment' 'target-template alignment'
+4 'Model' 'model coordinates'
 ##
 loop_
 _ma_data_group.ordinal_id
