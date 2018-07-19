@@ -1,3 +1,6 @@
+# The ModelArchive modeling extension was moved to the repository of the Integrated and Hybrid Modeling (IHM) Working Group
+see <a href="https://github.com/ihmwg/MA-dictionary">here</a> for details.
+
 # Overview
 
 ## Goal
